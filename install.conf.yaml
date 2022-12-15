@@ -28,13 +28,14 @@
         path: config/scripts
         create: true
 
-- pacaur:
-  - zsh
-  - neovim
-  - polybar
-  - kitty
-  - picom 
-  - nodejs 
-  - npm 
-  - lsd 
-  - xdotool
+- omnipkg:
+  - install:
+    - zsh
+    - neovim
+    - polybar
+    - kitty
+    - picom 
+    - nodejs 
+    - npm 
+    - lsd 
+    - xdotool
