@@ -39,3 +39,8 @@
     - npm 
     - lsd 
     - xdotool
+
+- if:
+  - cond: '[ -d ~/.oh-my-zsh ]'
+    met:
+      - sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
