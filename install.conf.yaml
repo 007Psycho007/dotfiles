@@ -43,4 +43,5 @@
 - if:
   - cond: '[ -d ~/.oh-my-zsh ]'
     unmet:
-      - 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+      - shell:
+        - 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
