@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+import os
+from subprocess import CalledProcessError, DEVNULL, check_output
+def limit_len(string):
+    if len(string) > 15:
+        return f"{string[:11]}..."
+    else: return string
+try:
+    playerctl_status = check_output(["playerctl", "status"], stderr=DEVNULL).decode("utf-8").strip()
+except FileNotFoundError:
+    playerctl_status = "Not installed"
+except CalledProcessError as e:
+   playerctl_status = "Not installed"
+
+os.system("playerctl play-pause")

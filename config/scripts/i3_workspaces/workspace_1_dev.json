@@ -1,0 +1,81 @@
+{
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1154,
+       "width": 1898,
+       "x": 10,
+       "y": 34
+    },
+    "marks": [],
+    "name": "jpeterhaensel@jpeterhaensel-ThinkPad-L580:~",
+    "percent": 0.7,
+    "swallows": [
+       {
+       "class": "^kitty$",
+       "instance": "^kitty$"
+       }
+    ],
+    "type": "con"
+},
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "marks": [],
+    "percent": 0.3,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 571,
+               "width": 1898,
+               "x": 10,
+               "y": 617
+            },
+            "marks": [],
+            "name": "jpeterhaensel@jpeterhaensel-ThinkPad-L580:~",
+            "percent": 0.5,
+            "swallows": [
+               {
+               "class": "^kitty$",
+               "instance": "^kitty$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 571,
+               "width": 943,
+               "x": 965,
+               "y": 617
+            },
+            "marks": [],
+            "name": "jpeterhaensel@jpeterhaensel-ThinkPad-L580:~",
+            "percent": 0.5,
+            "swallows": [
+               {
+               "class": "^kitty$",
+               "instance": "^kitty$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+    ]
+}

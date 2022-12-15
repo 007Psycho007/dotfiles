@@ -6,10 +6,23 @@
     ~/.bash_logout: bash_logout
     ~/.gitconfig: gitconfig
     ~/.zshrc: zshrc
+    ~/.p10k.zsh: p10k.zsh
+    ~/.config/kitty: 
+        path: config/kitty
+        create: true
     ~/.Xresources: Xresources
     ~/.Xdefaults: Xdefaults
     ~/.config/i3:
         path: config/i3/
+        create: true
+    ~/.config/nvim:
+        path: config/nvim 
+        create: true 
+    ~/.config/polybar:
+        path: config/polybar 
+        create: true
+    ~/.config/scripts:
+        path: config/scripts
         create: true
 
 

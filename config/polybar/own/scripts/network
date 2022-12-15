@@ -1,0 +1,4 @@
+#!/bin/bash
+
+interface=$(ip link show | grep 'state UP' | awk '{print $2}' | cut -d ':' -f1)
+speed= $(awk '{if(l1){print $2-l1,$10-l2} else{l1=$2; l2=$10;}}' < (grep $interface /proc/net/dev) < (sleep 1; grep $interface /proc/net/dev)))

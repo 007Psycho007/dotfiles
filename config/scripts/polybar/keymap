@@ -1,0 +1,14 @@
+#!/bin/bash
+
+key="$(setxkbmap -print | awk -F"+" '/xkb_symbols/ {print $2}')"
+if [[ $1 == "set" ]]; then
+    if [[ $key == "us" ]]; then
+        setxkbmap -layout de
+    elif [[ $key == "de" ]]; then
+        setxkbmap -layout gb
+    else 
+        setxkbmap -layout us
+    fi 
+else
+    echo $key
+fi
