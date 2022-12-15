@@ -1,17 +1,17 @@
 - clean: ['~']
 
 - link:
-    ~/.profile: profile
-    ~/.bashrc: bashrc
-    ~/.bash_logout: bash_logout
+    ~/.profile: bash/profile
+    ~/.bashrc: bash/bashrc
+    ~/.bash_logout: bash/bash_logout
     ~/.gitconfig: gitconfig
-    ~/.zshrc: zshrc
-    ~/.p10k.zsh: p10k.zsh
+    ~/.zshrc: zsh/zshrc
+    ~/.p10k.zsh: zsh/p10k.zsh
     ~/.config/kitty: 
         path: config/kitty
         create: true
-    ~/.Xresources: Xresources
-    ~/.Xdefaults: Xdefaults
+    ~/.Xresources: x/Xresources
+    ~/.Xdefaults: x/Xdefaults
     ~/.config/i3:
         path: config/i3/
         create: true
