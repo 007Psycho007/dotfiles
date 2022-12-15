@@ -27,6 +27,9 @@
     ~/.config/scripts:
         path: config/scripts
         create: true
+    ~/.local/share/fonts: 
+        path: fonts
+        create: true
 
 - omnipkg:
   - install:
@@ -46,6 +49,8 @@
       - shell:
         - 'bash ./omz.sh --unattended'
         - 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k'
+        - 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
+        - 'mv .zshrc.pre-oh-my-zsh .zshrc'
       - sudo:
         - shell:
-          - 'chsh --shell /bin/zsh'
+          - 'chsh --shell /bin/zsh $USER'
