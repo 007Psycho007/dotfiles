@@ -44,4 +44,5 @@
   - cond: '[ -d ~/.oh-my-zsh ]'
     unmet:
       - shell:
-        - './omz.sh'
+        - 'bash ./omz.sh --unattended'
+        - 'chsh --shell /bin/zsh'
