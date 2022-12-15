@@ -96,7 +96,7 @@ if [ -f "/usr/bin/nala" ]; then
     alias apt="sudo nala"
 fi
 
-if [ -f "/usr/bin/lazygit" ]; then
+if [ -f "/usr/bin/lazygit" ] || [ -f ~/go/bin/lazygit]; then
     alias lg="lazygit"
 fi
 

@@ -7,6 +7,9 @@
     ~/.gitconfig: gitconfig
     ~/.zshrc: zsh/zshrc
     ~/.p10k.zsh: zsh/p10k.zsh
+    ~/.oh-my-zsh: 
+        path: zsh/oh-my-zsh 
+        create: true
     ~/.config/kitty: 
         path: config/kitty
         create: true
