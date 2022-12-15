@@ -4,7 +4,6 @@
     ~/.profile: bash/profile
     ~/.bashrc: bash/bashrc
     ~/.bash_logout: bash/bash_logout
-    ~/.gitconfig: gitconfig
     ~/.zshrc: zsh/zshrc
     ~/.p10k.zsh: zsh/p10k.zsh
     ~/.oh-my-zsh: 
