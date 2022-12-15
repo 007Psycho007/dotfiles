@@ -42,15 +42,19 @@
     - npm 
     - lsd 
     - xdotool
+    - go 
+    - gopls
+
 
 - if:
   - cond: '[ -d ~/.oh-my-zsh ]'
     unmet:
       - shell:
-        - 'bash ./omz.sh --unattended'
+        - 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
         - 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k'
         - 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
         - 'mv .zshrc.pre-oh-my-zsh .zshrc'
+          'sh -c "$(curl -fsSL https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh)"'
       - sudo:
         - shell:
           - 'chsh --shell /bin/zsh $USER'
