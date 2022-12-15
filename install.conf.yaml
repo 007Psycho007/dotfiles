@@ -6,14 +6,15 @@
     ~/.bash_logout: bash/bash_logout
     ~/.zshrc: zsh/zshrc
     ~/.p10k.zsh: zsh/p10k.zsh
-    ~/.oh-my-zsh: 
-        path: zsh/oh-my-zsh 
-        create: true
     ~/.config/kitty: 
         path: config/kitty
         create: true
-    ~/.Xresources: x/Xresources
-    ~/.Xdefaults: x/Xdefaults
+    ~/.Xresources:
+        path: x/Xresources
+        force: true
+    ~/.Xdefaults: 
+        path: x/Xdefaults
+        force: true
     ~/.config/i3:
         path: config/i3/
         create: true
