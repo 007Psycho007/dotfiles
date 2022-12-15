@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"go", "python", "html", "lua", "markdown", "sql", "bash", "dockerfile", "yaml"},
+  ensure_installed = {"go", "gomod", "python", "html", "lua", "markdown", "sql", "bash", "dockerfile", "yaml"},
   sync_install = false, 
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {
