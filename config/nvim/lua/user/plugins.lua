@@ -116,6 +116,7 @@ return packer.startup(function(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
 
+  use {'nvim-orgmode/orgmode'}
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

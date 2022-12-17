@@ -214,6 +214,11 @@ _G.packer_plugins = {
     path = "/home/psycho/.local/share/nvim/site/pack/packer/start/onedark.nvim",
     url = "https://github.com/navarasu/onedark.nvim"
   },
+  orgmode = {
+    loaded = true,
+    path = "/home/psycho/.local/share/nvim/site/pack/packer/start/orgmode",
+    url = "https://github.com/nvim-orgmode/orgmode"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/psycho/.local/share/nvim/site/pack/packer/start/packer.nvim",
