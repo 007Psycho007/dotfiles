@@ -13,7 +13,7 @@ require("barbecue").setup( {
 
   ---filetypes not to enable winbar in
   ---@type string[]
-  exclude_filetypes = { "toggleterm" },
+  exclude_filetypes = { "toggleterm", "org"},
 
   modifiers = {
     ---filename modifiers applied to dirname

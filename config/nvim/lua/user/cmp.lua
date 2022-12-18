@@ -87,8 +87,8 @@ cmp.setup {
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },
+    { name = "neorg" },
     { name = "path" },
-    { name = 'orgmode' }
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

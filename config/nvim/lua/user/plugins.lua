@@ -117,6 +117,7 @@ return packer.startup(function(use)
   -- Put this at the end after all plugins
 
   use {'nvim-orgmode/orgmode'}
+  use {'willthbill/opener.nvim'}
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

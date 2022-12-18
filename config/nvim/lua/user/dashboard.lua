@@ -35,4 +35,14 @@ db.custom_center = {
     desc = 'Open new File',
     action ='n new'
     },
+    {
+    icon = ' ',
+    desc = 'Open Personal dotfiles',
+    },
+    {
+    icon = '',
+    desc = 'Open Org Mode',
+    action = 'cd ~/notes'
+    },
+
 }
