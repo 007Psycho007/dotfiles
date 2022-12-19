@@ -99,7 +99,7 @@ nvim_tree.setup {
   view = {
     width = 30,
     hide_root_folder = false,
-    side = "left",
+    side = "right",
     -- auto_resize = true,
     mappings = {
       custom_only = false,
