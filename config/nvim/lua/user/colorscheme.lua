@@ -4,7 +4,10 @@ require('onedark').setup {
   highlights = {
     BarbecueSeparator = {fg = '$fg', bg = '$bg0', fmt = 'bold'},
     DiagnosticHint = {fg = '#61afef', bg = '$bg0', fmt = 'bold'},
-    TabLine= {fg = '#282c34', bg = '#61afef'},
+    TabLine = {fg = '#abb2bf', bg = '#282c34'},
+    TabLineIn = {fg ='#abb2bf', bg = '#282c34'},
+    TabLineHead = {fg = '#282c34', bg = '#61afef'},
+    TabLineSel =  {fg = '#282c34', bg = '#61afef'},
   }
 }
 

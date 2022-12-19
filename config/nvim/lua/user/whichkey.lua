@@ -84,6 +84,7 @@ local mappings = {
   ["q"] = { "<cmd>qa!<CR>", "Quit without saving" },
   ["b"] = { "<cmd>Telescope buffers<CR>", "Open Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["n"] = { "<cmd>tabnew<cr>", "New Tab"},
   i = {
     name = "Iron (Repl)",
     o = {"<cmd>IronRepl<cr>", "Toggle Repl"},
@@ -134,6 +135,7 @@ local mappings = {
       "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
       "Undo Stage Hunk",
     },
+
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
@@ -175,7 +177,7 @@ local mappings = {
     name = "Terminal",
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+    t = { "<cmd>ToggleTerm direction=tab<cr>", "Tab" },
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
