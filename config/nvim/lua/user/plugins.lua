@@ -48,7 +48,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use "nvim-lualine/lualine.nvim"
   use "folke/which-key.nvim"
-  use "akinsho/bufferline.nvim"
+  use 'nanozuki/tabby.nvim'
   use "moll/vim-bbye"
   use "lukas-reineke/indent-blankline.nvim"
   use "terrortylor/nvim-comment"
@@ -108,8 +108,6 @@ return packer.startup(function(use)
   use {'hkupty/iron.nvim'}
 
   -- Winbar -- 
-  use {"smiteshp/nvim-navic"}
-  use { "utilyre/barbecue.nvim"}
 
   -- Dashboard -- 
   use {'glepnir/dashboard-nvim'}

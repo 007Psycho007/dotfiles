@@ -1,12 +1,3 @@
-local navic = require("nvim-navic")
-
-local function getnavic()
-    if navic.is_available() then
-        return navic.get_location()
-    else
-        return
-    end
-end
 
 function getconda()
     if vim.bo.filetype ~= "python" then
