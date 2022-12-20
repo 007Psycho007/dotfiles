@@ -12,7 +12,7 @@ telescope.setup {
     prompt_prefix = "﬌ ",
     selection_caret = " ",
     path_display = { "smart" },
-    --initial_mode = "normal",
+    initial_mode = "normal",
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:

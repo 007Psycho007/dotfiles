@@ -1,3 +1,17 @@
+function tab_name(tab) 
+   return string.gsub(tab,"%[..%]","") 
+end
+
+function tab_modified(tab)
+    wins = require("tabby.module.api").get_tab_wins(tab)
+    for i, x in pairs(wins) do
+        if vim.bo[vim.api.nvim_win_get_buf(x)].modified then
+            return ""
+        end
+    end
+    return ""
+end
+
 function lsp_diag(buf) 
     diagnostics = vim.diagnostic.get(buf)
     local count = {0, 0, 0, 0}
@@ -12,6 +26,7 @@ function lsp_diag(buf)
     end
     return vim.bo[buf].modified and "" or ""
 end 
+
 function GetFileExtension(url)
   return url:match("^.+(%..+)$"):sub(2)
 end
@@ -57,7 +72,9 @@ require('tabby.tabline').set(function(line)
         line.sep('', hl, theme.fill),
         tab.number(),
         "",
-        tab.name(),
+        tab_name(tab.name()),
+        "",
+        tab_modified(tab.id),
         line.sep('', hl, theme.fill),
         hl = hl,
         margin = ' ',
@@ -72,6 +89,7 @@ require('tabby.tabline').set(function(line)
         "",
         win.buf_name(),
         "",
+        win.is_modified() and "1" or "0",
         get_modified(win.buf().id),
         line.sep('', hl, theme.fill),
         hl = hl,
