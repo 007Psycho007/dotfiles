@@ -72,7 +72,7 @@ require('tabby.tabline').set(function(line)
         "",
         win.buf_name(),
         "",
-        lsp_diag(win.buf().id),
+        get_modified(win.buf().id),
         line.sep('', hl, theme.fill),
         hl = hl,
         margin = ' ',
