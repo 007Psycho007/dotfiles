@@ -1,12 +1,26 @@
+function lsp_diag(buf) 
+    diagnostics = vim.diagnostic.get(buf)
+    local count = {0, 0, 0, 0}
+    
+    for _, diagnostic in ipairs(diagnostics) do
+        count[diagnostic.severity] = count[diagnostic.severity] + 1
+    end
+    if count[1] > 0 then
+        return vim.bo[buf].modified and "" or ""
+    elseif count[2] > 0 then 
+        return vim.bo[buf].modified and "" or ""
+    end
+    return vim.bo[buf].modified and "" or ""
+end 
 function GetFileExtension(url)
   return url:match("^.+(%..+)$"):sub(2)
 end
 
 local function get_modified(buf)
     if vim.bo[buf].modified then
-        return ''
+        return ''
     else
-        return ' '
+        return ''
     end
 end
 
@@ -42,6 +56,8 @@ require('tabby.tabline').set(function(line)
       return {
         line.sep('', hl, theme.fill),
         tab.number(),
+        "",
+        tab.name(),
         line.sep('', hl, theme.fill),
         hl = hl,
         margin = ' ',
@@ -53,8 +69,10 @@ require('tabby.tabline').set(function(line)
       return {
         line.sep('', hl, theme.fill),
         get_devicon(win.buf_name()),
+        "",
         win.buf_name(),
-        get_modified(win.buf().id),
+        "",
+        lsp_diag(win.buf().id),
         line.sep('', hl, theme.fill),
         hl = hl,
         margin = ' ',

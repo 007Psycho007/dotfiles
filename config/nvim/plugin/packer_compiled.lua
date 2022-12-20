@@ -201,7 +201,7 @@ _G.packer_plugins = {
   },
   ["opener.nvim"] = {
     loaded = true,
-    path = "/home/psycho/.local/share/nvim/site/pack/packer/start/opener.nvim",
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/opener.nvim",
     url = "https://github.com/willthbill/opener.nvim"
   },
   orgmode = {
