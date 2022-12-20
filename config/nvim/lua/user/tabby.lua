@@ -89,7 +89,6 @@ require('tabby.tabline').set(function(line)
         "",
         win.buf_name(),
         "",
-        win.is_modified() and "1" or "0",
         get_modified(win.buf().id),
         line.sep('', hl, theme.fill),
         hl = hl,
