@@ -50,8 +50,15 @@ local function get_devicon(filename)
     end
         return require'nvim-web-devicons'.get_icon(filename, ext, { default = true })
 end
+
+local function buffer_name(buf)
+    if string.find(buf,"NvimTree") then 
+        return "NvimTree"
+    end
+    return buf
+end
 local theme = {
-  fill = 'TabLineFill',
+  fill = 'TabFill',
   -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
   head = 'TabLineHead',
   current_tab = 'TabLineSel',
@@ -87,7 +94,7 @@ require('tabby.tabline').set(function(line)
         line.sep('', hl, theme.fill),
         get_devicon(win.buf_name()),
         "",
-        win.buf_name(),
+        buffer_name(win.buf_name()),
         "",
         get_modified(win.buf().id),
         line.sep('', hl, theme.fill),
