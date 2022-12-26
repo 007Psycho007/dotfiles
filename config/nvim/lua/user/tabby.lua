@@ -43,7 +43,7 @@ local function get_devicon(filename)
     if filename == "NvimTree_1" then 
         return "פּ"
     end
-    if string.find(filename,"%.") then
+    if string.find(filename,"%.") and not string.sub(filename, 1, 1) == "." then
         ext = GetFileExtension(filename)
     else
         ext =''

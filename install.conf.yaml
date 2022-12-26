@@ -45,6 +45,7 @@
     - go 
     - gopls
     - rofi
+    - feh
 
 
 - if:
