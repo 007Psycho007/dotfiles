@@ -6,6 +6,8 @@
     ~/.bash_logout: bash/bash_logout
     ~/.zshrc: zsh/zshrc
     ~/.p10k.zsh: zsh/p10k.zsh
+    ~/.config/starship/starship.toml: starship/starship.toml
+    ~/.config/starship/starship-transient.toml: starship/starship-transient.toml
     ~/.config/kitty: 
         path: config/kitty
         create: true
@@ -54,6 +56,8 @@
     unmet:
       - shell:
         - bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+
       - sudo:
         - shell:
+          - sh -c "$(curl -fsSL https://starship.rs/install.sh)" "" -f
           - 'chsh --shell /bin/zsh $USER'
