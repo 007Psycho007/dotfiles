@@ -42,10 +42,17 @@ autoload -Uz _zinit
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
+    marlonrichert/zsh-autocomplete \
+    zsh-users/zsh-autosuggestions \
     zdharma-continuum/fast-syntax-highlighting \
 
+### End of ZInit Installiton 
+# Enable VI Mode and adjust it
 bindkey -v
-### End of Zinit's installer chunk
+bindkey ^R history-incremental-search-backward 
+bindkey ^S history-incremental-search-forward
+
+HISTFILE=~/.zsh_history
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/psycho/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
