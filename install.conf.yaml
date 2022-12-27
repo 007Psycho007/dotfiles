@@ -46,16 +46,14 @@
     - gopls
     - rofi
     - feh
+    - lazygit
 
 
 - if:
-  - cond: '[ -d ~/.oh-my-zsh ]'
+  - cond: '[ -d ~/.local/share/zinit/zinit.git ]'
     unmet:
       - shell:
-        - 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
-        - 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k'
-        - 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
-        - 'mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc'
+        - bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
       - sudo:
         - shell:
           - 'chsh --shell /bin/zsh $USER'
