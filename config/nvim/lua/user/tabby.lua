@@ -2,6 +2,7 @@ function tab_name(tab)
    return string.gsub(tab,"%[..%]","") 
 end
 
+
 function tab_modified(tab)
     wins = require("tabby.module.api").get_tab_wins(tab)
     for i, x in pairs(wins) do
@@ -27,10 +28,6 @@ function lsp_diag(buf)
     return vim.bo[buf].modified and "" or ""
 end 
 
-function GetFileExtension(url)
-  return url:match("^.+(%..+)$"):sub(2)
-end
-
 local function get_modified(buf)
     if vim.bo[buf].modified then
         return ''
@@ -39,24 +36,13 @@ local function get_modified(buf)
     end
 end
 
-local function get_devicon(filename)
-    if filename == "NvimTree_1" then 
-        return "פּ"
-    end
-    if string.find(filename,"%.") and not string.sub(filename, 1, 1) == "." then
-        ext = GetFileExtension(filename)
-    else
-        ext =''
-    end
-        return require'nvim-web-devicons'.get_icon(filename, ext, { default = true })
-end
-
 local function buffer_name(buf)
     if string.find(buf,"NvimTree") then 
         return "NvimTree"
     end
     return buf
 end
+
 local theme = {
   fill = 'TabFill',
   -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
@@ -92,7 +78,7 @@ require('tabby.tabline').set(function(line)
       local hl = win.is_current() and theme.current_tab or theme.inactive_tab
       return {
         line.sep('', hl, theme.fill),
-        get_devicon(win.buf_name()),
+        win.file_icon(),
         "",
         buffer_name(win.buf_name()),
         "",
