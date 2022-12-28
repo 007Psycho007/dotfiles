@@ -8,3 +8,4 @@ format = """
 disabled = false
 format = "[$time](fg:blue bg:8)"
 time_format = "%H:%M"
+

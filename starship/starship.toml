@@ -16,7 +16,7 @@ format = """
 [$status](fg:white bg:8)\
 [$conda](fg:white bg:8)\
 [$aws](fg:white bg:8)
-[$character](fg:green) 
+[ $character](fg:green)
 """
 
 [os]
@@ -110,5 +110,9 @@ success_symbol = "[](fg:green bg:8) "
 format = " $symbol$status "
 disabled = false
 
-[character]
+#[character]
+#success_symbol = '[❯](fg:green bg:blue)'
+#error_symbol = '[❯](fg:red bg:blue)'
+#vimcmd_symbol = '[V](fg:green bg:blue)'
+#format = "$symbol"
 
