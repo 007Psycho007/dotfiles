@@ -74,7 +74,7 @@ require('tabby.tabline').set(function(line)
       line.sep('', theme.head, theme.fill),
     },
     line.tabs().foreach(function(tab)
-      local hl = tab.is_current() and theme.current_tab or theme.tab
+      local hl = tab.is_current() and theme.current_tab or theme.inactive_tab
       return {
         line.sep('', hl, theme.fill),
         tab.number(),

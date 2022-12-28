@@ -6,6 +6,8 @@
     ~/.bash_logout: bash/bash_logout
     ~/.zshrc: zsh/zshrc
     ~/.p10k.zsh: zsh/p10k.zsh
+    ~/.config/starship/starship.toml: starship/starship.toml
+    ~/.config/starship/starship-transient.toml: starship/starship-transient.toml
     ~/.config/kitty: 
         path: config/kitty
         create: true
@@ -46,16 +48,16 @@
     - gopls
     - rofi
     - feh
+    - lazygit
 
 
 - if:
-  - cond: '[ -d ~/.oh-my-zsh ]'
+  - cond: '[ -d ~/.local/share/zinit/zinit.git ]'
     unmet:
       - shell:
         - 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
-        - 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k'
-        - 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
         - 'mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc'
       - sudo:
         - shell:
+          - sh -c "$(curl -fsSL https://starship.rs/install.sh)" "" -f
           - 'chsh --shell /bin/zsh $USER'

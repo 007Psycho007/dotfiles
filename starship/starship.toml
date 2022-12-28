@@ -1,0 +1,114 @@
+format = """
+[ $os ](bg:8 fg:blue)\
+[](fg:8 bg:white)\
+[ $username ](fg:black bg:white)\
+[](fg:white bg:8)\
+[ $directory ](fg:white bg:8)\
+[$git_branch$git_status](fg:white bg:8)\
+[$golang](fg:white bg:8)\
+[$python](fg:white bg:8)\
+[$lua](fg:white bg:8)\
+[$terraform](fg:white bg:8)\
+[$kubernetes](fg:white bg:8)\
+[](fg:8)\
+[$fill](fg:white)\
+[](fg:8)\
+[$status](fg:white bg:8)\
+[$conda](fg:white bg:8)\
+[$aws](fg:white bg:8)
+[$character](fg:green) 
+"""
+
+[os]
+format = "$symbol"
+style = "bold blue"
+disabled = false
+
+[os.symbols]
+Windows = " "
+Arch = ""
+
+[username]
+style_user = 'black bold'
+style_root = 'red bold'
+format = "$user"
+disabled = false
+show_always = true
+
+[directory]
+truncation_length = 8
+truncation_symbol = '…/'
+format = "$path"
+home_symbol = " ~"
+
+[git_branch]
+symbol = ' '
+truncation_length = 15
+truncation_symbol = ''
+style = "red"
+format = ' [$symbol$branch](fg:red bg:8)'
+
+[git_status]
+conflicted = ' =$count'
+ahead = ' ⇡$count'
+behind = ' ⇣$count'
+diverged = ' ⇕$count'
+up_to_date = '✓'
+untracked = ' ?$count'
+stashed = ' $$count'
+renamed = ' »$count'
+deleted = ' $count'
+staged = " +$count"
+modified = " !$count"
+format = "[$all_status](fg:red bg:8) "
+
+[conda]
+symbol = ""
+style = "yellow"
+format = ' [$symbol $environment](fg:green bg:8) '
+ignore_base = false
+
+[aws]
+symbol = ""
+format = " [$symbol $region](fg:yellow bg:8) "
+[aws.region_aliases]
+eu-central-1 = "eu-c-1"
+
+[kubernetes]
+symbol = ""
+format = " [$symbol $context](fg:blue bg:8) "
+
+[lua]
+symbol = ""
+format = " [$symbol $version](fg:blue bg:8) "
+
+[golang]
+symbol = ""
+format = " [$symbol $version](fg:blue bg:8) "
+
+[python]
+symbol = ""
+format = " [$symbol $version](fg:yellow bg:8) "
+
+[terraform]
+symbol = ""
+format = " [$symbol $version](fg:blue bg:8) "
+
+
+[fill]
+symbol = "─"
+style = 'bold white'
+
+[time]
+disabled = false
+style = "bold bright-black"
+format = "[$time]($style)"
+
+[status]
+symbol = "[](fg:red bg:8) "
+success_symbol = "[](fg:green bg:8) "
+format = " $symbol$status "
+disabled = false
+
+[character]
+
