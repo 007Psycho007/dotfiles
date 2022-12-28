@@ -14,9 +14,8 @@ format = """
 [$fill](fg:white)\
 [](fg:8)\
 [$status](fg:white bg:8)\
-[$conda](fg:white bg:8)\
-[$aws](fg:white bg:8)
-[$character](fg:green) 
+[$conda](fg:white bg:8)
+[ $character](fg:green) 
 """
 
 [os]
@@ -65,7 +64,7 @@ format = "[$all_status](fg:red bg:8) "
 [conda]
 symbol = ""
 style = "yellow"
-format = ' [$symbol $environment](fg:green bg:8) '
+format = ' [$symbol $environment](fg:yellow bg:8) '
 ignore_base = false
 
 [aws]
@@ -111,4 +110,4 @@ format = " $symbol$status "
 disabled = false
 
 [character]
-
+format = "$symbol"
