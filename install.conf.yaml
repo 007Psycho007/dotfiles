@@ -6,8 +6,9 @@
     ~/.bash_logout: bash/bash_logout
     ~/.zshrc: zsh/zshrc
     ~/.p10k.zsh: zsh/p10k.zsh
-    ~/.config/starship/starship.toml: starship/starship.toml
-    ~/.config/starship/starship-transient.toml: starship/starship-transient.toml
+    ~/.config/starship:
+        path: starship
+        create: true
     ~/.config/kitty: 
         path: config/kitty
         create: true

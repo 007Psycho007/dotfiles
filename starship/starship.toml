@@ -18,6 +18,8 @@ format = """
 [ $character](fg:green) 
 """
 
+continuation_prompt = "      [│](fg:blue)  "
+
 [os]
 format = "$symbol"
 style = "bold blue"
