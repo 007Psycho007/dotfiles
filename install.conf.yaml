@@ -6,6 +6,9 @@
     ~/.bash_logout: bash/bash_logout
     ~/.zshrc: zsh/zshrc
     ~/.p10k.zsh: zsh/p10k.zsh
+    ~/.config/tmux: 
+        path: config/tmux 
+        create: true
     ~/.config/starship:
         path: starship
         create: true

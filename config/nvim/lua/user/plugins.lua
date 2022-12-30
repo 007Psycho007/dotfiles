@@ -110,7 +110,7 @@ return packer.startup(function(use)
   -- Winbar -- 
 
   -- Dashboard -- 
-  use {'glepnir/dashboard-nvim'}
+  --use {'glepnir/dashboard-nvim'}
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
 
