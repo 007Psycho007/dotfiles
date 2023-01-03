@@ -15,7 +15,7 @@ format = """
 [](fg:8)\
 [$status](fg:white bg:8)\
 [$conda](fg:white bg:8)
-[$hostname $character](fg:green) 
+[ $character](fg:green) 
 """
 
 continuation_prompt = "      [│](fg:blue)  "
@@ -118,5 +118,5 @@ format = "$ssh_symbol"
 
 [character]
 format = "$symbol"
-
+vicmd_symbol = ""
 
