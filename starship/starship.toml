@@ -114,6 +114,8 @@ disabled = false
 [hostname]
 ssh_only = true
 ssh_symbol = "[](fg:red)"
+format = "$ssh_symbol"
+
 [character]
 format = "$symbol"
 
