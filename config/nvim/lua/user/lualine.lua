@@ -25,7 +25,7 @@ local status = function (str)
     elseif (str == "REPLACE") then
         return "  "
     elseif (str == "TERMINAL") then
-        return "  "
+        return "  "
     elseif (str == "O-PENDING") then
         return "  "
     else return str

@@ -15,7 +15,7 @@ format = """
 [](fg:8)\
 [$status](fg:white bg:8)\
 [$conda](fg:white bg:8)
-[ $character](fg:green) 
+[$hostname $character](fg:green) 
 """
 
 continuation_prompt = "      [│](fg:blue)  "
@@ -71,7 +71,7 @@ ignore_base = false
 
 [aws]
 symbol = ""
-format = " [$symbol $region](fg:yellow bg:8) "
+format = " [$symbol $profile](fg:yellow bg:8) "
 [aws.region_aliases]
 eu-central-1 = "eu-c-1"
 
@@ -111,5 +111,10 @@ success_symbol = "[](fg:green bg:8) "
 format = " $symbol$status "
 disabled = false
 
+[hostname]
+ssh_only = true
+ssh_symbol = "[](fg:red)"
 [character]
 format = "$symbol"
+
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ 
+if [[ $(uname -n) == "dev-pc" ]];then 
+    echo 
+
