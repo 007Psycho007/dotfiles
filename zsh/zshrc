@@ -121,6 +121,11 @@ if [ -d "/home/$(whoami)/.local/bin" ]; then
 	export PATH="/home/$(whoami)/.local/bin:$PATH"
 fi
 
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
+if [ -z $SSH_CLIENT ]; then
+    export STARSHIP_CONFIG=~/.config/starship/starship.toml
+else
+    export STARSHIP_CONFIG=~/.config/starship/server.toml
+fi
+
 eval "$(starship init zsh)"
 zle -N zle-line-init
