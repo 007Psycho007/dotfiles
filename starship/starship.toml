@@ -14,7 +14,8 @@ format = """
 [$fill](fg:white)\
 [](fg:8)\
 [$status](fg:white bg:8)\
-[$conda](fg:white bg:8)
+[$conda](fg:white bg:8)\
+[$nix_shell](fg:white bg:8)
 [ $character](fg:green) 
 """
 
@@ -111,11 +112,9 @@ success_symbol = "[](fg:green bg:8) "
 format = " $symbol$status "
 disabled = false
 
-[hostname]
-ssh_only = true
-ssh_symbol = "[](fg:red)"
-format = "$ssh_symbol"
-
+[nix_shell]
+symbol = ""
+format = ' [$symbol $name](fg:blue bg:8) '
 [character]
 format = "$symbol"
 vicmd_symbol = ""

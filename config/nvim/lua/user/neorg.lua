@@ -4,7 +4,7 @@ require('neorg').setup {
         ["core.norg.dirman"] = {
             config = {
                 workspaces = {
-                    home = "~/notes/home",
+                    home = "~/notes",
                 }
             }
         },
@@ -13,10 +13,20 @@ require('neorg').setup {
                 engine = "nvim-cmp" -- Configuration here
             }
         },  
-        ["core.gtd.base"] = {
+        ["core.norg.concealer"] = {
             config = { -- Note that this table is optional and doesn't need to be provided
-                workspace = "home"-- Configuration here
+                icon_preset = "basic",
+                dim_code_blocks = {
+                    enabled = true,
+                    conceal = true
+                },
+                folds = false
             }
         },
+        ["core.export"] = {
+            config = { -- Note that this table is optional and doesn't need to be provided
+               -- Configuration here
+            }
+        }
     }
 }

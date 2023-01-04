@@ -183,6 +183,10 @@ local mappings = {
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
+  o = {
+    name = "Neorg",
+    t = {"<cmd>Neorg tangle current-file<CR>", "Tangle current File"}
+    }
 }
 
 local vopts = {
