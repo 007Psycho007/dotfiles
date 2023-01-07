@@ -107,10 +107,10 @@ local mappings = {
     },
     
   f = {
-    name = "Telescope",
+    name = "Files/Search",
     f = {"<cmd>Telescope find_files<cr>", "Find Files"},
     g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
-    t = {"<cmd>Legendary<cr>","Commands"}
+    t = {"<cmd>NvimTreeToggle<cr>","NVIM Tree"}
     },
   p = {
     name = "Packer",
