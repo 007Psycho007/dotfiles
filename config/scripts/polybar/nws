@@ -42,9 +42,7 @@ print_bit() {
 INTERVAL=1
 if [[ $(uname -n) == "PC-Main" ]] || [[ $(uname -n) == "archlinux" ]];then 
     INTERFACES="enp5s0"
-elif [[ $(uname -n) == "arch-steamdeck" ]];then 
-    INTERFACES="wlan0"
-elif [[ $(uname -n) == "arch-steamdeck" ]];then 
+elif [[ $(uname -n) == "arch-steamdeck" ]] || [[ $(uname -n) == "adconova-pc" ]];then 
     INTERFACES="wlan0"
 else 
     INTERFACES="wlp6s0"
