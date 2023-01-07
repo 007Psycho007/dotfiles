@@ -196,13 +196,13 @@ bindsym $mod+Ctrl+h move workspace to output left
 # Workspace Applications
 assign [class="firefox" instance="Navigator"] $web
 assign [class="qutebrowser"] $web
-assign [class="Chromium"] $web
 assign [class="librewolf-default"] $web
 
 assign [class="teams-for-linux"] $com
 assign [class="Prospect Mail" ] $com
 assign [class="discord"] $com 
 assign [class="thunderbird"] $com
+assign [class="Chromium"] $web
 
 assign [class="Spotify"] $med
 assign [class="Vivaldi-stable"] $med
