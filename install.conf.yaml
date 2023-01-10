@@ -1,25 +1,25 @@
 - clean: ['~']
 
 - link:
-    ~/.profile: bash/profile
-    ~/.bashrc: bash/bashrc
-    ~/.bash_logout: bash/bash_logout
-    ~/.zshrc: zsh/zshrc
-    ~/.p10k.zsh: zsh/p10k.zsh
+    ~/.profile: config/bash/profile
+    ~/.bashrc: config/bash/bashrc
+    ~/.bash_logout: config/bash/bash_logout
+    ~/.zshrc: config/zsh/zshrc
+    ~/.p10k.zsh: config/zsh/p10k.zsh
     ~/.config/tmux: 
         path: config/tmux 
         create: true
     ~/.config/starship:
-        path: starship
+        path: config/starship
         create: true
     ~/.config/kitty: 
         path: config/kitty
         create: true
     ~/.Xresources:
-        path: x/Xresources
+        path: config/x/Xresources
         force: true
     ~/.Xdefaults: 
-        path: x/Xdefaults
+        path: config/x/Xdefaults
         force: true
     ~/.config/i3:
         path: config/i3/
@@ -34,7 +34,10 @@
         path: config/scripts
         create: true
     ~/.local/share/fonts: 
-        path: fonts
+        path: config/fonts
+        create: true
+    ~/.config/ncspot:
+        path: config/ncspot
         create: true
 
 - omnipkg:
@@ -53,6 +56,13 @@
     - rofi
     - feh
     - lazygit
+    - unzip
+    - nix
+    - xclip
+    - pavucontrol
+    - firefox
+    - man
+    - chromium
 
 
 - if:

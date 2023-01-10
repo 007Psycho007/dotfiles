@@ -1,6 +1,6 @@
 require('orgmode').setup_ts_grammar()
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"go", "gomod", "python", "html", "lua", "markdown", "sql", "bash", "dockerfile", "yaml", "hcl", "terraform", "norg"},
+  ensure_installed = {"go", "gomod", "python", "html", "lua", "markdown", "sql", "bash", "dockerfile", "yaml", "hcl", "terraform","org", "norg"},
   sync_install = false, 
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {

@@ -20,7 +20,6 @@ format = """
 """
 
 continuation_prompt = "      [│](fg:blue)  "
-
 [os]
 format = "$symbol"
 style = "bold blue"
@@ -38,10 +37,13 @@ disabled = false
 show_always = true
 
 [directory]
-truncation_length = 8
+truncation_length = 3
 truncation_symbol = '…/'
-format = "$path"
+truncate_to_repo = true
+format = "$path $read_only"
 home_symbol = " ~"
+read_only = ""
+read_only_style = 'red'
 
 [git_branch]
 symbol = ' '

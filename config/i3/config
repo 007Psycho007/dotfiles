@@ -202,7 +202,7 @@ assign [class="teams-for-linux"] $com
 assign [class="Prospect Mail" ] $com
 assign [class="discord"] $com 
 assign [class="thunderbird"] $com
-assign [class="Chromium"] $web
+assign [class="Chromium"] $com
 
 assign [class="Spotify"] $med
 assign [class="Vivaldi-stable"] $med
