@@ -61,7 +61,6 @@ fi
 # Aliases 
 # NVIM
 alias vim="nvim --listen ~/.cache/nvim/server.pipe"
-alias org="vim ~/notes"
 alias vimconf="nvim /home/$(whoami)/.config/nvim"
 alias i3conf="nvim /home/$(whoami)/.config/i3/config"
 alias polyconf="nvim /home/$(whoami)/.config/polybar/"
