@@ -25,7 +25,6 @@ local setup = {
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  -- operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
@@ -146,6 +145,7 @@ local mappings = {
   },
   c = {
     name = "Code Actions",
+    c = {"gcc","Comment Line"},
     p = {
       name = "Python",
       c = {"<CMD>Telescope conda conda<CR>","Change Conda Env"},

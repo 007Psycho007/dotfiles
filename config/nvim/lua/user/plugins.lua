@@ -43,7 +43,6 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
   use "nvim-lualine/lualine.nvim"
@@ -51,8 +50,8 @@ return packer.startup(function(use)
   use 'nanozuki/tabby.nvim'
   use "moll/vim-bbye"
   use "lukas-reineke/indent-blankline.nvim"
-  use "terrortylor/nvim-comment"
   use 'navarasu/onedark.nvim'
+  use 'echasnovski/mini.nvim'
   -- cmp plugins
 
   use "hrsh7th/nvim-cmp" -- The completion plugin
