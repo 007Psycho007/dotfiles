@@ -107,6 +107,7 @@ local mappings = {
     
   f = {
     name = "Files/Search",
+    s = {"<cmd>SidebarNvimToggle<cr>", "Sidebar"},
     f = {"<cmd>Telescope find_files<cr>", "Find Files"},
     g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
     t = {"<cmd>NvimTreeToggle<cr>","NVIM Tree"}
