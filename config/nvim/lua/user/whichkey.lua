@@ -107,7 +107,6 @@ local mappings = {
     
   f = {
     name = "Files/Search",
-    s = {"<cmd>SidebarNvimToggle<cr>", "Sidebar"},
     f = {"<cmd>Telescope find_files<cr>", "Find Files"},
     g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
     t = {"<cmd>NvimTreeToggle<cr>","NVIM Tree"}
@@ -146,7 +145,7 @@ local mappings = {
   },
   c = {
     name = "Code Actions",
-    c = {"gcc","Comment Line"},
+    t = {"<cmd>TodoTelescope<cr>", "Todos"},
     p = {
       name = "Python",
       c = {"<CMD>Telescope conda conda<CR>","Change Conda Env"},
@@ -154,24 +153,11 @@ local mappings = {
     
     l = {
       name = "LSP",
-      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+      s = { "<cmd>Telescope diagnostics<CR>", "Diagnostics"},
       c = { "<cmd>Telescope lsp_references<CR>", "Declaration"},
       d = { "<cmd>Telescope lsp_definitions<CR>", "Definition"},
-      f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
       I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-      j = {
-        "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-        "Next Diagnostic",
-      },
-      k = {
-        "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-        "Prev Diagnostic",
-      },
-      l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-      q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-      r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-      s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     },
   },
   t = {

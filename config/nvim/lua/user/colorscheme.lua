@@ -24,9 +24,8 @@ require('onedark').setup {
     GItSIgnsStagedDelete = { bg = "#21252b"},
     GItSIgnsStagedTopdelete = { bg = "#21252b"},
     IndentChar = { fg = "#61afef" },
-    IndentBlanklineContextStart = { sp = "#61afef", fmt = "underline"}
-
-
+    IndentBlanklineContextStart = { sp = "#61afef", fmt = "underline"},
+    SidebarNvimLineNr = { bg = "#282c34"}
   },
 }
 

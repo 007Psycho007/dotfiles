@@ -3,8 +3,8 @@ if not status_ok then
 	return
 end
 
-require("user.lsp.lsp-installer")
+require("user.lsp.mason")
 require("user.lsp.handlers").setup()
-require'lspconfig'.asm_lsp.setup{}
+
 
 

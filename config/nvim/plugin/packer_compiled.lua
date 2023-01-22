@@ -134,6 +134,16 @@ _G.packer_plugins = {
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["mason-lspconfig.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
+  },
   ["mini.nvim"] = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/mini.nvim",
@@ -163,11 +173,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
     url = "https://github.com/rcarriga/nvim-dap-ui"
-  },
-  ["nvim-lsp-installer"] = {
-    loaded = true,
-    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
-    url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -224,11 +229,6 @@ _G.packer_plugins = {
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
   },
-  ["sidebar.nvim"] = {
-    loaded = true,
-    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/sidebar.nvim",
-    url = "https://github.com/sidebar-nvim/sidebar.nvim"
-  },
   ["tabby.nvim"] = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/tabby.nvim",
@@ -248,6 +248,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["todo-comments.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
   },
   ["toggleterm.nvim"] = {
     loaded = true,

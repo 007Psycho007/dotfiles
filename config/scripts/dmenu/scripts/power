@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# dmenu theming
+first_prompt=""
+opt1="Shutdown\nSuspend\nLogout"
+opt2="Yes\nNo"
+
+
+ask() {
+    answer="$( echo -e $1 | rofi -dmenu -i -p "$2" $lines $colors $font )"
+}
+
+ask "$opt1" "$first_prompt"
+
+case $answer in
+    "Shutdown")
+        ask "$opt2" "Really Shutdown"
+        if [[ $answer == "yes" ]]; then
+            shutdown now
+        fi
+        exit 0
+        ;;
+    "Suspend")
+        ask "$opt2" "Really Suspend"
+        if [[ $answer == "Yes" ]]; then
+            systemctl suspend
+        fi
+        exit 0
+        ;;
+    "Logout")
+        ask "$opt2" "Really Logout"
+        if [[ $answer == "Yes" ]]; then
+            i3-msg exit
+        fi
+        exit 0
+        ;;
+esac
+
+exit 0
