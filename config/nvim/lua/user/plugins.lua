@@ -38,23 +38,29 @@ packer.init {
   },
 }
 
--- Install your plugins here
+-- NOTE: Install your plugins here
 return packer.startup(function(use)
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  -- UI and Colorschemes
   use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
+  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lualine/lualine.nvim"
-  use "folke/which-key.nvim"
   use 'nanozuki/tabby.nvim'
-  use "moll/vim-bbye"
   use "lukas-reineke/indent-blankline.nvim"
   use 'navarasu/onedark.nvim'
-  use 'echasnovski/mini.nvim'
-  use "folke/todo-comments.nvim"
-  -- cmp plugins
+  use "nvim-zh/colorful-winsep.nvim"
+  use 'akinsho/bufferline.nvim'
 
+  -- Utils Functions 
+  use "folke/todo-comments.nvim"
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "folke/which-key.nvim"
+  -- Rest
+  use "wbthomason/packer.nvim" -- Have packer manage itself
+  use "kyazdani42/nvim-tree.lua"
+  use "moll/vim-bbye"
+  use 'echasnovski/mini.nvim'
+
+  -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
@@ -62,6 +68,7 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
+
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
@@ -70,6 +77,8 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/mason.nvim" -- simple to use language server installer
   use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
+  use "jayp0521/mason-nvim-dap.nvim"
+  use "glepnir/lspsaga.nvim"
 
   -- Treesitter
   use {
@@ -83,7 +92,6 @@ return packer.startup(function(use)
   use {"akinsho/toggleterm.nvim"}
 
   -- Tagbar
-  use "preservim/tagbar"
 
   -- Projects
   use "ahmedkhalf/project.nvim"
@@ -108,13 +116,7 @@ return packer.startup(function(use)
   -- Iron -- 
   use {'hkupty/iron.nvim'}
 
-  -- Winbar -- 
-
-  -- Dashboard -- 
-  --use {'glepnir/dashboard-nvim'}
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-
+  -- Org
   use {'nvim-orgmode/orgmode'}
   use {
     'nvim-neorg/neorg',

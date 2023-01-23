@@ -19,70 +19,6 @@ end
 local dap, dapui = require("dap"), require("dapui")
 
 vim.fn.sign_define('DapBreakpoint', {text='', texthl='red', linehl='', numhl=''})
-dap.adapters.python = {
-  type = 'executable';
-  command = pypath(),
-  args = { '-m', 'debugpy.adapter' };
-}
-
-dap.adapters.delve = {
-  type = 'server',
-  port = '${port}',
-  executable = {
-    command = 'dlv',
-    args = {'dap', '-l', '127.0.0.1:${port}'},
-  }
-}
-
-dap.configurations.go = {
-  {
-    type = "delve",
-    name = "Debug Folder",
-    request = "launch",
-    showLog = true,
-    program = "./"
-  },
-  {
-    type = "delve",
-    name = "Debug Single File",
-    request = "launch",
-    showLog = true,
-    program = "${file}"
-  },
-  {
-    type = "delve",
-    name = "Debug test", -- configuration for debugging test files
-    request = "launch",
-    mode = "test",
-    program = "${file}"
-  },
-  -- works with go.mod packages and sub packages 
-  {
-    type = "delve",
-    name = "Debug test (go.mod)",
-    request = "launch",
-    mode = "test",
-    program = "./${relativeFileDirname}"
-  } 
-}
-
-dap.configurations.python = {
-  {
-    -- The first three options are required by nvim-dap
-    type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
-    request = 'launch';
-    name = "Launch file";
-    -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-    program = "${file}"; -- This configuration will launch the current file if used.
-    pythonPath = function()
-      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-        
-        return pypath()
-        end;
-  },
-}
 
 require("dapui").setup({
   icons = { expanded = " ", collapsed = " ", current_frame = " " },
@@ -116,7 +52,7 @@ require("dapui").setup({
   layouts = {
     {
       elements = {
-      -- Elements can be strings or table with id and size keys.
+        -- Elements can be strings or table with id and size keys.
         { id = "scopes", size = 0.25 },
         "breakpoints",
         "stacks",

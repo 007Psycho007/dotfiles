@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -109,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["colorful-winsep.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/colorful-winsep.nvim",
+    url = "https://github.com/nvim-zh/colorful-winsep.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -129,6 +139,11 @@ _G.packer_plugins = {
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/iron.nvim",
     url = "https://github.com/hkupty/iron.nvim"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    url = "https://github.com/glepnir/lspsaga.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -138,6 +153,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason-nvim-dap.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/mason-nvim-dap.nvim",
+    url = "https://github.com/jayp0521/mason-nvim-dap.nvim"
   },
   ["mason.nvim"] = {
     loaded = true,
@@ -233,11 +253,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/tabby.nvim",
     url = "https://github.com/nanozuki/tabby.nvim"
-  },
-  tagbar = {
-    loaded = true,
-    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/tagbar",
-    url = "https://github.com/preservim/tagbar"
   },
   ["telescope-conda.nvim"] = {
     loaded = true,

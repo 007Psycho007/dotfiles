@@ -2,6 +2,11 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {'sumneko_lua', 'pyright', 'gopls', 'terraformls'}
 })
+require("mason-nvim-dap").setup({
+  ensure_installed = { "debugpy", "delve" },
+  automatic_installation = true,
+  automatic_setup = true
+})
 
 local lspconfig = require('lspconfig')
 require('mason-lspconfig').setup_handlers({
@@ -9,4 +14,5 @@ require('mason-lspconfig').setup_handlers({
     lspconfig[server].setup({})
   end,
 })
+require 'mason-nvim-dap'.setup_handlers()
 
