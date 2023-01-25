@@ -40,7 +40,9 @@ local function get_modified(buf)
 end
 
 local function get_devicon(filename)
-    if filename == "NvimTree_1" then 
+    if string.find(filename,"NvimTree") then
+        return "פּ"
+    elseif string.find(filename,"SidebarNvim") then
         return "פּ"
     end
     if string.find(filename,"%.") and not string.sub(filename, 1, 1) == "." then
@@ -52,8 +54,10 @@ local function get_devicon(filename)
 end
 
 local function buffer_name(buf)
-    if string.find(buf,"NvimTree") then 
-        return "NvimTree"
+  if string.find(buf,"NvimTree") then 
+        return "Filetree"
+  elseif string.find(buf,"SidebarNvim") then 
+        return "Sidebar"
     end
     return buf
 end
@@ -88,20 +92,6 @@ require('tabby.tabline').set(function(line)
       }
     end),
     line.spacer(),
-    line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-      local hl = win.is_current() and theme.current_tab or theme.inactive_tab
-      return {
-        line.sep('', hl, theme.fill),
-        get_devicon(win.buf_name()),
-        "",
-        buffer_name(win.buf_name()),
-        "",
-        get_modified(win.buf().id),
-        line.sep('', hl, theme.fill),
-        hl = hl,
-        margin = ' ',
-      }
-    end),
     {
       line.sep('', theme.tail, theme.fill),
       { '  ', hl = theme.tail },

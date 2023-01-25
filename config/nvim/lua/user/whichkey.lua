@@ -78,12 +78,12 @@ local opts = {
 }
 
 local mappings = {
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>qa!<CR>", "Quit without saving" },
   ["b"] = { "<cmd>Telescope buffers<CR>", "Open Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["n"] = { "<cmd>tabnew<cr>", "New Tab"},
+  ["e"] = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
   i = {
     name = "Iron (Repl)",
     o = {"<cmd>IronRepl<cr>", "Toggle Repl"},
@@ -93,7 +93,7 @@ local mappings = {
   s = {
     name = "Split",
     v = { "<cmd>vsplit<cr>", "Split Vertical"},
-    h = {" <cmd>split<cr>", "Split Horizontal"},
+    h = {"<cmd>split<cr>", "Split Horizontal"},
     c = {"<cmd>close<cr>", "Close Window"},
     },
   d = {
@@ -104,9 +104,10 @@ local mappings = {
     a = {"<Cmd>lua require'dap'.step_into()<CR>", "Step Into"},
     f = {"<Cmd>lua require'dap'.step_out()<CR>", "Step Out"},
     },
-    
+
   f = {
     name = "Files/Search",
+    s = {"<cmd>SidebarNvimToggle<cr>", "Sidebar"},
     f = {"<cmd>Telescope find_files<cr>", "Find Files"},
     g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
     t = {"<cmd>NvimTreeToggle<cr>","NVIM Tree"}
@@ -150,16 +151,19 @@ local mappings = {
       name = "Python",
       c = {"<CMD>Telescope conda conda<CR>","Change Conda Env"},
       },
-    
+  },
+
     l = {
       name = "LSP",
-      s = { "<cmd>Telescope diagnostics<CR>", "Diagnostics"},
+      d = { "<cmd>Lspsaga hover_doc<cr>", "Documenation"},
+      o = { "<cmd>SymbolsOutline<cr>", "Code Outline"},
+      r = { "<cmd>Lspsaga rename<cr>", "Rename Definition"},
+      s = { "<cmd>Telescope diagnostics<CR>", "Diagnostic List"},
       c = { "<cmd>Telescope lsp_references<CR>", "Declaration"},
-      d = { "<cmd>Telescope lsp_definitions<CR>", "Definition"},
+      f = { "<cmd>Telescope lsp_definitions<CR>", "Definition"},
       i = { "<cmd>LspInfo<cr>", "Info" },
       I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     },
-  },
   t = {
     name = "Terminal",
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },

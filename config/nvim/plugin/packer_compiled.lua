@@ -114,11 +114,6 @@ _G.packer_plugins = {
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["colorful-winsep.nvim"] = {
-    loaded = true,
-    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/colorful-winsep.nvim",
-    url = "https://github.com/nvim-zh/colorful-winsep.nvim"
-  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -129,6 +124,11 @@ _G.packer_plugins = {
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["incline.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/incline.nvim",
+    url = "https://github.com/b0o/incline.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
@@ -138,6 +138,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/iron.nvim",
     url = "https://github.com/hkupty/iron.nvim"
+  },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim",
+    url = "https://github.com/folke/lsp-colors.nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
@@ -248,6 +253,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
+  },
+  ["sidebar.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/sidebar.nvim",
+    url = "https://github.com/sidebar-nvim/sidebar.nvim"
+  },
+  ["symbols-outline.nvim"] = {
+    loaded = true,
+    path = "/home/jpeterhaensel/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
+    url = "https://github.com/simrat39/symbols-outline.nvim"
   },
   ["tabby.nvim"] = {
     loaded = true,

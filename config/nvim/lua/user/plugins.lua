@@ -47,16 +47,20 @@ return packer.startup(function(use)
   use 'nanozuki/tabby.nvim'
   use "lukas-reineke/indent-blankline.nvim"
   use 'navarasu/onedark.nvim'
-  use "nvim-zh/colorful-winsep.nvim"
+  --use "nvim-zh/colorful-winsep.nvim"
   use 'akinsho/bufferline.nvim'
+  use "folke/lsp-colors.nvim"
+  use "b0o/incline.nvim"
 
   -- Utils Functions 
   use "folke/todo-comments.nvim"
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "folke/which-key.nvim"
+  use "kyazdani42/nvim-tree.lua"
+  use "sidebar-nvim/sidebar.nvim"
+
   -- Rest
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "kyazdani42/nvim-tree.lua"
   use "moll/vim-bbye"
   use 'echasnovski/mini.nvim'
 
@@ -79,6 +83,7 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
   use "jayp0521/mason-nvim-dap.nvim"
   use "glepnir/lspsaga.nvim"
+  use 'simrat39/symbols-outline.nvim'
 
   -- Treesitter
   use {

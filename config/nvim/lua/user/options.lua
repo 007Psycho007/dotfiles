@@ -44,4 +44,3 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to works
-vim.cmd "autocmd BufRead,BufNewFile *.tftemp set filetype=terraform"    

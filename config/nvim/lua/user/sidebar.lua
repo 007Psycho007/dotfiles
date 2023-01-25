@@ -1,3 +1,5 @@
 require("sidebar-nvim").setup({
-    sections = { "buffers", "git", "diagnostics", "todos" }
+  side = "right",
+  sections = { "buffers", "git", "symbols" },
+  section_separator = {"", "─────────", ""},
 })

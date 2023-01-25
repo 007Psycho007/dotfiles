@@ -2,6 +2,9 @@ require('lspsaga').setup({
   symbol_in_winbar = {
     enable = false,
   },
+  lightbulb = {
+    enable = false,
+  },
   ui = {
     -- currently only round theme
     theme = 'round',
@@ -12,10 +15,11 @@ require('lspsaga').setup({
     expand = '',
     collapse = '',
     preview = ' ',
-    code_action = ' ',
-    diagnostic = ' ',
+    code_action = ' ',
+    diagnostic = ' ',
     incoming = ' ',
     outgoing = ' ',
+    virtual_text = false,
     colors = {
       --float window normal background color
       normal_bg = "#282c34",
