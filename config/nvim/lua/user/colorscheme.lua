@@ -17,6 +17,7 @@ require('onedark').setup {
     NvimTreeEndOfBuffer = { fg = 'NONE',bg = '#282c34'},
     InclineFocused = {fg = "#282c34", bg = "#61afef"},
     InclineUnfocused = {bg ='#abb2bf', fg = '#282c34'},
+    OutlineBlue = { fg = "#61afef" }
   },
 }
 
