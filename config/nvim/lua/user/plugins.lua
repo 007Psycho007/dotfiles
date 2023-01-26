@@ -64,6 +64,9 @@ return packer.startup(function(use)
   use "moll/vim-bbye"
   use 'echasnovski/mini.nvim'
 
+  -- Helpers 
+  use "MunifTanjim/nui.nvim"
+
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions

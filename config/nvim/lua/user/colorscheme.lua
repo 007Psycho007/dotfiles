@@ -13,7 +13,6 @@ require('onedark').setup {
     IndentBlanklineContextStart = { sp = "#61afef", fmt = "underline"},
     LspDiagnosticsVirtualTextError = { fg = "#e86671" },
     NvimTreeWinSeparator = { fg = '#61afef'},
-    NvimTreeVertSplit = { fg = '#61afef'},
     NvimTreeNormal = { bg = '#282c34'},
     NvimTreeEndOfBuffer = { fg = 'NONE',bg = '#282c34'},
     InclineFocused = {fg = "#282c34", bg = "#61afef"},

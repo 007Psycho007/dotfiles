@@ -15,7 +15,8 @@ ask "$opt1" "$first_prompt"
 case $answer in
     "Shutdown")
         ask "$opt2" "Really Shutdown"
-        if [[ $answer == "yes" ]]; then
+        if [[ $answer == "Yes" ]]; then
+            echo "Shutting Down"
             shutdown now
         fi
         exit 0
