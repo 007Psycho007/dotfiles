@@ -58,6 +58,8 @@ return packer.startup(function(use)
   use "folke/which-key.nvim"
   use "kyazdani42/nvim-tree.lua"
   use "sidebar-nvim/sidebar.nvim"
+  use 'RaafatTurki/hex.nvim'
+  use "jcdickinson/wpm.nvim"
 
   -- Rest
   use "wbthomason/packer.nvim" -- Have packer manage itself

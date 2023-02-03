@@ -147,6 +147,7 @@ local mappings = {
   c = {
     name = "Code Actions",
     t = {"<cmd>TodoTelescope<cr>", "Todos"},
+    h = {"<cmd>HexToggle<cr>", "Toggle Hexedit"},
     p = {
       name = "Python",
       c = {"<CMD>Telescope conda conda<CR>","Change Conda Env"},

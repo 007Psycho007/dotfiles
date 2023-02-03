@@ -136,7 +136,7 @@ require('lualine').setup {
 					hint = "#61afef",
         }
 				}},
-      lualine_x = {'encoding'},
+      lualine_x = { 'encoding'},
       lualine_y = {'filetype', {getconda}},
       lualine_z = {'location'}
     },
