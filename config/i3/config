@@ -319,7 +319,7 @@ bindsym $mod+p exec $HOME/.config/scripts/display-selector.sh
 exec --no-startup-id $HOME/.config/scripts/i3_workspaces/launch_dev.sh
 
 # Multimedia Buttons
-bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
