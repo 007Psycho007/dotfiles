@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {'sumneko_lua', 'pyright', 'gopls', 'terraformls'}
+  ensure_installed = {'pyright', 'gopls', 'terraformls'}
 })
 require("mason-nvim-dap").setup({
   ensure_installed = { "debugpy", "delve" },

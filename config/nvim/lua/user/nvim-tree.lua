@@ -65,12 +65,6 @@ nvim_tree.setup {
   disable_netrw = true,
   remove_keymaps = {"<Tab>"},
   hijack_netrw = true,
-  open_on_setup = false,
-  ignore_ft_on_setup = {
-    "startify",
-    "dashboard",
-    "alpha",
-  },
   open_on_tab = false,
   hijack_cursor = false,
   update_cwd = true,
@@ -135,3 +129,29 @@ vim.api.nvim_create_autocmd("BufEnter", {
     if layout[1] == "leaf" and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree" and layout[3] == nil then vim.cmd("confirm quit") end
   end
 })
+
+local function open_nvim_tree(data)
+
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+  if not directory and not no_name then
+    return
+  end
+
+  -- change to the directory
+  if directory then
+    vim.cmd.cd(data.file)
+  
+  -- open the tree
+    require("nvim-tree.api").tree.open()
+  end
+
+  if no_name then
+    require("nvim-tree.api").tree.toggle({ focus = false, find_file = true, })
+  end
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
