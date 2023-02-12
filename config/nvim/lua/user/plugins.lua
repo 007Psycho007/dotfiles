@@ -1,140 +1,110 @@
-local fn = vim.fn
+-- Bootstrap Lazy
 
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
     "git",
     "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
-
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
 
 -- NOTE: Install your plugins here
-return packer.startup(function(use)
+require('lazy').setup({
   -- UI and Colorschemes
-  use "kyazdani42/nvim-web-devicons"
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lualine/lualine.nvim"
-  use 'nanozuki/tabby.nvim'
-  use "lukas-reineke/indent-blankline.nvim"
-  use 'navarasu/onedark.nvim'
-  --use "nvim-zh/colorful-winsep.nvim"
-  use 'akinsho/bufferline.nvim'
-  use "folke/lsp-colors.nvim"
-  use "b0o/incline.nvim"
+  "kyazdani42/nvim-web-devicons",
+  "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
+  "nvim-lualine/lualine.nvim",
+  'nanozuki/tabby.nvim',
+  "lukas-reineke/indent-blankline.nvim",
+  'navarasu/onedark.nvim',
+  --"nvim-zh/colorful-winsep.nvim",
+  'akinsho/bufferline.nvim',
+  "folke/lsp-colors.nvim",
+  "b0o/incline.nvim",
 
   -- Utils Functions 
-  use "folke/todo-comments.nvim"
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "folke/which-key.nvim"
-  use "kyazdani42/nvim-tree.lua"
-  use "sidebar-nvim/sidebar.nvim"
-  use 'RaafatTurki/hex.nvim'
-  use "jcdickinson/wpm.nvim"
+  "folke/todo-comments.nvim",
+  "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
+  "folke/which-key.nvim",
+  "kyazdani42/nvim-tree.lua",
+  "sidebar-nvim/sidebar.nvim",
+  'RaafatTurki/hex.nvim',
+  "jcdickinson/wpm.nvim",
 
   -- Rest
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "moll/vim-bbye"
-  use 'echasnovski/mini.nvim'
+  "moll/vim-bbye",
+  'echasnovski/mini.nvim',
 
   -- Helpers 
-  use "MunifTanjim/nui.nvim"
+  "MunifTanjim/nui.nvim",
 
   -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
+  "hrsh7th/nvim-cmp", -- The completion plugin
+  "hrsh7th/cmp-buffer", -- buffer completions
+  "hrsh7th/cmp-path", -- path completions
+  "hrsh7th/cmp-cmdline", -- cmdline completions
+  "saadparwaiz1/cmp_luasnip", -- snippet completions
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-nvim-lua",
 
   -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  "L3MON4D3/LuaSnip", --snippet engine
+  "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/mason.nvim" -- simple to use language server installer
-  use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
-  use "jayp0521/mason-nvim-dap.nvim"
-  use "glepnir/lspsaga.nvim"
-  use 'simrat39/symbols-outline.nvim'
+  "neovim/nvim-lspconfig", -- enable LSP
+  "williamboman/mason.nvim", -- simple to use language server installer
+  "williamboman/mason-lspconfig.nvim", -- simple to use language server installer
+  "jayp0521/mason-nvim-dap.nvim",
+  "glepnir/lspsaga.nvim",
+  'simrat39/symbols-outline.nvim',
 
   -- Treesitter
-  use {
+  {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
+    build = ":TSUpdate",
+  },
   -- Git
-  use "lewis6991/gitsigns.nvim"
+  "lewis6991/gitsigns.nvim",
 
   -- Term
-  use {"akinsho/toggleterm.nvim"}
+  {"akinsho/toggleterm.nvim"},
 
   -- Tagbar
 
   -- Projects
-  use "ahmedkhalf/project.nvim"
+  "ahmedkhalf/project.nvim",
 
   -- Colorpicker
 
-  use "norcalli/nvim-colorizer.lua"
+  "norcalli/nvim-colorizer.lua",
       -- Debugger
-  use 'mfussenegger/nvim-dap'
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  'mfussenegger/nvim-dap',
+  { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
 
   -- Telescope
-  use {
+  {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { 'nvim-lua/plenary.nvim' ,
+    dependencies = { 'nvim-lua/plenary.nvim' ,
                  'IllustratedMan-code/telescope-conda.nvim',        
         }
-  }
-  -- use {'stevearc/dressing.nvim'}
-
-
+  },
+  -- {'stevearc/dressing.nvim'}
   -- Iron -- 
-  use {'hkupty/iron.nvim'}
+  {'hkupty/iron.nvim'},
 
   -- Org
-  use {'nvim-orgmode/orgmode'}
-  use {
+  {'nvim-orgmode/orgmode'},
+  {
     'nvim-neorg/neorg',
-    run = ":Neorg sync-parsers"
-    }
-  use {'willthbill/opener.nvim'}
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
+    build = ":Neorg sync-parsers"
+    },
+  {'willthbill/opener.nvim'}
+})
 
