@@ -45,9 +45,9 @@
 
 - omnipkg:
   - install:
+    - qtile
     - zsh
     - neovim
-    - polybar
     - kitty
     - picom 
     - nodejs 
@@ -66,6 +66,7 @@
     - firefox
     - man
     - chromium
+    - python-pip
 
 
 - if:

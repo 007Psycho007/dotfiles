@@ -11,6 +11,7 @@ web_match=[
 
 com_match=[
     Match(wm_class=["thunderbird"]),
+    Match(wm_class=["thunderbird"]),
     Match(wm_class=["Chromium"]),
 ]
 
@@ -37,7 +38,7 @@ ent_match=[
 ]
 from keys import keys
 groups = [
-        Group("dev",label="",layout="monadwide"),
+        Group("dev",label="",layout="monadwide",spawn=["kitty","kitty","kitty"]),
         Group("web",label="爵",layout="tile",matches=web_match),
         Group("med",label="ﱘ",layout="tile",matches=med_match),
         Group("com",label="", layout="tile",matches=com_match),

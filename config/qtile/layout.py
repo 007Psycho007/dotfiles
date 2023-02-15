@@ -29,7 +29,7 @@ def tabbed():
         border_width=1,
         bg_color="ffffff00",
         section_top=0,
-        sections=["Default","Second"]
+        sections=[""]
 
     )
 
@@ -52,6 +52,7 @@ layouts = [
     tile(),
     wide(),
     full(),
+    tabbed(),
     zoom()
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
