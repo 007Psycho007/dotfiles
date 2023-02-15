@@ -1,6 +1,6 @@
 onedark = {
     "background" : "#181a1f",
-    "bar_background" : "#ABB2BF",
+    "bar_background" : "#535965",
     "accent" : "#61AFEF",
     "primary" : "#282C34",
     "secondary" : "#90caf9",

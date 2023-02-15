@@ -169,7 +169,8 @@ def clock():
 def network():
     return widget.Net(
         **default_label(),
-        format=" {down}  {up}"
+        format=" {down}  {up}",
+        width=130
     )
 
 widgets_main = [
@@ -222,9 +223,9 @@ screens = [
             widgets_main,
             26,
             margin=[10,10,0,10],
-            background=onedark["background"],
-            border_color=onedark["background"],
-            border_width=5,
+            background=onedark["bar_background"],
+            border_color=onedark["bar_background"],
+            border_width=[5, 10, 5, 10],  # Draw top and bottom borders
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
@@ -234,10 +235,10 @@ screens = [
             widgets_second,
             26,
             margin=[10,10,0,10],
-            background=onedark["background"],
-            border_color=onedark["background"],
-            border_width=5,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            background="#ffffff00",
+            border_color=onedark["bar_background"],
+            border_width=0#[5, 10, 5, 10],  # Draw top and bottom borders
+
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),

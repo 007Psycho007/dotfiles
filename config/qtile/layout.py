@@ -17,7 +17,7 @@ def wide():
         ratio=0.7
     )
 
-def full():
+def tabbed():
     return layout.TreeTab(
         margin=8,
         active_fg=onedark["primary"],
@@ -26,13 +26,20 @@ def full():
         inactive_bg=onedark["label"],
         urgent_fg=onedark["label"],
         urgent_bg=onedark["critical"],
-        border_width=2,
+        border_width=1,
         bg_color="ffffff00",
         section_top=0,
         sections=["Default","Second"]
 
     )
 
+def full():
+    return layout.Max(
+        margin=8,
+        border_focus=onedark["accent"],
+        border_normal=onedark["primary"],
+        border_width=1
+    )
 def zoom():
     return layout.Zoomy(
         margin=8,
