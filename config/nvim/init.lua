@@ -4,6 +4,7 @@ require "user.colorscheme"
 require "user.cmp"
 require "user.lsp"
 require "user.treesitter"
+require("user.autopairs")
 require "user.nvim-tree"
 --require "user.neotree"
 require "user.gitsigns"

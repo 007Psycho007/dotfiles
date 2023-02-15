@@ -23,6 +23,7 @@
   "mini.nvim": { "branch": "main", "commit": "427751024313e2270ca723eb16af7b218c83a7fc" },
   "neorg": { "branch": "main", "commit": "9766bef893ec993af9408ea0d44a8f13adbd1e80" },
   "nui.nvim": { "branch": "main", "commit": "d147222a1300901656f3ebd5b95f91732785a329" },
+  "nvim-autopairs": { "branch": "master", "commit": "45ae3122a4c7744db41298b41f9f5a3f092123e6" },
   "nvim-cmp": { "branch": "main", "commit": "aae0c3e4e778ca4be6fabc52e388cbd5b844b7a5" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" },
   "nvim-dap": { "branch": "master", "commit": "401f5f22b2d7f9bdbb9294d0235136091458816a" },

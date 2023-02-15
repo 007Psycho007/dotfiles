@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -f "$HOME/Documents/keys.hc" ]; then
+    sudo cryptsetup --type tcrypt --veracrypt open $HOME/Documents/keys.hc keys
+    sudo mount -t vfat /dev/mapper/keys $HOME/Keys -o umask=000
+
+fi
+
+

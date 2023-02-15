@@ -24,6 +24,9 @@
     ~/.config/i3:
         path: config/i3/
         create: true
+    ~/.config/qtile:
+        path: config/qtile/
+        create: true
     ~/.config/nvim:
         path: config/nvim 
         create: true 

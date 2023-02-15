@@ -36,6 +36,7 @@ require('lazy').setup({
   "sidebar-nvim/sidebar.nvim",
   'RaafatTurki/hex.nvim',
   "jcdickinson/wpm.nvim",
+  "windwp/nvim-autopairs",
 
   -- Rest
   "moll/vim-bbye",

@@ -1,5 +1,4 @@
-
-#!/usr/bin/env bash
+#!/bin/bash
 
 script_path="${HOME}/.config/scripts/dmenu/scripts"
 
