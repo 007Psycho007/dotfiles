@@ -29,13 +29,7 @@ keys = [
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
-    # Move Focus to window on another screen
 
-
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
     Key(
         [mod, "shift"],
         "Return",
@@ -52,7 +46,14 @@ keys = [
     Key([mod], "p", lazy.spawn(os.path.expanduser("~/.config/scripts/display-selector.sh"))),
     Key([mod], "g", lazy.spawn(os.path.expanduser("~/.config/scripts/dmenu/menu.sh")), desc="Script Menu"),
 
+    Key([mod], "m", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
+    # Playerctl
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioStop", lazy.spawn("playerctl pause")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
 ]
+
 
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),

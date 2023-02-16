@@ -9,5 +9,9 @@ onedark = {
     "label" : "#ABB2BF",
     "success" : "#98C379",
     "warning" : "#E5C07B",
-    "critical" : "#E06C75"
+    "critical" : "#E06C75",
+    "gradient1" : "#181a1f",
+    "gradient2" : "#282C34",
+    "gradient3" : "#31353f",
+    "gradient4" : "#393f4a",
 }

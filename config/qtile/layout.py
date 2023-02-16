@@ -5,13 +5,14 @@ def tile():
     return layout.Tile(
         margin=8,
         border_focus=onedark["accent"],
+        border_width=2
     )
 
 
 def wide():
     return layout.MonadWide(
         margin=8,
-        border_width=1,
+        border_width=2,
         border_focus=onedark["accent"],
         border_normal=onedark["primary"],
         ratio=0.7
@@ -26,7 +27,7 @@ def tabbed():
         inactive_bg=onedark["label"],
         urgent_fg=onedark["label"],
         urgent_bg=onedark["critical"],
-        border_width=1,
+        border_width=2,
         bg_color="ffffff00",
         section_top=0,
         sections=[""]
@@ -38,7 +39,7 @@ def full():
         margin=8,
         border_focus=onedark["accent"],
         border_normal=onedark["primary"],
-        border_width=1
+        border_width=2
     )
 def zoom():
     return layout.Zoomy(

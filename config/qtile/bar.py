@@ -4,6 +4,11 @@ from libqtile import bar, widget
 from libqtile.lazy import lazy
 from color import onedark
 from psutil import sensors_battery
+from qtile_extras import widget
+from qtile_extras.widget import CurrentLayoutIcon as NewLayoutIcon
+from qtile_extras.widget.decorations import PowerLineDecoration
+from plugins.music import status
+import subprocess
 
 home = os.path.expanduser('~')
 
@@ -12,16 +17,17 @@ def default_prefix():
         "foreground":onedark["primary"],
         "background":onedark["accent"],
         "padding": 11,
+        "font":"Source Code Pro"
     }
 
 def default_label():
     return {
         "foreground":onedark["label"],
-        "background":onedark["primary"],
+        "font":"Meslo NF",
         "padding": 12,
     }
 defaults = {
-    "textsize": 12,
+    "textsize": 14,
     "iconsize": 16,
 }
 widget_defaults = dict(
@@ -31,6 +37,18 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+powerline_forward = {
+    "decorations": [
+        PowerLineDecoration(path="forward_slash")
+    ]
+}
+
+powerline_back = {
+    "decorations": [
+        PowerLineDecoration(path="back_slash")
+    ]
+}
+
 def icon(symbol=""):
     return widget.TextBox(
         **default_prefix(),
@@ -38,194 +56,175 @@ def icon(symbol=""):
         fontsize=defaults["iconsize"],
     )
 
-def menu():
+def menu(**kwargs):
     return widget.TextBox(
         **default_prefix(),
         text="  ",
         fontsize=defaults["iconsize"],
-        mouse_callbacks={"Button1":lazy.spawn("rofi -show run")}
+        mouse_callbacks={"Button1":lazy.spawn("rofi -show run")},
+        **kwargs
     )
-
-def separator():
-    return widget.Sep(
-        padding=15,
-        linewidth=0
-    )
-def workspaces():
+def workspaces(bg,**kwargs):
     return widget.GroupBox(
         **default_label(),
+        background=bg,
         spacing=0,
         borderwitdh=3,
-        highlight_method="block",
+        highlight_method="line",
+        block_highlight_text_color=None,
         fontsize=defaults["iconsize"],
-        block_highlight_text_color=onedark["primary"],
         this_current_screen_border=onedark["accent"],
         this_screen_border=onedark["label"],
         other_current_screen_border=onedark["accent"],
         other_screen_border=onedark["label"],
-        highlight_color=onedark["accent"],
+        highlight_color=bg,
         inactive=onedark["secondary"],
         active=onedark["label"],
-        urgent_alert_method="border",
         urgent_border=onedark["critical"],
         urgent_text=onedark["label"],
         center_aligned=True,
         rounded=False,
-        margin_x=-2
-
-    )
-
-def layout():
-    return widget.CurrentLayoutIcon(
-        **default_prefix(),
-        custom_icon_paths=[home + "/.config/qtile/layout-icons"],
-        scale=0.6,
-    )
-
-def buffer():
-    return widget.Spacer(
+        margin_x=-2,
+        **kwargs
     )
 
 
-def title():
+def layout(bg,**kwargs):
+    return NewLayoutIcon(
+        foreground=onedark["label"],
+        padding=0,
+        background=bg,
+        scale=0.4,
+        **kwargs
+    )
+
+def window(bg,**kwargs):
     return widget.WindowName(
         **default_label(),
+        background=bg,
         width=150,
         fontsize=defaults["textsize"],
-        max_chars=15
+        max_chars=15,
+        **powerline_forward
     )
 
-def keymap():
+def keymap(bg,**kwargs):
     return widget.KeyboardLayout(
         **default_label(),
+        fmt="  {}",
+        background=bg,
         configured_keyboards=["us","de","gb"],
+        **kwargs
     )
 
-def cpu():
+def buffer(**kwargs):
+    return widget.Spacer(
+        **kwargs
+    )
+
+def network(bg,**kwargs):
+    return widget.Net(
+        **default_label(),
+        background=bg,
+        fmt=" {}",
+        format='{down} ↓↑ {up}',
+        width=130,
+        **kwargs
+    )
+    
+def cpu(bg,**kwargs):
     return widget.CPU(
         **default_label(),
+        background=bg,
+        fmt="  {}",
         format="{load_percent}",
-        width=45
+        width=60,
+        **kwargs
     )
 
-def cpu_graph():
-    return widget.CPUGraph(
-        **default_label(),
-        width=40,
-        border_width=0,
-        type="line",
-        graph_color=onedark["accent"],
-        line_width=2
-    )
-
-def mem():
+def mem(bg,**kwargs):
     return widget.Memory(
         **default_label(),
+        background=bg,
+        fmt="  {}",
         format="{MemPercent}",
-        width=45
+        width=60,
+        **kwargs
     )
 
-def mem_graph():
-    return widget.MemoryGraph(
-        **default_label(),
-        width=40,
-        border_width=0,
-        type="box",
-        graph_color=onedark["accent"],
-        line_width=2
-    )
-
-
-def bat_icon():
+def bat(bg,**kwargs):
     if sensors_battery() != None:
         return widget.Battery(
-            **default_prefix(),
-            format="{char}",
+            **default_label(),
+            background=bg,
+            format="{char}  {percent:2.0%}",
             show_short_text=False,
             full_char="",
             charge_char="ﮣ",
             discharge_char="",
-            empty_char=""
+            empty_char="",
+            **kwargs
         )
-    else: return widget.TextBox(text="")
-
-def bat():
-    if sensors_battery() != None:
-        return widget.Battery(
+    else: return widget.TextBox(
+            text="ﮣ",
             **default_label(),
-            format="{percent:2.0%}",
-            show_short_text=False,
-            width=45
+            background=bg,
+            **kwargs
         )
-    else: return widget.TextBox(text="")
-def bat_separator():
-    if sensors_battery() != None:
-        return widget.Sep(
-            padding=15,
-            linewidth=0
-        )
-    else: return widget.TextBox(text="")
 
-def disk(partition):
+def disk(partition,symbol,bg,**kwargs):
     return widget.DF(
+        background=bg,
         **default_label(),
+        fmt=symbol + "  {}",
         format="{r:.0f}",
         visible_on_warn=False,
-        partition=partition
+        partition=partition,
+        **kwargs
+    )
+
+def music(bg,**kwargs):
+    return widget.GenPollText(
+        **default_label(),
+        background=bg,
+        fmt="  {}",
+        update_interval=1, 
+        func=status,
+        width=160,
+        **kwargs
     )
 
 def clock():
     return widget.Clock(
-        **default_label(),
+        **default_prefix(),
+        fmt="  {}"
     )
 
-def network():
-    return widget.Net(
-        **default_label(),
-        width=130
-    )
+
 
 widgets_main = [
-    menu(),
-    separator(),
-    workspaces(),
-    separator(),
-    icon(""),
-    keymap(),
-    buffer(),
-    layout(),
-    title(),
-    buffer(),
-    icon(""),
-    network(),
-    separator(),
-    icon(""),
-    cpu(),
-    separator(),
-    icon(""),
-    mem(),
-    separator(),
-    bat_icon(),
-    bat(),
-    bat_separator(),
-    icon(""),
-    disk("/"),
-    separator(),
-    icon(""),
-    disk("/home"),
-    separator(),
-    icon(""),
+    menu(**powerline_forward),
+    workspaces(onedark["gradient1"],**powerline_forward),
+    keymap(onedark["gradient2"],**powerline_forward),
+    layout(onedark["gradient3"]),
+    window(onedark["gradient3"],**powerline_forward),
+    buffer(**powerline_back),
+    network(onedark["gradient3"],**powerline_back),
+    cpu(onedark["gradient2"]),
+    mem(onedark["gradient2"]),
+    bat(onedark["gradient2"],**powerline_back),
+    disk("/","",onedark["gradient1"]),
+    disk("/home","",onedark["gradient1"],**powerline_back),
     clock()
 ]
 
 widgets_second = [
-    menu(),
-    separator(),
-    workspaces(),
-    buffer(),
-    layout(),
-    title(),
-    buffer(),
-    icon(""),
+    menu(**powerline_forward),
+    workspaces(onedark["gradient1"],**powerline_forward),
+    layout(onedark["gradient3"]),
+    window(onedark["gradient3"],**powerline_forward),
+    buffer(**powerline_back),
+    music(onedark["gradient1"],**powerline_back),
     clock()
+
 ]
