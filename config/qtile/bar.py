@@ -193,8 +193,11 @@ def music(bg,**kwargs):
 def updates(bg,**kwargs):
     return widget.CheckUpdates(
         **default_label(),
+        background=bg,
+        no_update_string="0",
         display_format="{updates}",
-        fmt=" {}"
+        fmt=" {}",
+        **kwargs
     )
 
 def clock():
@@ -227,6 +230,7 @@ widgets_second = [
     layout(onedark["gradient3"]),
     window(onedark["gradient3"],**powerline_forward),
     buffer(**powerline_back),
+    updates(onedark["gradient3"],**powerline_back),
     music(onedark["gradient1"],**powerline_back),
     clock()
 

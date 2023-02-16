@@ -5,6 +5,7 @@ def tile():
     return layout.Tile(
         margin=8,
         border_focus=onedark["accent"],
+        border_normal=onedark["primary"],
         border_width=2
     )
 
@@ -28,7 +29,7 @@ def tabbed():
         urgent_fg=onedark["label"],
         urgent_bg=onedark["critical"],
         border_width=2,
-        bg_color="ffffff00",
+        bg_color="ffffff11",
         section_top=0,
         sections=[""]
 
@@ -54,7 +55,6 @@ layouts = [
     wide(),
     full(),
     tabbed(),
-    zoom()
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
     # layout.Matrix(),
