@@ -50,6 +50,12 @@ def zoom():
 
     )
 
+def floating():
+    return layout.Floating(
+        border_focus=onedark["accent"],
+        border_normal=onedark["primary"],
+        border_width=2
+    )
 layouts = [
     tile(),
     wide(),

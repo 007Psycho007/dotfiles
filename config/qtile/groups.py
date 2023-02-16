@@ -3,6 +3,10 @@ from libqtile.lazy import lazy
 
 mod = "mod4"
 
+
+dev_match=[
+    Match(wm_class=["kitty"]),
+]
 web_match=[
     Match(wm_class=["firefox"]),
     Match(wm_class=["qutebrowser"]),
@@ -38,7 +42,7 @@ ent_match=[
 ]
 from keys import keys
 groups = [
-        Group("dev",label="",layout="monadwide",spawn=["kitty","kitty","kitty"]),
+        Group("dev",label="",layout="monadwide",matches=dev_match,spawn=["kitty","kitty","kitty"]),
         Group("web",label="爵",layout="tile",matches=web_match),
         Group("med",label="ﱘ",layout="tile",matches=med_match),
         Group("com",label="", layout="tile",matches=com_match),

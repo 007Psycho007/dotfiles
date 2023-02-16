@@ -122,7 +122,7 @@ def network(bg,**kwargs):
     return widget.Net(
         **default_label(),
         background=bg,
-        fmt="{}",
+        fmt="<span size='12pt'></span>{}",
         format='{down} ↓↑ {up}',
         width=150,
         **kwargs
@@ -132,7 +132,7 @@ def cpu(bg,**kwargs):
     return widget.CPU(
         **default_label(),
         background=bg,
-        fmt="  {}",
+        fmt="<span size='12pt'></span>  {}",
         format="{load_percent}",
         width=65,
         **kwargs
@@ -162,7 +162,8 @@ def bat(bg,**kwargs):
             **kwargs
         )
     else: return widget.TextBox(
-            text="ﮣ",
+            fontsize=20,
+            text="󰤅",
             **default_label(),
             background=bg,
             **kwargs
@@ -183,7 +184,7 @@ def music(bg,**kwargs):
     return widget.GenPollText(
         **default_label(),
         background=bg,
-        fmt="  {}",
+        fmt="<span size='12pt'>󰝚</span>  {}",
         update_interval=1, 
         func=status,
         width=235,
@@ -196,7 +197,7 @@ def updates(bg,**kwargs):
         background=bg,
         no_update_string="0",
         display_format="{updates}",
-        fmt=" {}",
+        fmt="<span size='12pt'></span> {}",
         **kwargs
     )
 

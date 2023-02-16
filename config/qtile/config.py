@@ -40,7 +40,7 @@ from groups import groups
 from layout import layouts
 from screens import screens
 #from .autostart import autostart
-
+from color import onedark
 #groups = [Group(i) for i in "23456789"]
 
 
@@ -58,6 +58,9 @@ follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
+    border_focus=onedark["accent"],
+    border_normal=onedark["primary"],
+    border_width=2,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
