@@ -70,7 +70,7 @@
 
 
 - if:
-  - cond: '[ -d ~/.local/share/zinit/zinit.git ]'
+  - cond: '[ -d ~/.oh-my-zsh/ ]'
     unmet:
       - shell:
         - 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'

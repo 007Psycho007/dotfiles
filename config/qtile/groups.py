@@ -62,7 +62,7 @@ for i , o in enumerate(groups):
             # mod1 + shift + letter of group = switch to & move focused window to group
             Key(
                 [mod, "shift"],
-                str((i+1)%9),
+                str((i+1)%10),
                 lazy.window.togroup(o.name, switch_group=True),
                 desc="Switch to & move focused window to group {}".format(o.name),
             ),

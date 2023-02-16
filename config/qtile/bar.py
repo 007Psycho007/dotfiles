@@ -8,22 +8,18 @@ from qtile_extras import widget
 from qtile_extras.widget import CurrentLayoutIcon as NewLayoutIcon
 from qtile_extras.widget.decorations import PowerLineDecoration
 from plugins.music import status
-import subprocess
-
-home = os.path.expanduser('~')
 
 def default_prefix():
     return {
         "foreground":onedark["primary"],
         "background":onedark["accent"],
         "padding": 11,
-        "font":"Source Code Pro"
     }
 
 def default_label():
     return {
         "foreground":onedark["label"],
-        "font":"Meslo NF",
+        "font":"Source Code Pro",
         "padding": 12,
     }
 defaults = {
@@ -126,9 +122,9 @@ def network(bg,**kwargs):
     return widget.Net(
         **default_label(),
         background=bg,
-        fmt=" {}",
+        fmt="{}",
         format='{down} ↓↑ {up}',
-        width=130,
+        width=150,
         **kwargs
     )
     
@@ -138,7 +134,7 @@ def cpu(bg,**kwargs):
         background=bg,
         fmt="  {}",
         format="{load_percent}",
-        width=60,
+        width=65,
         **kwargs
     )
 
@@ -148,7 +144,7 @@ def mem(bg,**kwargs):
         background=bg,
         fmt="  {}",
         format="{MemPercent}",
-        width=60,
+        width=65,
         **kwargs
     )
 
@@ -190,8 +186,15 @@ def music(bg,**kwargs):
         fmt="  {}",
         update_interval=1, 
         func=status,
-        width=160,
+        width=235,
         **kwargs
+    )
+
+def updates(bg,**kwargs):
+    return widget.CheckUpdates(
+        **default_label(),
+        display_format="{updates}",
+        fmt=" {}"
     )
 
 def clock():

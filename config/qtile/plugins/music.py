@@ -2,9 +2,9 @@ import os
 from subprocess import CalledProcessError, DEVNULL, check_output
 import json
 import pprint
-def limit_len(string):
-    if len(string) > 15:
-        return f"{string[:11]}..."
+def limit_len(string,l):
+    if len(string) > l:
+        return f"{string[:l-4]}..."
     else: return string
 
 def status():
@@ -23,10 +23,14 @@ def status():
     if spotify_status.split(":",1)[0] == "Playing":
         title = spotify_status.split("\n",1)[0].split(": ",1)[1]
         artist = spotify_status.split("\n")[1].split(" - ",1)[0].strip(" ")
-        return f"{limit_len(title)} | {limit_len(artist)}"
+        return f"{limit_len(title,15)} | {limit_len(artist,15)}"
     elif playerctl_status == "Playing":
         title = check_output(["playerctl", "metadata","xesam:title"]).decode("utf-8").strip()
+        
         artist = check_output(["playerctl", "metadata","xesam:artist"]).decode("utf-8").strip()
-        return f"{limit_len(title)} | {limit_len(artist)}"
+        if len(artist) == 0:
+            return f"{limit_len(title,30)}"
+        else:
+            return f"{limit_len(title,15)} | {limit_len(artist,15)}"
     else:
         return " - "
