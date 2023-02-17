@@ -6,6 +6,9 @@
     ~/.bash_logout: config/bash/bash_logout
     ~/.zshrc: config/zsh/zshrc
     ~/.p10k.zsh: config/zsh/p10k.zsh
+    ~/.config/qutebrowser/config.py:
+        path: config/qutebrowser/config.py
+        create: true
     ~/.config/tmux: 
         path: config/tmux 
         create: true
