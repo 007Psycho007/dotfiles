@@ -10,8 +10,8 @@ keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
-    Key([mod], "h", lazy.function(traverse.left), desc="Move focus to left"),
-    Key([mod], "l", lazy.function(traverse.right), desc="Move focus to right"),
+    Key([mod], "h", lazy.prev_screen(), desc="Move focus to left"),
+    Key([mod], "l", lazy.next_screen(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
@@ -43,6 +43,10 @@ keys = [
     Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod], "d", lazy.spawn("rofi -show run")),
+
+    Key([mod], 'o', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod], 'XF86AudioPlay', lazy.group['scratchpad'].dropdown_toggle('ncspot')),
+
 
     Key([mod], "p", lazy.spawn(os.path.expanduser("~/.config/scripts/display-selector.sh"))),
     Key([mod], "g", lazy.spawn(os.path.expanduser("~/.config/scripts/dmenu/menu.sh")), desc="Script Menu"),

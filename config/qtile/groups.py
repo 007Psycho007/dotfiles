@@ -1,4 +1,4 @@
-from libqtile.config import Group, Key, Match
+from libqtile.config import Group, ScratchPad, DropDown, Key, Match
 from libqtile.lazy import lazy
 
 mod = "mod4"
@@ -42,7 +42,7 @@ ent_match=[
 ]
 from keys import keys
 groups = [
-        Group("dev",label="",layout="monadwide",matches=dev_match,spawn=["kitty","kitty","kitty"]),
+        Group("dev",label="",layout="monadwide",spawn=["kitty","kitty","kitty"]),
         Group("web",label="爵",layout="tile",matches=web_match),
         Group("med",label="ﱘ",layout="tile",matches=med_match),
         Group("com",label="", layout="tile",matches=com_match),
@@ -76,3 +76,13 @@ for i , o in enumerate(groups):
             #     desc="move focused window to group {}".format(i.name)),
         ]
     )
+groups.append(
+    ScratchPad("scratchpad", [
+        DropDown("term", "kitty", opacity=0.98),
+    ])
+)
+groups.append(
+    ScratchPad("scratchpad", [
+        DropDown("ncspot", "kitty -e ncspot", opacity=0.98),
+    ])
+)

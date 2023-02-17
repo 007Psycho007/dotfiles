@@ -5,7 +5,7 @@ from libqtile.lazy import lazy
 from color import onedark
 from psutil import sensors_battery
 from qtile_extras import widget
-from qtile_extras.widget import CurrentLayoutIcon as NewLayoutIcon
+from qtile_extras.widget import CurrentLayoutIcon as NewLayoutIcon, UPowerWidget
 from qtile_extras.widget.decorations import PowerLineDecoration
 from plugins.music import status
 
@@ -148,17 +148,36 @@ def mem(bg,**kwargs):
         **kwargs
     )
 
+def bat_icon(bg,**kwargs):
+    if sensors_battery() != None:
+        return UPowerWidget(
+            **default_label(),
+            background=bg,
+            border_charge_colour=onedark["success"],
+            border_critical_colour=onedark["label"],
+            border_colour=onedark["label"],
+            fill_charge=onedark["label"],
+            fill_critical=onedark["critical"],
+            fill_low=onedark["warning"],
+
+            margin=11,
+            **kwargs
+
+        )
+    else: return widget.TextBox(
+            fontsize=20,
+            text="",
+            **default_label(),
+            background=bg,
+            **kwargs
+        )
 def bat(bg,**kwargs):
     if sensors_battery() != None:
         return widget.Battery(
             **default_label(),
             background=bg,
-            format="{char}  {percent:2.0%}",
+            format=" {percent:2.0%}",
             show_short_text=False,
-            full_char="",
-            charge_char="ﮣ",
-            discharge_char="",
-            empty_char="",
             **kwargs
         )
     else: return widget.TextBox(
@@ -184,10 +203,10 @@ def music(bg,**kwargs):
     return widget.GenPollText(
         **default_label(),
         background=bg,
-        fmt="<span size='12pt'>󰝚</span>  {}",
+        fmt="<span size='12pt'></span>  {}",
         update_interval=1, 
         func=status,
-        width=235,
+        width=265,
         **kwargs
     )
 
@@ -219,7 +238,7 @@ widgets_main = [
     network(onedark["gradient3"],**powerline_back),
     cpu(onedark["gradient2"]),
     mem(onedark["gradient2"]),
-    bat(onedark["gradient2"],**powerline_back),
+    bat_icon(onedark["gradient2"],**powerline_back),
     disk("/","",onedark["gradient1"]),
     disk("/home","",onedark["gradient1"],**powerline_back),
     clock()
@@ -234,5 +253,23 @@ widgets_second = [
     updates(onedark["gradient3"],**powerline_back),
     music(onedark["gradient1"],**powerline_back),
     clock()
-
 ]
+
+widgets_single = [
+    menu(**powerline_forward),
+    workspaces(onedark["gradient1"],**powerline_forward),
+    keymap(onedark["gradient2"],**powerline_forward),
+    layout(onedark["gradient3"]),
+    window(onedark["gradient3"],**powerline_forward),
+    buffer(),
+    music(onedark["gradient4"]),
+    buffer(**powerline_back),
+    network(onedark["gradient3"],**powerline_back),
+    cpu(onedark["gradient2"]),
+    mem(onedark["gradient2"]),
+    bat(onedark["gradient2"],**powerline_back),
+    disk("/","",onedark["gradient1"]),
+    disk("/home","",onedark["gradient1"],**powerline_back),
+    clock()
+]
+

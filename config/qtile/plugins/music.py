@@ -1,7 +1,4 @@
-import os
 from subprocess import CalledProcessError, DEVNULL, check_output
-import json
-import pprint
 def limit_len(string,l):
     if len(string) > l:
         return f"{string[:l-4]}..."
@@ -10,15 +7,15 @@ def limit_len(string,l):
 def status():
     try:
         spotify_status = check_output(["/home/jpeterhaensel/anaconda3/bin/spotify", "status"], stderr=DEVNULL).decode("utf-8").rstrip()
-    except CalledProcessError as e:
+    except CalledProcessError as _:
        spotify_status = "Not installed"
-    except FileNotFoundError as e:
+    except FileNotFoundError as _:
        spotify_status = "Not installed"
     try:
         playerctl_status = check_output(["playerctl", "status"], stderr=DEVNULL).decode("utf-8").strip()
     except FileNotFoundError:
         playerctl_status = "Not installed"
-    except CalledProcessError as e:
+    except CalledProcessError as _:
        playerctl_status = "Not installed"
     if spotify_status.split(":",1)[0] == "Playing":
         title = spotify_status.split("\n",1)[0].split(": ",1)[1]
