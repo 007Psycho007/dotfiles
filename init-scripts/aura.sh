@@ -1,4 +1,4 @@
 
-git clone https://aur.archlinux.org/aura-bin.git ~/.aura-temp
-cd ~/.aura-temp
+git clone https://aur.archlinux.org/aura-bin.git ~/.init/.aura-temp
+cd ~/.init/aura-temp
 makepkg 
