@@ -77,7 +77,7 @@
     - python-pip
 
 - shell:
-  - git clone git@github.com:elParaguayo/qtile-extras.git ~/.qtile-extras-temp
+  - git clone https://github.com/elParaguayo/qtile-extras.git ~/.qtile-extras-temp
   - pip install -r ./config/qtile/requirements.txt
   - pip install ~/.qtile-extras-temp
 - if:
