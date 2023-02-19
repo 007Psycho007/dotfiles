@@ -71,7 +71,9 @@
     - chromium
     - python-pip
 
-
+- shell:
+  - pip install ./config/qtile/requirements.txt
+  - pip install ./packages/qtile-extras
 - if:
   - cond: '[ -d ~/.oh-my-zsh/ ]'
     unmet:
