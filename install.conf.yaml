@@ -77,8 +77,9 @@
     - python-pip
 
 - shell:
-  - pip install ./config/qtile/requirements.txt
-  - pip install ./packages/qtile-extras
+  - git clone git@github.com:elParaguayo/qtile-extras.git ~/.qtile-extras-temp
+  - pip install -r ./config/qtile/requirements.txt
+  - pip install ~/.qtile-extras-temp
 - if:
   - cond: '[ -d ~/.oh-my-zsh/ ]'
     unmet:
