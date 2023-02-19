@@ -2,8 +2,12 @@
 
 - link:
     ~/.profile: config/bash/profile
-    ~/.bashrc: config/bash/bashrc
-    ~/.bash_logout: config/bash/bash_logout
+    ~/.bashrc: 
+        path: config/bash/bashrc
+        force: true
+    ~/.bash_logout: 
+        path: config/bash/bash_logout
+        force: true
     ~/.zshrc: config/zsh/zshrc
     ~/.p10k.zsh: config/zsh/p10k.zsh
     ~/.config/qutebrowser/config.py:
@@ -29,6 +33,7 @@
         create: true
     ~/.config/qtile:
         path: config/qtile/
+        force: true
         create: true
     ~/.config/nvim:
         path: config/nvim 
