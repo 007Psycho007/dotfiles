@@ -47,8 +47,8 @@
     ~/.local/share/fonts: 
         path: config/fonts
         create: true
-    ~/.config/ncspot:
-        path: config/ncspot
+    ~/.config/ncspot/config.toml:
+        path: config/ncspot/config.toml
         create: true
 
 - omnipkg:
