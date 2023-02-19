@@ -75,17 +75,22 @@
     - man
     - chromium
     - python-pip
+    - lightdm-webkit2-greeter
 
 - shell:
-  - git clone https://github.com/elParaguayo/qtile-extras.git ~/.qtile-extras-temp
+  - git clone https://github.com/elParaguayo/qtile-extras.git ~/.init/qtile-extras-temp
+  - git clone https://github.com/AlphaNecron/lightdm-evo.git
   - pip install -r ./config/qtile/requirements.txt
-  - pip install ~/.qtile-extras-temp
-  - rm -rf ~/qtile-extras-temp
-  - bash ./aura_install.sh
+  - pip install ~/.init/qtile-extras-temp
+  - bash ./init-scripts/aura_install.sh
 - sudo:
   - shell:
     - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
-    - pacman -U --noconfirm ~/.aura-temp/*.zst
+    - sudo cp -r lightdm-evo /usr/share/lightdm-webkit/themes/lightdm-evo
+    - "sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = lightdm-evo #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf"
+    - "sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-webkit2-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf"
+
+    - pacman -U --noconfirm ~/.init/aura-temp/*.zst
 
 - if:
   - cond: '[ -d ~/.oh-my-zsh/ ]'
@@ -97,3 +102,5 @@
         - shell:
           - sh -c "$(curl -fsSL https://starship.rs/install.sh)" "" -f
           - 'chsh --shell /bin/zsh $USER'
+- shell:
+  - rm rf ~/.init
