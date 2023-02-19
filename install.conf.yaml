@@ -79,7 +79,6 @@
 
 - shell:
   - git clone https://github.com/elParaguayo/qtile-extras.git ~/.init/qtile-extras-temp
-  - git clone https://github.com/AlphaNecron/lightdm-evo.git ~/.init/evo
   - pip install -r ./config/qtile/requirements.txt
   - pip install ~/.init/qtile-extras-temp
   - bash ./init-scripts/aura.sh
