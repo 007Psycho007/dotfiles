@@ -1,9 +1,11 @@
 from libqtile import layout
 from color import onedark
 
+margin=10
+
 def tile():
     return layout.Tile(
-        margin=8,
+        margin=margin,
         border_focus=onedark["accent"],
         border_normal=onedark["primary"],
         border_width=2
@@ -12,7 +14,7 @@ def tile():
 
 def wide():
     return layout.MonadWide(
-        margin=8,
+        margin=margin,
         border_width=2,
         border_focus=onedark["accent"],
         border_normal=onedark["primary"],
@@ -21,7 +23,7 @@ def wide():
 
 def tabbed():
     return layout.TreeTab(
-        margin=8,
+        margin=margin,
         active_fg=onedark["primary"],
         active_bg=onedark["accent"],
         inactive_fg=onedark["primary"],
@@ -29,7 +31,7 @@ def tabbed():
         urgent_fg=onedark["label"],
         urgent_bg=onedark["critical"],
         border_width=2,
-        bg_color="ffffff11",
+        bg_color="ffffff55",
         section_top=0,
         sections=[""]
 
@@ -37,14 +39,14 @@ def tabbed():
 
 def full():
     return layout.Max(
-        margin=8,
+        margin=margin,
         border_focus=onedark["accent"],
         border_normal=onedark["primary"],
         border_width=2
     )
 def zoom():
     return layout.Zoomy(
-        margin=8,
+        margin=margin,
         border_focus=onedark["accent"],
         border_normal=onedark["primary"],
 

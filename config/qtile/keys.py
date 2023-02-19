@@ -44,8 +44,9 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod], "d", lazy.spawn("rofi -show run")),
 
-    Key([mod], 'o', lazy.group['scratchpad'].dropdown_toggle('term')),
-    Key([mod], 'XF86AudioPlay', lazy.group['scratchpad'].dropdown_toggle('ncspot')),
+    Key([mod], 'o', lazy.group['term'].dropdown_toggle('term')),
+    Key([mod], 's', lazy.group['ncspot'].dropdown_toggle('ncspot')),
+    Key([mod], 'XF86AudioPlay', lazy.group['ncspot'].dropdown_toggle('ncspot')),
 
 
     Key([mod], "p", lazy.spawn(os.path.expanduser("~/.config/scripts/display-selector.sh"))),

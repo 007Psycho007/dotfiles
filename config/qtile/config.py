@@ -35,17 +35,17 @@ import subprocess
 mod = "mod4"
 terminal = guess_terminal()
 
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/files/autostart.sh')
+    subprocess.Popen([home])
+
 from keys import keys
 from groups import groups
 from layout import layouts
 from screens import screens
-#from .autostart import autostart
 from color import onedark
-#groups = [Group(i) for i in "23456789"]
 
-
-
-# Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
@@ -83,17 +83,7 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
-# Hooks
-# Autostart
-@hook.subscribe.startup_once
-def autostart():
-    home = os.path.expanduser('~/.config/qtile/files/autostart.sh')
-    subprocess.Popen([home])
 
-@hook.subscribe.screen_change
-def screen_change():
-    print("Reloading")
-    lazy.restart()
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting

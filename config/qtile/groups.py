@@ -15,7 +15,7 @@ web_match=[
 
 com_match=[
     Match(wm_class=["thunderbird"]),
-    Match(wm_class=["thunderbird"]),
+    Match(wm_class=["discord"]),
     Match(wm_class=["Chromium"]),
 ]
 
@@ -29,6 +29,7 @@ set_match=[
     Match(wm_class=["easyeffects"]),
     Match(wm_class=["pulseeffects"]),
     Match(wm_class=["Streamdeck UI"]),
+    Match(title=["NoiseTorch"]),
 ]
 
 sec_match=[
@@ -40,18 +41,22 @@ ent_match=[
     Match(wm_class=["Steam"]),
     Match(wm_class=["dwarffortress"]),
 ]
+
+other_match=[
+    Match(wm_class=["Shadow"]),
+]
 from keys import keys
 groups = [
-        Group("dev",label="",layout="monadwide",spawn=["kitty","kitty","kitty"]),
+        Group("dev",label="",layout="monadwide"),
         Group("web",label="爵",layout="tile",matches=web_match),
         Group("med",label="ﱘ",layout="tile",matches=med_match),
         Group("com",label="", layout="tile",matches=com_match),
-        Group("sec",label="",layout="treetab",matches=sec_match),
-        Group("set",label="漣",layout="treetab",matches=set_match),
+        Group("sec",label="",layout="max",matches=sec_match,spawn=["bitwarden-desktop"]),
+        Group("set",label="漣",layout="max",matches=set_match,spawn=["pavucontrol","noisetorch"]),
         Group("ent",label="",layout="max",matches=ent_match),
         Group("doc",label=""),
         Group("re9",label=""),
-        Group("re0",label=""),
+        Group("re0",label="",matches=other_match),
         ]
 for i , o in enumerate(groups):
     keys.extend(
@@ -77,12 +82,12 @@ for i , o in enumerate(groups):
         ]
     )
 groups.append(
-    ScratchPad("scratchpad", [
-        DropDown("term", "kitty", opacity=0.98),
+    ScratchPad("term", [
+        DropDown("term", "kitty", opacity=1.0),
     ])
 )
 groups.append(
-    ScratchPad("scratchpad", [
-        DropDown("ncspot", "kitty -e ncspot", opacity=0.98),
+    ScratchPad("ncspot", [
+        DropDown("ncspot", "kitty -e ncspot", opacity=1.0),
     ])
 )

@@ -45,11 +45,11 @@ powerline_back = {
     ]
 }
 
-def icon(symbol=""):
+def icon(symbol,**kwargs):
     return widget.TextBox(
         **default_prefix(),
         text=symbol,
-        fontsize=defaults["iconsize"],
+        **kwargs
     )
 
 def menu(**kwargs):
@@ -64,7 +64,10 @@ def workspaces(bg,**kwargs):
     return widget.GroupBox(
         **default_label(),
         background=bg,
+        disable_drag=True,
         spacing=0,
+        scroll_step=0,
+        use_mouse_wheel=False,
         borderwitdh=3,
         highlight_method="line",
         block_highlight_text_color=None,
@@ -98,10 +101,11 @@ def window(bg,**kwargs):
     return widget.WindowName(
         **default_label(),
         background=bg,
+        format='{name}',
         width=150,
         fontsize=defaults["textsize"],
         max_chars=15,
-        **powerline_forward
+        **kwargs
     )
 
 def keymap(bg,**kwargs):
@@ -162,15 +166,15 @@ def bat_icon(bg,**kwargs):
 
             margin=11,
             **kwargs
-
         )
     else: return widget.TextBox(
             fontsize=20,
-            text="",
+            text="󰤅",
             **default_label(),
             background=bg,
             **kwargs
         )
+
 def bat(bg,**kwargs):
     if sensors_battery() != None:
         return widget.Battery(
@@ -204,6 +208,7 @@ def music(bg,**kwargs):
         **default_label(),
         background=bg,
         fmt="<span size='12pt'></span>  {}",
+        mouse_callbacks={'Button1': lazy.group['ncspot'].dropdown_toggle('ncspot')},
         update_interval=1, 
         func=status,
         width=265,
@@ -227,6 +232,20 @@ def clock():
     )
 
 
+def tabs(bg,**kwargs):
+    return widget.TaskList(
+        foreground=onedark['label'],
+        background=bg,
+        highlight_method='block',
+        border=onedark['gradient3'],
+        margin_y=0,
+        margin_x=10,
+        urgent_border=onedark['critical'],
+        rounded=False,
+        icon_size=0,
+        **kwargs
+    )
+    
 
 widgets_main = [
     menu(**powerline_forward),
@@ -273,3 +292,14 @@ widgets_single = [
     clock()
 ]
 
+widgets_tab1 = [
+    icon('',**powerline_back),
+    tabs(onedark['gradient1'],**powerline_forward),
+    icon(''),
+]
+
+widgets_tab2 = [
+    icon('',**powerline_back),
+    tabs(onedark['gradient1'],**powerline_forward),
+    icon(''),
+]

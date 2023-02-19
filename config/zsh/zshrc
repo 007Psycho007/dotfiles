@@ -66,7 +66,7 @@ else
     alias vim="nvim --listen ~/.cache/nvim/server.pipe"
 fi
 alias vimconf="vim /home/$(whoami)/.config/nvim"
-alias qconf="vim /home/$(whoami)/.config/qtile"
+alias qconf="conda deactivate;vim /home/$(whoami)/.config/qtile; echo 'Warning: Conda Env has been disabled'"
 alias i3conf="vim /home/$(whoami)/.config/i3/config"
 alias polyconf="vim /home/$(whoami)/.config/polybar/"
 alias zshconf="vim /home/$(whoami)/.zshrc; source /home/$(whoami)/.zshrc"
