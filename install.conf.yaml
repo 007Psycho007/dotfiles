@@ -84,7 +84,6 @@
   - bash ./init-scripts/aura.sh
 - sudo:
   - shell:
-    - bash ./init-scripts/lightdm.sh
     - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
     - pacman -U --noconfirm ~/.init/aura-temp/*.zst
 
