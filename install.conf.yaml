@@ -80,6 +80,14 @@
   - git clone https://github.com/elParaguayo/qtile-extras.git ~/.qtile-extras-temp
   - pip install -r ./config/qtile/requirements.txt
   - pip install ~/.qtile-extras-temp
+  - rm -rf ~/qtile-extras-temp
+- sudo:
+  - shell:
+    - git clone https://aur.archlinux.org/aura-bin.git
+    - cd aura-bin 
+    - makepkg 
+    - pacman -U --noconfirm *.zst
+
 - if:
   - cond: '[ -d ~/.oh-my-zsh/ ]'
     unmet:
