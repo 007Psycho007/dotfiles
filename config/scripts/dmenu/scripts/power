@@ -32,6 +32,7 @@ case $answer in
         ask "$opt2" "Really Logout"
         if [[ $answer == "Yes" ]]; then
             i3-msg exit
+            qtile cmd-obj -o cmd -f shutdown
         fi
         exit 0
         ;;
