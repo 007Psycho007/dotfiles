@@ -81,11 +81,11 @@
   - pip install -r ./config/qtile/requirements.txt
   - pip install ~/.qtile-extras-temp
   - rm -rf ~/qtile-extras-temp
+  - git clone https://aur.archlinux.org/aura-bin.git ~/.aura-temp
+  - cd ~/.aura-temp
+  - makepkg 
 - sudo:
   - shell:
-    - git clone https://aur.archlinux.org/aura-bin.git
-    - cd aura-bin 
-    - makepkg 
     - pacman -U --noconfirm *.zst
 
 - if:
