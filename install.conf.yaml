@@ -84,7 +84,7 @@
   - bash ./aura_install.sh
 - sudo:
   - shell:
-    - sed -i "s/\/'home\/psycho:\/bin\/bash/\/'home\/psycho:\/bin\/zsh/" /etc/passwd
+    - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
     - pacman -U --noconfirm ~/.aura-temp/*.zst
 
 - if:
