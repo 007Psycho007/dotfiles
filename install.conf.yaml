@@ -89,6 +89,7 @@
   - pip install -r ./config/qtile/requirements.txt
   - pip install ~/.init/qtile-extras-temp
   - git clone https://aur.archlinux.org/yay.git ~/.init/yay && cd ~/.init/yay && makepkg -si --noconfirm
+  - echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" betterlockscreen
 - sudo:
   - shell:
     - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
