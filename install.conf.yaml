@@ -92,11 +92,8 @@
   - pip install -r ./config/qtile/requirements.txt
   - pip install ~/.init/qtile-extras-temp
   - git clone https://aur.archlinux.org/yay.git ~/.init/yay && cd ~/.init/yay && makepkg -si --noconfirm
-  - yay -S --noconfirm betterlockscreen
+  - yay -S --noconfirm betterlockscreen chromium-widevine
   - betterlockscreen -u ~/.config/qtile/files/lockscreen.jpg
-- sudo:
-  - shell:
-    - yay -S --noconfirm chromium-widevine
 
 - if:
   - cond: '[ -d ~/.oh-my-zsh/ ]'
