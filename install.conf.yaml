@@ -91,9 +91,6 @@
   - git clone https://aur.archlinux.org/yay.git ~/.init/yay && cd ~/.init/yay && makepkg -si --noconfirm
   - yay -S --noconfirm betterlockscreen
   - betterlockscreen -u ~/.config/qtile/files/lockscreen.jpg
-- sudo:
-  - shell:
-    - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
 
 - if:
   - cond: '[ -d ~/.oh-my-zsh/ ]'
@@ -104,6 +101,6 @@
       - sudo:
         - shell:
           - sh -c "$(curl -fsSL https://starship.rs/install.sh)" "" -f
-          - 'chsh --shell /bin/zsh $USER'
+          - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
 - shell:
   - rm -rf ~/.init
