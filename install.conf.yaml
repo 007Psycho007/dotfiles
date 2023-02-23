@@ -81,16 +81,17 @@
     - chromium
     - python-pip
     - lightdm-webkit2-greeter
+    - base-devel
 
 - shell:
+  - mkdir ~/.init
   - git clone https://github.com/elParaguayo/qtile-extras.git ~/.init/qtile-extras-temp
   - pip install -r ./config/qtile/requirements.txt
   - pip install ~/.init/qtile-extras-temp
-  - bash ./init-scripts/aura.sh
+  - git clone https://aur.archlinux.org/yay.git ~/.init/yay && cd ~/.init/yay && makepkg -si
 - sudo:
   - shell:
     - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
-    - pacman -U --noconfirm ~/.init/aura-temp/*.zst
 
 - if:
   - cond: '[ -d ~/.oh-my-zsh/ ]'
