@@ -10,6 +10,9 @@
         force: true
     ~/.zshrc: config/zsh/zshrc
     ~/.p10k.zsh: config/zsh/p10k.zsh
+    ~/.config/betterlockscreen/betterlockscreenrc: 
+        path: config/betterlockscreen/betterlockscreenrc
+        create: true
     ~/.config/rofi: 
         path: config/rofi
         create: true
@@ -91,6 +94,9 @@
   - git clone https://aur.archlinux.org/yay.git ~/.init/yay && cd ~/.init/yay && makepkg -si --noconfirm
   - yay -S --noconfirm betterlockscreen
   - betterlockscreen -u ~/.config/qtile/files/lockscreen.jpg
+- sudo:
+  - shell:
+    - yay -S --noconfirm chromium-widevine
 
 - if:
   - cond: '[ -d ~/.oh-my-zsh/ ]'
