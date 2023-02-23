@@ -88,7 +88,7 @@
   - git clone https://github.com/elParaguayo/qtile-extras.git ~/.init/qtile-extras-temp
   - pip install -r ./config/qtile/requirements.txt
   - pip install ~/.init/qtile-extras-temp
-  - git clone https://aur.archlinux.org/yay.git ~/.init/yay && cd ~/.init/yay && makepkg -si
+  - git clone https://aur.archlinux.org/yay.git ~/.init/yay && cd ~/.init/yay && makepkg -si --noconfirm
 - sudo:
   - shell:
     - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
