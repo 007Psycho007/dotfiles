@@ -22,7 +22,7 @@ def status():
         artist = spotify_status.split("\n")[1].split(" - ",1)[0].strip(" ")
         return f"{limit_len(title,15)} | {limit_len(artist,15)}"
     elif playerctl_status == "Playing":
-        title = check_output(["playerctl", "metadata","xesam:title"]).decode("utf-8").strip()
+        title = check_output(["playerctl", "metadata","xesam:title"]).decode("utf-8").replace("&","&#38;").strip()
         
         artist = check_output(["playerctl", "metadata","xesam:artist"]).decode("utf-8").strip()
         if len(artist) == 0:

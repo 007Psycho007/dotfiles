@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Install your plugins here
 require('lazy').setup({
   -- UI and Colorschemes
+  {"iamcco/markdown-preview.nvim",build = function() vim.fn["mkdp#util#install"]() end,},
   "kyazdani42/nvim-web-devicons",
   "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
   "nvim-lualine/lualine.nvim",

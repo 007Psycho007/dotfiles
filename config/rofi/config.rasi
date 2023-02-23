@@ -1,0 +1,22 @@
+@theme "~/.config/rofi/theme.rasi"
+
+//@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+@theme "~/.config/rofi/theme.rasi"
+
+configuration {
+  display-drun: "Applications:";
+  display-run: "Command:";
+  display-window: "Windows:";
+  drun-display-format: "{icon} {name}";
+  font: "Source Code Pro Bold 12";
+  modi: "window,run,drun";
+  show-icons: false;
+  kb-row-up:          "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
+  kb-row-down:        "Down,Control+j";
+  kb-accept-entry:    "Control+m,Return,KP_Enter";
+  terminal:           "kitty";
+  kb-remove-to-eol:   "Control+Shift+e";
+  kb-mode-next:       "Shift+Right,Control+Tab";
+  kb-mode-previous:   "Shift+Left,Control+Shift+Tab";
+  kb-remove-char-back: "BackSpace";
+}
