@@ -70,7 +70,7 @@
     - rofi
     - feh
     - imagemagick
-    - i3lock
+    - i3lock-color
     - lazygit
     - unzip
     - nix
@@ -105,4 +105,4 @@
           - sh -c "$(curl -fsSL https://starship.rs/install.sh)" "" -f
           - 'chsh --shell /bin/zsh $USER'
 - shell:
-  - rm rf ~/.init
+  - rm -rf ~/.init
