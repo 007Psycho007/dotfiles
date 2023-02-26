@@ -52,7 +52,7 @@ groups = [
         Group("med",label="ﱘ",layout="tile",matches=med_match),
         Group("com",label="", layout="tile",matches=com_match),
         Group("sec",label="",layout="max",matches=sec_match,spawn=["bitwarden-desktop"]),
-        Group("set",label="漣",layout="max",matches=set_match,spawn=["pavucontrol","noisetorch"]),
+        Group("set",label="漣",layout="max",matches=set_match,spawn=["pavucontrol",]),
         Group("ent",label="",layout="max",matches=ent_match),
         Group("doc",label=""),
         Group("re9",label=""),
