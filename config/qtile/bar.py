@@ -180,13 +180,16 @@ def bat(bg,**kwargs):
         return widget.Battery(
             **default_label(),
             background=bg,
-            format=" {percent:2.0%}",
+            format="{char}  {percent:2.0%}",
             show_short_text=False,
+            full_char="",
+            charge_char="ﮣ",
+            discharge_char="",
+            empty_char="",
             **kwargs
         )
     else: return widget.TextBox(
-            fontsize=20,
-            text="󰤅",
+            text="ﮣ",
             **default_label(),
             background=bg,
             **kwargs
@@ -257,7 +260,7 @@ widgets_main = [
     network(onedark["gradient3"],**powerline_back),
     cpu(onedark["gradient2"]),
     mem(onedark["gradient2"]),
-    bat_icon(onedark["gradient2"],**powerline_back),
+    bat(onedark["gradient2"],**powerline_back),
     disk("/","",onedark["gradient1"]),
     disk("/home","",onedark["gradient1"],**powerline_back),
     clock()
