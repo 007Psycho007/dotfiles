@@ -9,7 +9,6 @@ dev_match=[
 ]
 web_match=[
     Match(wm_class=["firefox"]),
-    Match(wm_class=["qutebrowser"]),
     Match(wm_class=["librewolf-default"]),
 ]
 

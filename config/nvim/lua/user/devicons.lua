@@ -6,3 +6,11 @@ require("nvim-web-devicons").set_icon {
     name = "Dockerfile"
   }
 }
+require("nvim-web-devicons").set_icon {
+  tf = {
+    icon = "",
+    color = "#61AFEF",
+    cterm_color = "4",
+    name = "Terraform"
+  }
+}

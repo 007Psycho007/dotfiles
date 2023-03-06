@@ -95,7 +95,7 @@ symbol = ""
 format = " [$symbol $version](fg:yellow bg:8) "
 
 [terraform]
-symbol = ""
+symbol = ""
 format = " [$symbol $version](fg:blue bg:8) "
 
 
