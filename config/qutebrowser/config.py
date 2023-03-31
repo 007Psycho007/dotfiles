@@ -1,16 +1,14 @@
 config.load_autoconfig(True)
-c.url.searchengines = {'DEFAULT': 'https://search.home.janpeterhaensel.de/?q={}'}
-c.url.start_pages = ["https://search.home.janpeterhaensel.de/search"]
+#c.url.searchengines = {'DEFAULT': 'https://search.home.janpeterhaensel.de/?q={}'}
+#c.url.start_pages = ["https://search.home.janpeterhaensel.de/search"]
+c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}'}
+c.url.start_pages = ["https://google.com"]
 config.unbind('d',mode='normal')
 config.bind('<Shift-W>','spawn mpv {url}')
 
 
 #### Theme Onedark
-
-
-
 c.colors.keyhint.bg = "#73b8f1"
-
 
 # Completionbox
 c.colors.completion.category.bg = "#73b8f1"
@@ -90,8 +88,8 @@ c.colors.statusbar.caret.selection.fg = "#282c34"
 c.colors.statusbar.insert.bg = "#73b8f1"
 c.colors.statusbar.insert.fg = "#282c34"
 
-c.colors.statusbar.command.bg = "#e5c07b"
-c.colors.statusbar.command.fg = "#282c34"
+c.colors.statusbar.command.fg = "#abb2bf"
+c.colors.statusbar.command.bg = "#181a1f"
 
 c.colors.statusbar.passthrough.bg = "#5ab0f6"
 c.colors.statusbar.passthrough.fg = "#ef5f6b"
@@ -132,4 +130,6 @@ c.colors.tabs.indicator.error = "#e06c75"
 c.colors.tabs.indicator.start = "#e5c07b"
 c.colors.tabs.indicator.error = "#97ca72"
 
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
+
+c.content.tls.certificate_errors = "ask-block-thirdparty"

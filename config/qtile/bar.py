@@ -3,11 +3,11 @@ from libqtile.config import Screen
 from libqtile import bar, widget
 from libqtile.lazy import lazy
 from color import onedark
-from psutil import sensors_battery
 from qtile_extras import widget
 from qtile_extras.widget import CurrentLayoutIcon as NewLayoutIcon, UPowerWidget
 from qtile_extras.widget.decorations import PowerLineDecoration
 from plugins.music import status
+import platform
 
 def default_prefix():
     return {
@@ -153,7 +153,7 @@ def mem(bg,**kwargs):
     )
 
 def bat_icon(bg,**kwargs):
-    if sensors_battery() != None:
+    if str(platform.node()) != "PC-Main":
         return UPowerWidget(
             **default_label(),
             background=bg,
@@ -176,7 +176,7 @@ def bat_icon(bg,**kwargs):
         )
 
 def bat(bg,**kwargs):
-    if sensors_battery() != None:
+    if str(platform.node()) != "PC-Main":
         return widget.Battery(
             **default_label(),
             background=bg,

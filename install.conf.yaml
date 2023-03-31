@@ -16,6 +16,9 @@
     ~/.config/rofi: 
         path: config/rofi
         create: true
+    ~/.config/picom: 
+        path: config/picom
+        create: true
     ~/.config/qutebrowser/config.py:
         path: config/qutebrowser/config.py
         create: true
