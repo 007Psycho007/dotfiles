@@ -6,7 +6,7 @@ def limit_len(string,l):
 
 def status():
     try:
-        spotify_status = check_output(["/home/jpeterhaensel/anaconda3/bin/spotify", "status"], stderr=DEVNULL).decode("utf-8").rstrip()
+        spotify_status = check_output(["/home/psycho/.local/bin/spotify", "status"], stderr=DEVNULL).decode("utf-8").rstrip()
     except CalledProcessError as _:
        spotify_status = "Not installed"
     except FileNotFoundError as _:

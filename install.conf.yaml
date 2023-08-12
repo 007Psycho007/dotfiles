@@ -1,6 +1,12 @@
 - clean: ['~']
 
 - link:
+    ~/.emacs.d/init.el:
+        path: config/emacs/init.el
+        create: true
+    ~/.emacs.d/config.org:
+        path: config/emacs/config.org
+        create: true
     ~/.profile: config/bash/profile
     ~/.bashrc: 
         path: config/bash/bashrc

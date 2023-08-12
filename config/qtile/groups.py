@@ -41,8 +41,14 @@ ent_match=[
     Match(wm_class=["dwarffortress"]),
 ]
 
+doc_match=[ 
+    Match(wm_class=["notion-app-enhanced"]),
+]
+
 other_match=[
-    Match(wm_class=["Shadow"]),
+    Match(wm_class=["Shadow PC"]),
+    Match(wm_class=["Shadow PC - Display"]),
+
 ]
 from keys import keys
 groups = [
@@ -53,7 +59,7 @@ groups = [
         Group("sec",label="",layout="max",matches=sec_match,spawn=["bitwarden-desktop"]),
         Group("set",label="漣",layout="max",matches=set_match,spawn=["pavucontrol",]),
         Group("ent",label="",layout="max",matches=ent_match),
-        Group("doc",label=""),
+        Group("doc",label="",matches=doc_match),
         Group("re9",label=""),
         Group("re0",label="",matches=other_match),
         ]

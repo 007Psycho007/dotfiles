@@ -10,4 +10,5 @@ fi
 kitty &
 kitty &
 kitty &
+notion-app-enhanced &
 pacman -Syy
