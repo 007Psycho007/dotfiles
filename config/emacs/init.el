@@ -7,6 +7,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ein:jupyter-server-use-subcommand "server")
  '(inhibit-startup-screen t)
  '(warning-suppress-types '((emacs))))
 (custom-set-faces
@@ -14,4 +15,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(font-lock-variable-name-face ((t (:foreground "#abb2bf"))))
+ '(highlight ((t nil))))
