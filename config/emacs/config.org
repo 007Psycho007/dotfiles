@@ -1,5 +1,4 @@
-* IMPORTANT PROGRAMS TO LOAD FIRST
-** Elpaca Package Manager
+* ELPACA PACKAGE MANAGER
 
 #+begin_src emacs-lisp
   (defvar elpaca-installer-version 0.4)
@@ -41,8 +40,7 @@
 
 #+end_src
 
-** Load Evil Mode
-
+* EVIL MODE
 #+begin_src emacs-lisp
   ;; Install use-package support
 (elpaca elpaca-use-package
@@ -71,9 +69,13 @@
     (evil-mode))
   (use-package evil-collection
     :after evil
+    :custom 
+    (evil-collection-ivy t)
+    (evil-collection-company t)
     :config
     (setq evil-collection-mode-list '(dashboard dired ibuffer))
     (evil-collection-init))
+
   (use-package evil-tutor)
 
 ;;Turns off elpaca-use-package-mode current declartion
@@ -85,7 +87,7 @@
 (elpaca nil (message "deferred"))
 #+end_src
 
-** General Keybindings
+* KEYBINDINGS
 #+begin_src emacs-lisp
 (use-package general
   :config
@@ -99,6 +101,7 @@
     :global-prefix "M-SPC") ;; access leader in insert mode
 
   (dt/leader-keys
+  "SPC" '(counsel-M-x :wk "Counsel M-x")
     "." '(find-file :wk "Find file")
     "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
     "f r" '(counsel-recentf :wk "Find recent files")
@@ -129,6 +132,25 @@
     "h v" '(describe-variable :wk "Describe variable")
     ;;"h r r" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :wk "Reload emacs config"))
     "h r r" '(reload-init-file :wk "Reload emacs config"))
+(dt/leader-keys
+  "m" '(:ignore t :wk "Org")
+  "m a" '(org-agenda :wk "Org agenda")
+  "m e" '(org-export-dispatch :wk "Org export dispatch")
+  "m i" '(org-toggle-item :wk "Org toggle item")
+  "m t" '(org-todo :wk "Org todo")
+  "m B" '(org-babel-tangle :wk "Org babel tangle")
+  "m T" '(org-todo-list :wk "Org todo list"))
+
+(dt/leader-keys
+  "m b" '(:ignore t :wk "Tables")
+  "m b -" '(org-table-insert-hline :wk "Insert hline in table"))
+
+(dt/leader-keys
+  "m d" '(:ignore t :wk "Date/deadline")
+  "m d t" '(org-time-stamp :wk "Org time stamp"))
+
+(dt/leader-keys
+  "p" '(projectile-command-map :wk "Projectile"))
 
   (dt/leader-keys
     "t" '(:ignore t :wk "Toggle")
@@ -136,13 +158,15 @@
     "t t" '(visual-line-mode :wk "Toggle truncated lines")
     "t v" '(vterm-toggle :wk "Toggle vterm"))
 
+  (dt/leader-keys 
+    "s" '(:ignore t :wk "Split")
+    ;; Window splits
+    "s c" '(evil-window-delete :wk "Close window")
+    "s n" '(evil-window-new :wk "New window")
+    "s h" '(evil-window-split :wk "Horizontal split window")
+    "s v" '(evil-window-vsplit :wk "Vertical split window"))
   (dt/leader-keys
     "w" '(:ignore t :wk "Windows")
-    ;; Window splits
-    "w c" '(evil-window-delete :wk "Close window")
-    "w n" '(evil-window-new :wk "New window")
-    "w s" '(evil-window-split :wk "Horizontal split window")
-    "w v" '(evil-window-vsplit :wk "Vertical split window")
     ;; Window motions
     "w h" '(evil-window-left :wk "Window left")
     "w j" '(evil-window-down :wk "Window down")
@@ -155,17 +179,18 @@
     "w K" '(buf-move-up :wk "Buffer move up")
     "w L" '(buf-move-right :wk "Buffer move right"))
 
-  (define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
-  (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
-  (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
-  (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
+(define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
+(define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
+(define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
+
   )
 
 
 #+end_src
+
 * ALL THE ICONS
 This is an icon set that can be used with dashboard, dired, ibuffer and other Emacs programs.
-  
 #+begin_src emacs-lisp
 (use-package all-the-icons
   :ensure t
@@ -175,24 +200,7 @@ This is an icon set that can be used with dashboard, dired, ibuffer and other Em
   :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
 #+end_src
 
-
 * FONTS
-Defining the various fonts that Emacs wil* GRAPHICAL USER INTERFACE TWEAKS
-Let's make GNU Emacs look a little better.
-
-** Disable Menubar, Toolbars and Scrollbars
-#+begin_src emacs-lisp
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-#+end_src
-
-** Display Line Numbers and Truncated Lines
-#+begin_src emacs-lisp
-(global-display-line-numbers-mode 1)
-(global-visual-line-mode t)
-#+end_src
- use.
 
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
@@ -221,8 +229,136 @@ Let's make GNU Emacs look a little better.
   (add-to-list 'default-frame-alist '(font . "Source Code Pro"))
   ;; Uncomment the following line if line spacing needs adjusting.
   (setq-default line-spacing 0.12)
-  
+  #+end_src
+** Disable Menubar, Toolbars and Scrollbars
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+#+end_src
 
+** Display Line Numbers and Truncated Lines
+#+begin_src emacs-lisp
+(global-display-line-numbers-mode 1)
+(global-visual-line-mode t)
+#+end_src
+
+* COMPANY
+#+begin_src emacs-lisp
+(use-package company
+  :defer 2
+  :diminish
+  :custom
+  (company-begin-commands '(self-insert-command))
+  (company-idle-delay .1)
+  (company-minimum-prefix-length 2)
+  (company-show-numbers t)
+  (company-tooltip-align-annotations 't)
+  (global-company-mode t))
+
+(use-package company-box
+  :after company
+  :diminish
+  :hook (company-mode . company-box-mode))
+#+end_src
+
+* DASHBOARD
+#+begin_src emacs-lisp
+(use-package dashboard
+  :ensure t 
+  :init
+  (setq initial-buffer-choice 'dashboard-open)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
+  (setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
+  (setq dashboard-center-content nil) ;; set to 't' for centered content
+  (setq dashboard-items '((recents . 5)
+                          (agenda . 5 )
+                          (projects . 3 )))
+  :config
+  (dashboard-setup-startup-hook))
+
+#+end_src
+
+* DIMINISH
+Hide Extensions from Modeline
+#+begin_src emacs-lisp
+(use-package diminish)
+#+end_src
+
+* BUFFER-MOVE
+Creating some functions to allow us to easily move windows (splits) around.  The following block of code was taken from buffer-move.el found on the EmacsWiki:
+
+#+begin_src emacs-lisp
+(require 'windmove)
+
+;;;###autoload
+(defun buf-move-up ()
+  "Swap the current buffer and the buffer above the split.
+If there is no split, ie now window above the current one, an
+error is signaled."
+;;  "Switches between the current buffer, and the buffer above the
+;;  split, if possible."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'up))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No window above this one")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-down ()
+"Swap the current buffer and the buffer under the split.
+If there is no split, ie now window under the current one, an
+error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'down))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (or (null other-win) 
+            (string-match "^ \\*Minibuf" (buffer-name (window-buffer other-win))))
+        (error "No window under this one")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-left ()
+"Swap the current buffer and the buffer on the left of the split.
+If there is no split, ie now window on the left of the current
+one, an error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'left))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No left split")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-right ()
+"Swap the current buffer and the buffer on the right of the split.
+If there is no split, ie now window on the right of the current
+one, an error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'right))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No right split")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
 #+end_src
 
 * GRAPHICAL USER INTERFACE TWEAKS
@@ -248,6 +384,86 @@ Let's make GNU Emacs look a little better.
 (setq initial-scratch-message nil)
 #+end_src
 
+* IVY (COUNSEL)
++ Ivy, a generic completion mechanism for Emacs.
++ Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
++ Ivy-rich allows us to add descriptions alongside the commands in M-x.
+
+#+begin_src emacs-lisp
+  (use-package counsel
+    :after ivy
+    :diminish
+    :config (counsel-mode))
+
+  (use-package ivy
+    :bind
+    ;; ivy-resume resumes the last Ivy-based completion.
+    (("C-c C-r" . ivy-resume)
+     ("C-x B" . ivy-switch-buffer-other-window)
+     ("C-j" . ivy-next-line)
+     ("C-k" . ivy-previous-line))
+    :diminish
+    :custom
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")
+    (setq enable-recursive-minibuffers t)
+    :config
+    (unbind-key "C-k" ivy-switch-buffer-map)
+    (unbind-key "C-j" ivy-minibuffer-map)
+    (ivy-mode 1))
+
+  (use-package all-the-icons-ivy-rich
+    :ensure t
+    :init (all-the-icons-ivy-rich-mode 1))
+
+  (use-package ivy-rich
+    :after ivy
+    :ensure t
+    :init (ivy-rich-mode 1) ;; this gets us descriptions in M-x.
+    :custom
+    (ivy-virtual-abbreviate 'full
+     ivy-rich-switch-buffer-align-virtual-buffer t
+     ivy-rich-path-style 'abbrev)
+  )
+#+end_src
+
+* FLYCHECK
+#+begin_src emacs-lisp
+(use-package flycheck
+  :ensure t
+  :defer t
+  :diminish
+  :init (global-flycheck-mode))
+#+end_src
+* LANGUAGE SUPPORT
+** LSP Mode
+#+begin_src emacs-lisp
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+#+end_src
+
+*** Python
+#+begin_src emacs-lisp 
+
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
+#+end_src
+
+*** Go
+#+begin_src emacs-lisp
+
+(use-package go-mode)
+(add-hook 'go-mode-hook #'lsp-deferred)
+#+end_src
 * ORG MODE
 ** Enabling Table of Contents
 #+begin_src emacs-lisp
@@ -269,7 +485,8 @@ Org-bullets gives us attractive bullets rather than asterisks.
 Org mode source blocks have some really weird and annoying default indentation behavior.  I think this has to do with electric-indent-mode, which is turned on by default in Emacs.  So let's turn it OFF!
 
 #+begin_src emacs-lisp
-(electric-indent-mode -1)
+  (electric-indent-mode -1)
+(setq org-edit-src-content-indentation 0)
 #+end_src
 
 ** Source Code Block Tag Expansion
@@ -293,26 +510,6 @@ Org-tempo is not a separate package but a module within org that can be enabled.
 (require 'org-tempo)
 #+end_src
 
-* WHICH-KEY
-#+begin_src emacs-lisp
-  (use-package which-key
-    :init
-      (which-key-mode 1)
-    :config
-    (setq which-key-side-window-location 'bottom
-	  which-key-sort-order #'which-key-key-order-alpha
-	  which-key-sort-uppercase-first nil
-	  which-key-add-column-padding 1
-	  which-key-max-display-columns nil
-	  which-key-min-display-lines 6
-	  which-key-side-window-slot -10
-	  which-key-side-window-max-height 0.25
-	  which-key-idle-delay 0.8
-	  which-key-max-description-length 25
-	  which-key-allow-imprecise-window-fit t
-	  which-key-separator " → " ))
-#+end_src
-
 * SUDO EDIT
 [[https://github.com/nflath/sudo-edit][sudo-edit]] gives us the ability to open files with sudo privileges or switch over to editing with sudo privileges if we initially opened the file without such privileges.
 
@@ -334,6 +531,13 @@ This is just an example of how to create a simple function in Emacs.  Use this f
   (load-file user-init-file))
 #+end_src
 
+* PROJECTILE
+#+begin_src emacs-lisp
+  (use-package projectile
+    :diminish
+    :config
+    (projectile-mode 1))
+#+end_src
 * SHELLS AND TERMINALS
 In my configs, all of my shells (bash, fish, zsh and the ESHELL) require my shell-color-scripts-git package to be installed.  On Arch Linux, you can install it from the AUR.  Otherwise, go to my shell-color-scripts repository on GitLab to get it.
 
@@ -366,7 +570,7 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 #+begin_src emacs-lisp
 (use-package vterm
 :config
-(setq shell-file-name "/bin/fish"
+(setq shell-file-name "/bin/sh"
       vterm-max-scrollback 5000))
 #+end_src
 
@@ -393,42 +597,54 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
                   (reusable-frames . visible)
                   (window-height . 0.3))))
 #+end_src
-
-* IVY (COUNSEL)
-+ Ivy, a generic completion mechanism for Emacs.
-+ Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
-+ Ivy-rich allows us to add descriptions alongside the commands in M-x.
-
+* THEME 
 #+begin_src emacs-lisp
-  (use-package counsel
-    :after ivy
-    :config (counsel-mode))
-  
-  (use-package ivy
-    :bind
-    ;; ivy-resume resumes the last Ivy-based completion.
-    (("C-c C-r" . ivy-resume)
-     ("C-x B" . ivy-switch-buffer-other-window))
-    :custom
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-count-format "(%d/%d) ")
-    (setq enable-recursive-minibuffers t)
-    :config
-    (ivy-mode))
+(use-package doom-themes
+  :ensure t
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-one t)
 
-  (use-package all-the-icons-ivy-rich
-    :ensure t
-    :init (all-the-icons-ivy-rich-mode 1))
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+#+end_src
 
-  (use-package ivy-rich
-    :after ivy
-    :ensure t
-    :init (ivy-rich-mode 1) ;; this gets us descriptions in M-x.
-    :custom
-    (ivy-virtual-abbreviate 'full
-     ivy-rich-switch-buffer-align-virtual-buffer t
-     ivy-rich-path-style 'abbrev)
+* RAINBOW MODE 
+#+begin_src emacs-elisp
+(use-package rainbow-mode
+  :diminish
+  :hook org-mode prog-mode)
+#+end_src
+
+* WHICH-KEY
+#+begin_src emacs-lisp
+  (use-package which-key
+    :init
+      (which-key-mode 1)
+    :diminish
     :config
-    (ivy-set-display-transformer 'ivy-switch-buffer
-                                 'ivy-rich-switch-buffer-transformer))
+    (setq which-key-side-window-location 'bottom
+          which-key-sort-order #'which-key-key-order-alpha
+          which-key-sort-uppercase-first nil
+          which-key-add-column-padding 1
+          which-key-max-display-columns nil
+          which-key-min-display-lines 6
+          which-key-side-window-slot -10
+          which-key-side-window-max-height 0.25
+          which-key-idle-delay 0.8
+          which-key-max-description-length 25
+          which-key-allow-imprecise-window-fit t
+          which-key-separator " → " 
+          which-key-allow-imprecise-window-fit nil ))
+
+
 #+end_src
