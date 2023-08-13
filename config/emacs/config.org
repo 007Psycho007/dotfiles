@@ -769,12 +769,7 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 #+begin_src emacs-lisp
 (use-package evil-collection
 :after evil
-:custom 
-(evil-collection-ivy t)
-(evil-collection-company t)
-(evil-collection-neotree t)
-(evil-collection-magit t)
 :config
-(setq evil-collection-mode-list '(dashboard dired ibuffer))
+(setq evil-collection-mode-list '(dashboard dired ibuffer ivy company neotree magit))
 (evil-collection-init))
 #+end_src
