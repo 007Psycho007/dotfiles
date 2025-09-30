@@ -63,14 +63,15 @@
     - grim
     - slurp
     - xdg-utils
+    - ttf-sourcecodepro-nerd
 
 # ---- AUR packages via yay ----
 - yay:
   - xdg-desktop-portal-hyprland
-  - nerd-fonts-source-code-pro
   - hyprshot
   - hyprland
   - hyprlock
+  - hy3
 
 # ---- Post steps ----
 - shell:
