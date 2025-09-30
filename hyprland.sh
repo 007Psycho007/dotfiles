@@ -1,8 +1,5 @@
 sudo pacman -Syu
-sudo pacman -S --needed base-devel git cmake meson ninja \
-  wayland wayland-protocols wlroots xorg-xwayland \
-  polkit elogind \
-  seatd hyprland waybar wofi kitty dunst wl-clipboard swaybg meson cmake go
+sudo pacman -Sy  base-devel git cmake meson ninja wayland wayland-protocols wlroots xorg-xwayland elogind seatd hyprland waybar wofi kitty dunst wl-clipboard swaybg meson cmake go
 
 sudo systemctl enable --now seatd.service
 
