@@ -37,6 +37,7 @@
 # ---- Repo packages via omnipkg ----
 - omnipkg:
   - install:
+    - sddm
     - vim
     - wget
     - zsh
@@ -66,9 +67,7 @@
 # ---- AUR packages via yay ----
 - yay:
   - nerd-fonts-sauce-code-pro
-  - nyxt
   - obsidian
-  - qflipper
   - dragon-drag-and-drop
   - swaynotificationcenter
   - hyprshot
@@ -78,25 +77,6 @@
 
 # ---- Post steps ----
 - shell:
-    - description: "Set fish as default shell for user"
-      command: |
-        if command -v fish >/dev/null; then
-          if ! grep -q "$(command -v fish)" /etc/shells; then
-            echo "$(command -v fish)" | sudo tee -a /etc/shells
-          fi
-          chsh -s "$(command -v fish)" "$USER"
-        fi
-
-    - description: "Install fisher (fish plugin manager) if missing"
-      command: |
-        if ! fish -c "type fisher" >/dev/null 2>&1; then
-          curl -sL https://git.io/fisher | source && fisher update
-        fi
-
-    - description: "Install fish plugins"
-      command: |
-        fish -c "fisher install oh-my-fish/plugin-sudope"
-
     - description: "Enable lingering for user services"
       command: |
         if command -v loginctl >/dev/null; then
@@ -109,3 +89,7 @@
 
     - description: "Cleanup"
       command: rm -rf ~/.init || true
+
+    - description: "Enable display manager (sddm) for graphical login"
+      command: |
+        sudo systemctl enable sddm.service
