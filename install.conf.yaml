@@ -66,12 +66,10 @@
 
 # ---- AUR packages via yay ----
 - yay:
-  - nerd-fonts-sauce-code-pro
-  - obsidian
+  - nerd-fonts-git
   - dragon-drag-and-drop
   - swaynotificationcenter
   - hyprshot
-  - walker
   - hyprland
   - hyprlock
 
