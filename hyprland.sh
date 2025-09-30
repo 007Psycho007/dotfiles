@@ -18,10 +18,5 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-git clone https://github.com/outfoxxed/hy3
-cd hy3
-make all
-
-mkdir -p ~/.local/share/hyprland/plugins
-cp build/hy3.so ~/.local/share/hyprland/plugins/
-
+hyprpm enable
+hyprpm add https://github.com/outfoxxed/hy3
