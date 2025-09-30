@@ -1,44 +1,43 @@
 - clean: ['~']
 
-- omnipkg:
-  - install:
-    - vim
-    - nyxt
-    - wget
-    - zsh
-    - firefox
-    - rofi-wayland
-    - feh
-    - git
-    - jq
-    - cmake
-    - gnumake
-    - gcc
-    - libtool
-    - any-nix-shell
-    - xclip
-    - bluez
-    - bitwarden
-    - obsidian
-    - ripgrep
-    - waybar
-    - walker
-    - hyprpaper
-    - hyprshot
-    - kanshi
-    - wdisplays
-    - swaynotificationcenter
-    - webcord
-    - discord
-    - qflipper
-    - dragon-drop
-    - thunderbird
-    - base-devel
+- pacman:
+  - vim
+  - nyxt
+  - wget
+  - zsh
+  - firefox
+  - rofi-wayland
+  - feh
+  - git
+  - jq
+  - cmake
+  - gnumake
+  - gcc
+  - libtool
+  - any-nix-shell
+  - xclip
+  - bluez
+  - bitwarden
+  - obsidian
+  - ripgrep
+  - waybar
+  - walker
+  - hyprpaper
+  - hyprshot
+  - kanshi
+  - wdisplays
+  - swaynotificationcenter
+  - webcord
+  - discord
+  - qflipper
+  - dragon-drop
+  - thunderbird
+  - base-devel
 
 - shell:
-    - [ "sh <(curl -L https://nixos.org/nix/install) --daemon", "Install Nix" ]
-    - [ "nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager", "Add Home Manager channel" ]
-    - [ "nix-channel --update", "Update Nix channels" ]
-    - [ "nix-shell '<home-manager>' -A install", "Install Home Manager" ]
+  - [ "sh <(curl -L https://nixos.org/nix/install) --daemon", "Install Nix" ]
+  - [ "nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager", "Add Home Manager channel" ]
+  - [ "nix-channel --update", "Update Nix channels" ]
+  - [ "nix-shell '<home-manager>' -A install", "Install Home Manager" ]
 - shell:
   - rm -rf ~/.init
