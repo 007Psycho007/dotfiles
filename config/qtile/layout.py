@@ -44,6 +44,7 @@ def full():
         border_normal=onedark["primary"],
         border_width=2
     )
+
 def zoom():
     return layout.Zoomy(
         margin=margin,

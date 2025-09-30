@@ -1,4 +1,3 @@
 #!/bin/bash
 
-conda activate base
-nvim --listen ~/.cache/nvim/server.pipe
+kitty -e nvim --class "nvim"

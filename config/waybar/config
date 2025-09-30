@@ -1,0 +1,258 @@
+[
+    {
+        "name": "topbar",
+        "layer": "top",
+        "position": "top",
+        "height": 45,
+        "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window","hyprland/language","tray"],
+        "modules-center": ["mpris"],
+        "modules-right": ["battery#icon","battery#text","network#icon","network", "custom/preup","network#up","custom/predown","network#down","custom/predisk","disk","custom/precpu","cpu","custom/premem","memory","custom/preclock", "clock", "custom/notification"],
+        
+        "tray": {
+            "icon-size": 14,
+            "spacing": 5
+        },
+        "hyprland/workspaces": {
+            "move-to-monitor": true,
+            "format": "{icon}",
+            "format-icons": {
+                "1": "",
+                "2": "󰖟",
+                "3": "󰝚",
+                "4": "󰍬",
+                "5": "",
+                "6": "",
+                "7": "",
+                "8": "",
+                "9": "",
+                "10": "󰅟",
+                "default": ""
+            },
+            "active-only": false,
+            "all-outputs": true,
+        },
+
+        "hyprland/window": {
+            "max-length": 20, 
+            "separate-outputs": true,
+            "icon": false,
+            "format": "<span color='#61AFEF'>  </span> {title} ",
+            "min-length": 25,
+            "max-length": 25,
+            "align": 0
+        },
+
+        "custom/os_button": {
+            "format": "",
+            "on-click": "rofi -show drun",
+            "tooltip": false
+        },
+
+        "custom/preclock": {
+            "format": "<span color='#98C379'> </span>",
+            "tooltip": false
+        },
+        "custom/precpu": {
+            "format": "<span color='#E5C07B'> </span>",
+            "tooltip": false
+        },
+        "custom/premem": {
+            "format": "<span color='#E5C07B'> </span>",
+            "tooltip": false
+        },
+        "custom/predisk": {
+            "format": "<span color='#E36C75'> </span>",
+            "tooltip": false
+        },
+        "custom/prenet": {
+            "format": "<span color='#E36C75'> </span>",
+            "tooltip": false
+        },
+        "custom/preup": {
+            "format": "<span color='#C678DD'> </span>",
+            "tooltip": false
+        },
+        "custom/predown": {
+            "format": "<span color='#c678dd'> </span>",
+            "tooltip": false
+        },
+
+
+        "custom/title": {
+            "format": " ",
+            "tooltip": false
+        },
+
+        "mpris": {
+            "max-length": 30,
+            "min-length": 30,
+            "format": "{player_icon} {dynamic}",
+            "format-paused": "{status_icon} <i>{dynamic}</i>",
+            "player-icons": {
+                "default": "▶",
+                "mpv": "🎵"
+            },
+            "status-icons": {
+                "paused": "⏸"
+            },
+
+            "title-len": 20, 	 
+            "artist-len": 20, 	 
+            "dynamic-order": ["title", "artist"],
+            // "ignored-players": ["firefox"]
+        },
+
+        "clock": {
+            "format": "{:%H:%M} ",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                        "mode"          : "month",
+                        "mode-mon-col"  : 3,
+                        "weeks-pos"     : "right",
+                        "on-scroll"     : 1,
+                        "format": {
+                                  "months":     "<span color='#ABB2BF'><b>{}</b></span>",
+                                  "days":       "<span color='#ABB2BF'><b>{}</b></span>",
+                                  "weeks":      "<span color='#98C379'><b>W{}</b></span>",
+                                  "weekdays":   "<span color='#61AFEF'><b>{}</b></span>",
+                                  "today":      "<span color='#E06C74'><b>{}</b></span>"
+                                  }
+                        },
+            "actions":  {
+                        "on-click-right": "mode",
+                        "on-scroll-up": "tz_up",
+                        "on-scroll-down": "tz_down",
+                        "on-scroll-up": "shift_up",
+                        "on-scroll-down": "shift_down"
+                        }
+        },
+
+        "memory": {
+            "align": 1,
+            "interval": 30,
+            "format": "{}%",
+            "min-length": 4,
+            "max-length": 4,
+        },
+
+        "cpu": {
+            "align": 1,
+            "interval": 10,
+            "format": "{usage:0}%",
+            "min-length": 4,
+            "max-length": 4,
+        },
+
+        "network#icon": {
+            "format": "{ifname}",
+            "format-wifi": "<span color='#C678DD'> </span>",
+            "format-ethernet": "<span color='#C678DD'>󰈀 </span>",
+            "format-disconnected": "<span color='#C678DD'>󰈂 </span>", //An empty format will hide the module.
+            "tooltip-format": "{ifname} via {gwaddr}",
+            "tooltip-format-wifi": "{ipaddr} via {gwaddr}",
+            "tooltip-format-ethernet": "{ipaddr} via {gwaddr}",
+            "tooltip-format-disconnected": "Disconnected",
+        },
+
+        "network": {
+            "format": "{ifname}",
+            "format-wifi": "{essid}",
+            "format-ethernet": "{ifname}",
+            "format-disconnected": "Disconnected", //An empty format will hide the module.
+            "tooltip-format": "{ifname} via {gwaddr}",
+            "tooltip-format-wifi": "{ipaddr} via {gwaddr}",
+            "tooltip-format-ethernet": "{ipaddr} via {gwaddr}",
+            "tooltip-format-disconnected": "Disconnected",
+            "max-length": 6,
+            "min-length": 6
+        },
+        "network#up": {
+            "align": 1,
+            "format": "{ifname}",
+            "format-wifi": "{bandwidthUpBytes}",
+            "format-ethernet": "{bandwidthUpBytes}",
+            "format-disconnected": "{bandwidthUpBytes}",
+            "max-length": 6,
+            "min-length": 6
+        },
+        "network#down": {
+            "align": 1,
+            "format": "{ifname}",
+            "format-wifi": "{bandwidthDownBytes}",
+            "format-ethernet": "{bandwidthDownBytes}",
+            "format-disconnected": "{bandwidthDownBytes}",
+            "max-length": 6,
+            "min-length": 6
+        },
+
+        "disk": {
+            "align": 1,
+            "interval": 30,
+            "format": "{percentage_free}%",
+            "path": "/",
+            "max-length": 4,
+            "min-length": 4,
+        },
+
+        "battery.text": {
+            "interval": 60,
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{capacity}%",
+            "max-length": 3,
+            "min-length": 3,
+        },
+
+        "battery#icon": {
+            "interval": 60,
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{icon}",
+            "format-charging": "<span color='#E5C07B'>󱐋 </span>",
+            "format-icons": [
+                "<span color='#E36C75'>  </span>", 
+                "<span color='#E36C75'>  </span>", 
+                "<span color='#E5C07B'>  </span>", 
+                "<span color='#98C379'>  </span>", 
+                "<span color='#98C379'>  </span>"],
+            "min-length": 3,
+            "max-length": 3
+        },
+
+        "hyprland/language": {
+            "format": "<span color='#61afef'>󰌌 </span> {}",
+            "format-en": "en",
+            "format-de": "de",
+            "max-length": 5,
+            "min-length": 5,
+        },
+
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+              "notification": "<span color='#E36C75'></span>",
+              "none": "<span color='#61afef'></span>",
+              "dnd-notification":"<span color='#E36C75'></span>",
+              "dnd-none": "<span color='#61afef'></span>",
+              "inhibited-notification": "<span color='#E36C75'></span>",
+              "inhibited-none": "<span color='#61afef'></span>",
+              "dnd-inhibited-notification": "<span color='#E36C75'></span>",
+              "dnd-inhibited-none": "<span color='#61afef'></span>"
+            },
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "swaync-client -t -sw",
+            "on-click-right": "swaync-client -d -sw",
+            "escape": true,
+            "max-length": 2,
+            "min-length": 2
+        },
+    },
+
+]

@@ -1,45 +1,110 @@
-- clean: ['~']
+- defaults:
+    link:
+      create: true
+      relink: true
 
+# safer than nuking all of ~, but adjust to taste
+- clean: ['~/.config']
 
+- create:
+    - ~/.config
+    - ~/.local/bin
+    - ~/.config/systemd/user
+
+- link:
+    # shell
+    ~/.zshrc: config/zsh/.zshrc
+    # fish
+    ~/.config/fish/config.fish: home-manager/fish/config.fish
+    # kitty
+    ~/.config/kitty/kitty.conf: home-manager/kitty/kitty.conf
+    # rofi
+    ~/.config/rofi/config.rasi: home-manager/rofi/config.rasi
+    ~/.config/rofi/onedark.rasi: home-manager/rofi/onedark.rasi
+    # hyprland + hyprlock
+    ~/.config/hypr/hyprland.conf: home-manager/hypr/hyprland.conf
+    ~/.config/hypr/hyprlock.conf: home-manager/hypr/hyprlock.conf
+    # starship
+    ~/.config/starship.toml: home-manager/starship/starship.toml
+    # extras from xdg.configFile.*
+    ~/.config/qtile: home-manager/qtile
+    ~/.config/waybar: home-manager/waybar
+    ~/.config/files: home-manager/files
+    ~/.config/nvim: home-manager/nvim
+    ~/.config/scripts: home-manager/scripts
+
+# ---- Repo packages via omnipkg ----
 - omnipkg:
   - install:
     - vim
-    - nyxt
     - wget
     - zsh
+    - fish
     - firefox
     - rofi-wayland
     - feh
     - git
     - jq
     - cmake
-    - gnumake
+    - make
     - gcc
     - libtool
-    - any-nix-shell
     - xclip
     - bluez
     - bitwarden
-    - obsidian
     - ripgrep
     - waybar
-    - walker
     - hyprpaper
-    - hyprshot
     - kanshi
     - wdisplays
-    - swaynotificationcenter
-    - webcord
-    - discord
-    - qflipper
-    - dragon-drop
     - thunderbird
+    - discord
+    - starship
     - base-devel
 
+# ---- AUR packages via yay ----
+- yay:
+  - nerd-fonts-sauce-code-pro
+  - nyxt
+  - obsidian
+  - qflipper
+  - dragon-drag-and-drop
+  - swaynotificationcenter
+  - hyprshot
+  - walker
+  - hyprland
+  - hyprlock
+
+# ---- Post steps ----
 - shell:
-  - [ "sh <(curl -L https://nixos.org/nix/install) --daemon", "Install Nix" ]
-  - [ "nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager", "Add Home Manager channel" ]
-  - [ "nix-channel --update", "Update Nix channels" ]
-  - [ "nix-shell '<home-manager>' -A install", "Install Home Manager" ]
-- shell:
-  - rm -rf ~/.init
+    - description: "Set fish as default shell for user"
+      command: |
+        if command -v fish >/dev/null; then
+          if ! grep -q "$(command -v fish)" /etc/shells; then
+            echo "$(command -v fish)" | sudo tee -a /etc/shells
+          fi
+          chsh -s "$(command -v fish)" "$USER"
+        fi
+
+    - description: "Install fisher (fish plugin manager) if missing"
+      command: |
+        if ! fish -c "type fisher" >/dev/null 2>&1; then
+          curl -sL https://git.io/fisher | source && fisher update
+        fi
+
+    - description: "Install fish plugins"
+      command: |
+        fish -c "fisher install oh-my-fish/plugin-sudope"
+
+    - description: "Enable lingering for user services"
+      command: |
+        if command -v loginctl >/dev/null; then
+          loginctl enable-linger "$USER" || true
+        fi
+
+    - description: "Refresh font cache"
+      command: |
+        [[ -d "$HOME/.local/share/fonts" ]] && fc-cache -f || true
+
+    - description: "Cleanup"
+      command: rm -rf ~/.init || true

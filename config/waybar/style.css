@@ -1,0 +1,195 @@
+* {
+    border-radius: 0;
+    text-shadow: none;
+    font-family: "Source Code Pro", "Font Awesome 6 Free Solid";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    margin: 10px;
+    border: 8px solid rgba(0,0,0,0);
+    color: #ABB2BF;
+    background: transparent;
+    /* transition-property: background-color; */
+    /* transition-duration: .5s; */
+}
+
+    
+window > box {
+	margin-top: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
+    background-color: rgba(49, 53, 63, 1);
+    color: #ABB2BF;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+window#waybar.empty {
+    color: rgba(0,0,0,0);
+}
+
+.topbar {
+    padding: 10px;
+    background-color: rgba(49, 53, 63, 1);
+}
+
+#workspaces {
+    padding: 0 5px;
+    margin: 4px;
+    margin-right: 10px;
+    border-radius: 6px;
+    background-color: #5C6370;
+}
+
+#workspaces button:hover {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#workspaces button {
+    padding: 0 0.5em;
+    margin: 0 0.25em;
+    color: #282C34;
+}
+
+#workspaces button.hosting-monitor {
+    color: #ABB2BF;
+}
+#workspaces button.visible {
+    color: #61AFEF;
+}
+
+#workspaces button.focused {
+    background-color: #64727D;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#custom-os_button {
+	font-family: "Source Code Pro";
+    font-size: 20px;
+	padding-left: 5px;
+	padding-right: 13px;
+    margin: 4px;
+    margin-right: 6px;
+    margin-left: 5px;
+    border-radius: 6px;
+    border: 2px solid #61afef;
+    background-color: #61afef;
+    color: #282C34;
+	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#custom-title {
+	font-family: "Source Code Pro";
+    font-size: 18px;
+	padding-left: 10px;
+	padding-right: 0px;
+	margin-right: 0px;
+    color: #61AFEF;
+	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#mpris {
+    padding: 0 5px;
+    margin: 4px;
+    margin-right: 10px;
+    border: 0px solid #5C6370;
+    border-radius: 6px;
+    background-color: #5C6370;
+    color: #61AFEF;
+}
+
+#mpris.playing {
+    padding: 0 5px;
+    margin: 4px;
+    margin-right: 10px;
+    border: 0px solid #282C34;
+    border-radius: 6px;
+    background-color: #98C379;
+    color: #282C34;
+}
+
+#custom-preclock, #custom-premem, #custom-precpu, #custom-predisk, #battery.icon {
+    padding-left: 4px;
+    margin: 4px;
+    margin-right: 0px;
+    margin-left: 5px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: 2px solid #181a1f;
+    background-color: #181a1f;
+}
+
+#clock {
+    margin: 4px;
+    margin-right: 5px;
+    margin-left: 0px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border: 2px solid #181a1f;
+    background-color: #181a1f;
+    color: #ABB2BF;
+}
+
+#network.icon {
+    padding-left: 6px;
+    margin: 4px;
+    margin-right: 0px;
+    margin-left: 5px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: 2px solid #181a1f;
+    background-color: #181a1f;
+    color: #ABB2BF;
+}
+#network, #custom-preup, #network.up, #custom-predown {
+    margin: 4px;
+    margin-right: 0px;
+    margin-left: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border: 2px solid #181a1f;
+    background-color: #181a1f;
+    color: #ABB2BF;
+}
+
+#network.down {
+    padding-right:6px;
+    margin: 4px;
+    margin-right: 5px;
+    margin-left: 0px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border: 2px solid #181a1f;
+    background-color: #181a1f;
+    color: #ABB2BF;
+}
+
+#memory, #cpu,  #disk, #battery.text {
+    padding: 0 6px;
+    margin: 4px;
+    margin-right: 5px;
+    margin-left: 0px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border: 2px solid #181a1f;
+    background-color: #181a1f;
+    color: #ABB2BF;
+}
+#window, #language, #custom-notification, #tray {
+    padding: 0 6px;
+    margin: 4px;
+    margin-right: 6px;
+    margin-left: 6px;
+    border-radius: 6px;
+    border: 2px solid #181a1f;
+    background-color: #181a1f;
+    color: #ABB2BF;
+}

@@ -1,5 +1,6 @@
 * ELPACA PACKAGE MANAGER
 
+
 #+begin_src emacs-lisp
   (defvar elpaca-installer-version 0.4)
   (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
@@ -78,12 +79,20 @@
 (elpaca nil (message "deferred"))
 #+end_src
 
-
 * GENERAL SETTINGS
 #+begin_src emacs-lisp
 (setq use-dialog-box nil)
 (setq-default find-file-visit-truename nil)
 (define-key minibuffer-local-map (kbd "C-v") 'yank)
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+(setq browse-url-browser-function 'eww-browse-url)
 #+end_src
 
 * KEYBINDINGS
@@ -100,11 +109,15 @@
     :global-prefix "M-SPC") ;; access leader in insert mode
 
   (dt/leader-keys
-  "SPC" '(counsel-M-x :wk "Counsel M-x")
+    "SPC" '(counsel-M-x :wk "Counsel M-x")
+
+    "TAB" '(tab-bar-switch-to-next-tab :wk "Window Right")
+    "n" '(tab-bar-new-tab :wk "New Tab")
+    "x" '(tab-bar-close-tab :wk "Quit Emacs (No Saves)")
+    "q" '(delete-frame :wk "Quit Emacs (No Saves)")
     "." '(find-file :wk "Find file")
-    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
-    "f r" '(counsel-recentf :wk "Find recent files")
-    "TAB TAB" '(comment-line :wk "Comment lines"))
+    "f c" '((lambda () (interactive) (find-file "~/.nixos-config/nixos/home-manager/emacs/config.org")) :wk "Edit emacs config")
+    "f r" '(counsel-recentf :wk "Find recent files"))
 
   (dt/leader-keys
     "b" '(:ignore t :wk "buffer")
@@ -118,9 +131,18 @@
   (dt/leader-keys
     "d" '(:ignore t :wk "Dired")
     "d d" '(dired :wk "Open dired")
+    "d c" '(dired-create-empty-file :wk "Create File")
+    "d a" '(dired-create-directory :wk "Create Directory")
     "d j" '(dired-jump :wk "Dired jump to current")
     "d n" '(neotree-dir :wk "Open directory in neotree")
     "d p" '(peep-dired :wk "Peep-dired"))
+
+  (dt/leader-keys
+    "r" '(:ignore t :wk "Misc Tools")
+    "r f" '(:ignore t :wk "Elfeed")
+    "r f f" '(elfeed :wk "Open Elfeed")
+    "r f l" '(elfeed-goodies/show-link-hint :wk "Open Article Link")
+    "r f u" '(elfeed-update :wk "Update Feed"))
 
   (dt/leader-keys
     "e" '(:ignore t :wk "Eshell/Evaluate")    
@@ -129,8 +151,7 @@
     "e e" '(eval-expression :wk "Evaluate and elisp expression")
     "e h" '(counsel-esh-history :which-key "Eshell history")
     "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
-    "e r" '(eval-region :wk "Evaluate elisp in region")
-    "e s" '(eshell :which-key "Eshell"))
+    "e r" '(eval-region :wk "Evaluate elisp in region"))
 
  (dt/leader-keys
     "h" '(:ignore t :wk "Help")
@@ -140,13 +161,18 @@
     "h r r" '(reload-init-file :wk "Reload emacs config"))
 (dt/leader-keys
   "m" '(:ignore t :wk "Org")
+  "m j" '(org-babel-next-src-block :wk "Next Source Block")
+  "m k" '(org-babel-previous-src-block :wk "Prev Source Block")
   "m a" '(org-agenda :wk "Org agenda")
   "m e" '(org-export-dispatch :wk "Org export dispatch")
+  "m p" '(org-display-inline-images :wk "Org Display Images")
   "m i" '(org-toggle-item :wk "Org toggle item")
   "m t" '(org-todo :wk "Org todo")
   "m B" '(org-babel-tangle :wk "Org babel tangle")
   "m T" '(org-todo-list :wk "Org todo list")
-  "m m" '(org-babel-execute-src-block :wk "Org babel execute"))
+  "m s" '(org-edit-src-code :wk "Edit Source Block")
+  "m m" '(org-babel-execute-src-block :wk "Babel execute Block")
+  "m n" '(org-babel-execute-buffer :wk "Babel execute Buffer"))
 
 (dt/leader-keys
   "m b" '(:ignore t :wk "Tables")
@@ -156,16 +182,20 @@
   "m d" '(:ignore t :wk "Date/deadline")
   "m d t" '(org-time-stamp :wk "Org time stamp"))
 
+
+(dt/leader-keys
+  "g" '(:ignore t :wk "Magit")
+  "g g" '(magit :wk "Open Magit"))
+
 (dt/leader-keys
   "p" '(projectile-command-map :wk "Projectile"))
 
   (dt/leader-keys
-    "t" '(:ignore t :wk "Toggle")
-    "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
-    "t n" '(neotree-toggle :wk "Toggle neotree file viewer")
-    "t t" '(visual-line-mode :wk "Toggle truncated lines")
-    "t v" '(vterm-toggle :wk "Toggle vterm"))
-
+    "o" '(:ignore t :wk "Toggle")
+    "o l" '(display-line-numbers-mode :wk "Toggle line numbers")
+    "o n" '(neotree-toggle :wk "Toggle neotree file viewer")
+    "o t" '(visual-line-mode :wk "Toggle truncated lines")
+    "o v" '(vterm-toggle :wk "Toggle vterm"))
 
   (dt/leader-keys
     "j" '(:ignore t :wk "Jupyter")
@@ -174,7 +204,12 @@
 
   (dt/leader-keys
     "l" '(:ignore t :wk "LSP")
-    "l d" '(lsp-ui-doc-glance :wk "Doc"))
+    "l d" '(lsp-ui-doc-glance :wk "Doc")
+    "l c" '(comment-line :wk "Comment lines"))
+
+  (dt/leader-keys
+    "c" '(:ignore t :wk "Company")
+    "c c" '(lsp-ui-doc-glance :wk "Complete"))
 
   (dt/leader-keys 
     "s" '(:ignore t :wk "Split")
@@ -183,6 +218,14 @@
     "s n" '(evil-window-new :wk "New window")
     "s h" '(evil-window-split :wk "Horizontal split window")
     "s v" '(evil-window-vsplit :wk "Vertical split window"))
+
+
+  (dt/leader-keys
+    "t" '(:ignore t :wk "Tab Bar")
+    "t h" '(tab-bar-switch-to-prev-tab :wk "Tab left")
+    "t l" '(tab-bar-switch-to-next-tab :wk "Tab right")
+    "t c" '(tab-bar-close-tab :wl "Close Tabs"))
+
   (dt/leader-keys
     "w" '(:ignore t :wk "Windows")
     ;; Window motions
@@ -203,9 +246,7 @@
 (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
 
-  )
-
-
+)
 #+end_src
 
 * ALL THE ICONS
@@ -223,15 +264,15 @@ This is an icon set that can be used with dashboard, dired, ibuffer and other Em
 
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
-    :font "Source Code Pro"
+    :font "SauceCodePro Nerd Font"
     :height 110
     :weight 'medium)
   (set-face-attribute 'variable-pitch nil
-    :font "Source Code Pro"
+    :font "SauceCodePro Nerd Font"
     :height 120
     :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
-    :font "Source Code Pro"
+    :font "SauceCodePro Nerd Font"
     :height 110
     :weight 'medium)
   ;; Makes commented text and keywords italics.
@@ -245,7 +286,7 @@ This is an icon set that can be used with dashboard, dired, ibuffer and other Em
   ;; This sets the default font on all graphical frames created after restarting Emacs.
   ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
   ;; are not right unless I also add this method of setting the default font.
-  (add-to-list 'default-frame-alist '(font . "Source Code Pro"))
+  (add-to-list 'default-frame-alist '(font . "SauceCodePro Nerd Font"))
   ;; Uncomment the following line if line spacing needs adjusting.
   (setq-default line-spacing 0.12)
   #+end_src
@@ -261,47 +302,6 @@ This is an icon set that can be used with dashboard, dired, ibuffer and other Em
 #+begin_src emacs-lisp
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t)
-#+end_src
-
-* COMPANY
-#+begin_src emacs-lisp
-(use-package company
-  :defer 2
-  :diminish
-  :custom
-  (company-begin-commands '(self-insert-command))
-  (company-idle-delay .1)
-  (company-minimum-prefix-length 2)
-  (company-show-numbers t)
-  (company-tooltip-align-annotations 't)
-  (global-company-mode t))
-
-(use-package company-box
-  :after company
-  :diminish
-  :hook (company-mode . company-box-mode))
-#+end_src
-
-
-* DIMINISH
-Hide Extensions from Modeline
-#+begin_src emacs-lisp
-(use-package diminish)
-#+end_src
-
-* DIRED 
-#+begin_src emacs-lisp
-(use-package peep-dired
-  :after dired
-  :hook (evil-normalize-keymaps . peep-dired-hook)
-  :config
-    (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
-    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-find-file) ; use dired-find-file instead if not using dired-open package
-    (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
-    (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
-)
-
-;;(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
 #+end_src
 
 * BUFFER-MOVE
@@ -378,6 +378,103 @@ one, an error is signaled."
       (select-window other-win))))
 #+end_src
 
+* COMPANY
+#+begin_src emacs-lisp
+(use-package company
+  :defer 2
+  :diminish
+  :custom
+  (company-begin-commands '(self-insert-command))
+  (company-idle-delay .1)
+  (company-minimum-prefix-length 2)
+  (company-show-numbers t)
+  (company-tooltip-align-annotations 't)
+  (global-company-mode t))
+
+(use-package company-box
+  :after company
+  :diminish
+  :hook (company-mode . company-box-mode))
+#+end_src
+
+* DASHBOARD
+#+begin_src emacs-lisp
+
+(use-package dashboard
+  :ensure t 
+  :if (< (length command-line-args) 2)
+  :init
+  (setq initial-buffer-choice 'dashboard-open)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
+  (setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
+  (setq dashboard-center-content t) ;; set to 't' for centered content
+  (setq dashboard-items '((recents . 5)
+                          (projects . 3 )))
+  :config
+  (dashboard-setup-startup-hook))
+
+#+end_src
+* DIMINISH
+Hide Extensions from Modeline
+#+begin_src emacs-lisp
+(use-package diminish)
+#+end_src
+
+* DIRED 
+#+begin_src emacs-lisp
+(use-package peep-dired
+  :after dired
+  :hook (evil-normalize-keymaps . peep-dired-hook)
+  :config
+    (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-find-file) ; use dired-find-file instead if not using dired-open package
+    (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+    (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+)
+
+;;(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+#+end_src
+
+* EDITORCONFIG
+#+begin_src emacs-lisp
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+#+end_src
+
+* ELFEED
+#+begin_src emacs-lisp
+
+(use-package elfeed
+:ensure t
+:config
+(evil-define-key 'normal elfeed-show-mode-map
+  (kbd "J") 'elfeed-goodies/split-show-next
+  (kbd "K") 'elfeed-goodies/split-show-prev
+  (kbd "L") 'elfeed-goodies/show-link-hint
+  (kbd "H") 'elfeed-goodies/delete-pane)
+(evil-define-key 'normal elfeed-search-mode-map
+  (kbd "J") 'elfeed-goodies/split-show-next
+  (kbd "K") 'elfeed-goodies/split-show-prev
+  (kbd "L") 'elfeed-search-show-entry)
+(setq elfeed-feeds (quote(
+  ("https://www.heise.de/security/rss/news.rdf" heise security)
+  ("https://www.heise.de/security/rss/alert-news.rdf" heise security alerts)
+  ("https://www.reddit.com/r/linux.rss" reddit linux)
+  ("https://www.reddit.com/r/linux.rss" reddit linux)
+  ("https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best" reuters news)))))
+
+(use-package elfeed-goodies
+:ensure t
+:init
+(elfeed-goodies/setup)
+(setq elfeed-goodies/entry-pane-size 0.5)
+)
+
+#+end_src
 * GRAPHICAL USER INTERFACE TWEAKS
 Let's make GNU Emacs look a little better.
 
@@ -401,6 +498,20 @@ Let's make GNU Emacs look a little better.
 (setq initial-scratch-message nil)
 #+end_src
 
+* GIT-GUTTER
+#+begin_src emacs-lisp
+(use-package git-gutter
+  :hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.02))
+
+(use-package git-gutter-fringe
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
+
+#+end_src
 * IVY (COUNSEL)
 + Ivy, a generic completion mechanism for Emacs.
 + Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
@@ -478,17 +589,6 @@ Let's make GNU Emacs look a little better.
 
 #+end_src
 
-**** Pyvenv / Anaconda
-#+begin_src emacs-lisp 
-(use-package pyvenv
-  :config
-  (setenv "WORKON_HOME" "$HOME/anaconda3/envs")
-  :init
-  (pyvenv-mode 1)
-  (pyvenv-tracking-mode 1)
-  (add-hook 'pyvenv-post-activate-hooks (lambda() (jupyter-available-kernelspecs t)))
-)
-#+end_src
 *** Jupyter
 #+begin_src emacs-lisp
 (use-package jupyter
@@ -498,6 +598,8 @@ Let's make GNU Emacs look a little better.
   (add-to-list 'org-babel-load-languages '(jupyter . t))
   (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
 
+(setq comp-deferred-compilation-deny-list (list "jupyter"))
+(setq jupyter-use-zmq nil)
 #+end_src
 
 *** Go
@@ -510,20 +612,45 @@ Let's make GNU Emacs look a little better.
 #+begin_src emacs-lisp
 (use-package terraform-mode)
 
+(use-package company-terraform
+:init
+(company-terraform-init))
 #+end_src
 
+*** Javascript 
+**** VueJS
+#+begin_src emacs-lisp
+(use-package vue-mode
+:init
+(vue-mode))
+#+end_src
+
+*** YAML
+#+begin_src emacs-lisp
+(use-package yaml-mode
+:init
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+)
+#+end_src
+
+*** DOCKER
+#+begin_src emacs-lisp
+(use-package dockerfile-mode)
+#+end_src
 * MAGIT
 #+begin_src emacs-lisp
 (use-package magit)
 #+end_src
+
 * NEOTREE
 #+begin_src emacs-lisp
 (use-package neotree
   :config
   (setq neo-smart-open t
         neo-show-hidden-files t
-        neo-window-width 55
+        neo-window-width 35
         neo-window-fixed-size nil
+        neo-window-position (quote right)
         inhibit-compacting-font-caches t
         projectile-switch-project-action 'neotree-projectile-action) 
         ;; truncate long file names in neotree
@@ -538,14 +665,25 @@ Let's make GNU Emacs look a little better.
 ;; show hidden files
 #+end_src
 
-* NIX MODE
+* NIX Utils
 #+begin_src emacs-lisp
 (use-package nix-mode
   :mode ("\\.nix\\'" "\\.nix.in\\'"))
 
+(use-package company-nixos-options
+  :ensure t
+  :init (add-to-list 'company-backends 'company-nixos-options)
+)
 #+end_src
-* ORG MODE
 
+** Direnv
+#+begin_src emacs-lisp
+(use-package direnv
+ :config
+ (direnv-mode))
+#+end_src
+
+* ORG MODE
 ** Enabling Table of Contents
 #+begin_src emacs-lisp
   (use-package toc-org
@@ -621,6 +759,17 @@ This is just an example of how to create a simple function in Emacs.  Use this f
   (load-file user-init-file))
 #+end_src
 
+* RESTCLIENT
+
+#+begin_src emacs-lisp
+(use-package restclient
+  :ensure t
+  :config
+  (remove-hook 'restclient-mode-hook 'restclient-outline-mode)
+  (restclient-mode)
+)
+(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
+#+end_src
 * PROJECTILE
 #+begin_src emacs-lisp
   (use-package projectile
@@ -630,31 +779,6 @@ This is just an example of how to create a simple function in Emacs.  Use this f
 #+end_src
 
 * SHELLS AND TERMINALS
-In my configs, all of my shells (bash, fish, zsh and the ESHELL) require my shell-color-scripts-git package to be installed.  On Arch Linux, you can install it from the AUR.  Otherwise, go to my shell-color-scripts repository on GitLab to get it.
-
-** Eshell
-Eshell is an Emacs 'shell' that is written in Elisp.
-
-#+begin_src emacs-lisp
-(use-package eshell-syntax-highlighting
-  :after esh-mode
-  :config
-  (eshell-syntax-highlighting-global-mode +1))
-
-;; eshell-syntax-highlighting -- adds fish/zsh-like syntax highlighting.
-;; eshell-rc-script -- your profile for eshell; like a bashrc for eshell.
-;; eshell-aliases-file -- sets an aliases file for the eshell.
-  
-(setq eshell-rc-script (concat user-emacs-directory "eshell/profile")
-      eshell-aliases-file (concat user-emacs-directory "eshell/aliases")
-      eshell-history-size 5000
-      eshell-buffer-maximum-lines 5000
-      eshell-hist-ignoredups t
-      eshell-scroll-to-bottom-on-input t
-      eshell-destroy-buffer-when-process-dies t
-      eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
-#+end_src
-
 ** Vterm
 Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets the shell to be used in M-x shell, M-x term, M-x ansi-term and M-x vterm.  By default, the shell is set to 'fish' but could change it to 'bash' or 'zsh' if you prefer.
 
@@ -688,14 +812,76 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
                   (reusable-frames . visible)
                   (window-height . 0.3))))
 #+end_src
+
+* TAB BAR
+#+begin_src emacs-lisp
+(tab-bar-mode 1)                           ;; enable tab bar
+(setq tab-bar-show 1)                      ;; hide bar if <= 1 tabs open
+(setq tab-bar-close-button-show nil)       ;; hide tab close / X button
+(setq tab-bar-new-tab-choice "*scratch*");; buffer to show in new tabs
+(setq tab-bar-tab-hints t)                 ;; show tab numbers
+(setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
+(setq tab-bar-tab-name-function #'my/name-tab-by-project-or-default)
+
+#+end_src
+
+** Tab Numbering
+#+begin_src emacs-lisp
+(defvar ct/circle-numbers-alist
+  '((1 . "󰎡")
+    (1 . "󰎤")
+    (2 . "󰎧")
+    (3 . "󰎪")
+    (4 . "󰎭")
+    (5 . "󰎱")
+    (6 . "󰎳")
+    (7 . "󰎶")
+    (8 . "󰎹")
+    (9 . "󰎼"))
+  "Alist of integers to strings of circled unicode numbers.")
+
+#+end_src
+** Tab Name Function
+#+begin_src emacs-lisp
+ (defun my/name-tab-by-project-or-default ()
+   "Return project name if in a project, or default tab-bar name if not.
+ The default tab-bar name uses the buffer name."
+   (let ((project-name (projectile-project-name)))
+     (if (string= "-" project-name)
+         (tab-bar-tab-name-current)
+       (projectile-project-name))))
+#+end_src
+
+#+begin_src emacs-lisp
+(defun ct/tab-bar-tab-name-format-default (tab i)
+  (let ((current-p (eq (car tab) 'current-tab))
+        (tab-num (if (and tab-bar-tab-hints (< i 10))
+                     (alist-get i ct/circle-numbers-alist) "")))
+    (propertize
+     (concat "▎ "
+             tab-num
+             " "
+             (alist-get 'name tab)
+             (or (and tab-bar-close-button-show
+                      (not (eq tab-bar-close-button-show
+                               (if current-p 'non-selected 'selected)))
+                      tab-bar-close-button)
+                 "")
+             " ")
+     'face (funcall tab-bar-tab-face-function tab))))
+(setq tab-bar-tab-name-format-function #'ct/tab-bar-tab-name-format-default)
+
+#+end_src
+
 * THEME 
 #+begin_src emacs-lisp
 (use-package doom-themes
   :ensure t
   :config
   ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t
+        doom-themes-neotree-file-icons t)
   (load-theme 'doom-one t)
 
   ;; Enable flashing mode-line on errors
@@ -711,6 +897,8 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 
 ** Transparency
 #+begin_src emacs-lisp
+(set-frame-parameter nil 'alpha-background 95)
+
 (add-to-list 'default-frame-alist '(alpha-background . 95)) ; For all new frames henceforth
 #+end_src
 
@@ -732,6 +920,13 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
       evil-visual-state-tag   (propertize "" 'face '((:background "grey80" :foreground "black")))
       evil-operator-state-tag (propertize "" 'face '((:background "purple"))))
 
+#+end_src
+
+** Tab Bar 
+#+begin_src emacs-lisp
+(custom-set-faces
+  `(tab-bar ((t (:height 1.2))))
+  `(tab-bar-bar ((t (:foreground "61afef")))))
 #+end_src
 * RAINBOW MODE 
 #+begin_src emacs-elisp
@@ -770,6 +965,7 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 (use-package evil-collection
 :after evil
 :config
-(setq evil-collection-mode-list '(dashboard dired ibuffer ivy company neotree magit))
+(setq evil-collection-mode-list '(dashboard dired ibuffer ivy company neotree magit elfeed eww))
 (evil-collection-init))
 #+end_src
+

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 bash $HOME/.screenlayout/start.sh &
 setxkbmap -option caps:escape &
@@ -10,5 +10,4 @@ fi
 kitty &
 kitty &
 kitty &
-notion-app-enhanced &
 pacman -Syy

@@ -8,7 +8,6 @@ dev_match=[
     Match(wm_class=["kitty"]),
 ]
 web_match=[
-    Match(wm_class=["firefox"]),
     Match(wm_class=["librewolf-default"]),
 ]
 
@@ -36,32 +35,31 @@ sec_match=[
     Match(wm_class=["KeePassXC"])
 ]
 
-ent_match=[ 
-    Match(wm_class=["Steam"]),
-    Match(wm_class=["dwarffortress"]),
-]
-
 doc_match=[ 
-    Match(wm_class=["notion-app-enhanced"]),
+    Match(wm_class=["VSCodium"]),
+    Match(wm_class=["Emacs"])
+]
+ent_match=[ 
+    Match(wm_class=["steam"]),
+    Match(wm_class=["dwarffortress"]),
 ]
 
 other_match=[
     Match(wm_class=["Shadow PC"]),
     Match(wm_class=["Shadow PC - Display"]),
-
 ]
 from keys import keys
 groups = [
         Group("dev",label="",layout="monadwide"),
-        Group("web",label="爵",layout="tile",matches=web_match),
-        Group("med",label="ﱘ",layout="tile",matches=med_match),
-        Group("com",label="", layout="tile",matches=com_match),
+        Group("web",label="󰖟",layout="tile",matches=web_match),
+        Group("med",label="󰝚",layout="tile",matches=med_match),
+        Group("com",label="󰍬", layout="tabbed",matches=com_match),
         Group("sec",label="",layout="max",matches=sec_match,spawn=["bitwarden-desktop"]),
-        Group("set",label="漣",layout="max",matches=set_match,spawn=["pavucontrol",]),
+        Group("set",label="",layout="max",matches=set_match,spawn=["pavucontrol",]),
         Group("ent",label="",layout="max",matches=ent_match),
         Group("doc",label="",matches=doc_match),
-        Group("re9",label=""),
-        Group("re0",label="",matches=other_match),
+        Group("vim",label=""),
+        Group("cld",label="󰅟",matches=other_match),
         ]
 for i , o in enumerate(groups):
     keys.extend(
@@ -91,8 +89,9 @@ groups.append(
         DropDown("term", "kitty", opacity=1.0),
     ])
 )
+
 groups.append(
-    ScratchPad("ncspot", [
-        DropDown("ncspot", "kitty -e ncspot", opacity=1.0),
+    ScratchPad("appflowy", [
+        DropDown("appflowy", "appimage-run ~/Apps/appflowy.appimage", opacity=1.0),
     ])
 )

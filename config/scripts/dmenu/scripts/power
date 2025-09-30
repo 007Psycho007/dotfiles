@@ -24,7 +24,7 @@ case $answer in
     "Suspend")
         ask "$opt2" "Really Suspend"
         if [[ $answer == "Yes" ]]; then
-            betterlockscreen -l &
+            ~/.config/scripts/lock.sh &
             systemctl suspend
         fi
         exit 0

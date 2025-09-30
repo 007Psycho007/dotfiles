@@ -1,87 +1,79 @@
-format = """
-[ $os ](bg:8 fg:blue)\
-[](fg:8 bg:white)\
-[ $username ](fg:black bg:white)\
-[](fg:white bg:8)\
-[ $directory ](fg:white bg:8)\
-[$git_branch$git_status](fg:white bg:8)\
-[$golang](fg:white bg:8)\
-[$python](fg:white bg:8)\
-[$lua](fg:white bg:8)\
-[$terraform](fg:white bg:8)\
-[$kubernetes](fg:white bg:8)\
-[](fg:8)\
-[$fill](fg:white)\
-[](fg:8)\
-[$status](fg:white bg:8)\
-[$conda](fg:white bg:8)\
-[$nix_shell](fg:white bg:8)
-[ $character](fg:green) 
-"""
+# ~/.config/starship.toml
 
+# Master prompt layout
+format = "[ $os ](bg:8 fg:blue)[](fg:8 bg:white)[ $username ](fg:black bg:white)[](fg:white bg:8)[ $directory ](fg:white bg:8)[$git_branch$git_status](fg:white bg:8)[$golang](fg:white bg:8)[$python](fg:white bg:8)[$lua](fg:white bg:8)[$terraform](fg:white bg:8)[$kubernetes](fg:white bg:8)[](fg:8)[$fill](fg:white)[](fg:8)[$status](fg:white bg:8)[$conda](fg:white bg:8)[$nix_shell](fg:white bg:8)[$character](fg:white bg:8) "
+
+# Continuation prompt for wrapped commands
 continuation_prompt = "      [│](fg:blue)  "
+
+# --- OS ----------------------------------------------------------------------
 [os]
 format = "$symbol"
 style = "bold blue"
 disabled = false
 
 [os.symbols]
-Windows = " "
 Arch = ""
+NixOS = ""
 
+# --- Username ----------------------------------------------------------------
 [username]
-style_user = 'black bold'
-style_root = 'red bold'
+style_user = "black bold"
+style_root = "red bold"
 format = "$user"
 disabled = false
 show_always = true
 
+# --- Directory ---------------------------------------------------------------
 [directory]
 truncation_length = 3
-truncation_symbol = '…/'
+truncation_symbol = "…/"
 truncate_to_repo = true
 format = "$path $read_only"
 home_symbol = " ~"
 read_only = ""
-read_only_style = 'red'
+read_only_style = "red"
 
+# --- Git ---------------------------------------------------------------------
 [git_branch]
-symbol = ' '
+symbol = " "
 truncation_length = 15
-truncation_symbol = ''
+truncation_symbol = ""
 style = "red"
-format = ' [$symbol$branch](fg:red bg:8)'
+format = " [$symbol$branch](fg:red bg:8)"
 
 [git_status]
-conflicted = ' =$count'
-ahead = ' ⇡$count'
-behind = ' ⇣$count'
-diverged = ' ⇕$count'
-up_to_date = '✓'
-untracked = ' ?$count'
-stashed = ' $$count'
-renamed = ' »$count'
-deleted = ' $count'
+conflicted = " =$count"
+ahead = " ⇡$count"
+behind = " ⇣$count"
+diverged = " ⇕$count"
+up_to_date = "✓"
+untracked = " ?$count"
+stashed = " $$count"
+renamed = " »$count"
+deleted = " X$count"
 staged = " +$count"
 modified = " !$count"
 format = "[$all_status](fg:red bg:8) "
 
+# --- Conda / Python envs -----------------------------------------------------
 [conda]
 symbol = ""
 style = "yellow"
-format = ' [$symbol $environment](fg:yellow bg:8) '
+format = " [$symbol $environment](fg:yellow bg:8) "
 ignore_base = false
 
+# --- AWS ---------------------------------------------------------------------
 [aws]
 symbol = ""
 format = " [$symbol $profile](fg:yellow bg:8) "
-[aws.region_aliases]
-eu-central-1 = "eu-c-1"
 
+# --- Kubernetes --------------------------------------------------------------
 [kubernetes]
 symbol = ""
 format = " [$symbol $context](fg:blue bg:8) "
 
+# --- Languages ---------------------------------------------------------------
 [lua]
 symbol = ""
 format = " [$symbol $version](fg:blue bg:8) "
@@ -92,32 +84,42 @@ format = " [$symbol $version](fg:blue bg:8) "
 
 [python]
 symbol = ""
-format = " [$symbol $version](fg:yellow bg:8) "
+format = " [$symbol $version $virtualenv ](fg:yellow bg:8) "
 
 [terraform]
 symbol = ""
 format = " [$symbol $version](fg:blue bg:8) "
 
-
+# --- Fill (spacer line) ------------------------------------------------------
 [fill]
 symbol = "─"
-style = 'bold white'
+style = "bold white"
 
-[time]
-disabled = false
-style = "bold bright-black"
-format = "[$time]($style)"
-
+# --- Status ------------------------------------------------------------------
 [status]
 symbol = "[](fg:red bg:8) "
 success_symbol = "[](fg:green bg:8) "
 format = " $symbol$status "
 disabled = false
 
+# --- Nix shell ---------------------------------------------------------------
 [nix_shell]
 symbol = ""
-format = ' [$symbol $name](fg:blue bg:8) '
+format = " [$symbol $name](fg:blue bg:8) "
+
+# --- Character / prompt symbol ----------------------------------------------
 [character]
 format = "$symbol"
-vicmd_symbol = ""
+success_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)"
+error_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)"
+vicmd_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)"
+vimcmd_replace_one_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)"
+vimcmd_replace_symbol = " [  ](fg:white bg:8)[\n ❯](bold green)"
+vimcmd_visual_symbol = " [󰈈  ](fg:white bg:8)[\n ❯](bold green)"
+
+# --- Time --------------------------------------------------------------------
+[time]
+disabled = false
+format = "[$time](fg:blue bg:8)[ ](fg:8)"
+time_format = "%H:%M"
 

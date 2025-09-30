@@ -1,5 +1,6 @@
 * ELPACA PACKAGE MANAGER
 
+
 #+begin_src emacs-lisp
   (defvar elpaca-installer-version 0.4)
   (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
@@ -67,16 +68,6 @@
     (setq evil-vsplit-window-right t)
     (setq evil-split-window-below t)
     (evil-mode))
-  (use-package evil-collection
-    :after evil
-    :custom 
-    (evil-collection-ivy t)
-    (evil-collection-company t)
-    (evil-collection-neotree t)
-    :config
-    (setq evil-collection-mode-list '(dashboard dired ibuffer))
-    (evil-collection-init))
-
   (use-package evil-tutor)
 
 ;;Turns off elpaca-use-package-mode current declartion
@@ -88,12 +79,14 @@
 (elpaca nil (message "deferred"))
 #+end_src
 
+
 * GENERAL SETTINGS
 #+begin_src emacs-lisp
 (setq use-dialog-box nil)
 (setq-default find-file-visit-truename nil)
 (define-key minibuffer-local-map (kbd "C-v") 'yank)
 #+end_src
+
 * KEYBINDINGS
 #+begin_src emacs-lisp
 (use-package general
@@ -110,7 +103,7 @@
   (dt/leader-keys
   "SPC" '(counsel-M-x :wk "Counsel M-x")
     "." '(find-file :wk "Find file")
-    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
+    "f c" '((lambda () (interactive) (find-file "~/Projects/private/nixos-config/nixos/home-manager/emacs/config.org")) :wk "Edit emacs config")
     "f r" '(counsel-recentf :wk "Find recent files")
     "TAB TAB" '(comment-line :wk "Comment lines"))
 
@@ -164,6 +157,11 @@
   "m d" '(:ignore t :wk "Date/deadline")
   "m d t" '(org-time-stamp :wk "Org time stamp"))
 
+
+(dt/leader-keys
+  "g" '(:ignore t :wk "Magit")
+  "g g" '(magit :wk "Open Magit"))
+
 (dt/leader-keys
   "p" '(projectile-command-map :wk "Projectile"))
 
@@ -179,6 +177,10 @@
     "j" '(:ignore t :wk "Jupyter")
     "j l" '(jupyter-server-launch-kernel :wk "Launch Kernels")
     "j s" '(jupyter-server-list-kernels :wk "List Kernels"))
+
+  (dt/leader-keys
+    "l" '(:ignore t :wk "LSP")
+    "l d" '(lsp-ui-doc-glance :wk "Doc"))
 
   (dt/leader-keys 
     "s" '(:ignore t :wk "Split")
@@ -227,15 +229,15 @@ This is an icon set that can be used with dashboard, dired, ibuffer and other Em
 
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
-    :font "Source Code Pro"
+    :font "SauceCodePro Nerd Font"
     :height 110
     :weight 'medium)
   (set-face-attribute 'variable-pitch nil
-    :font "Source Code Pro"
+    :font "SauceCodePro Nerd Font"
     :height 120
     :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
-    :font "Source Code Pro"
+    :font "SauceCodePro Nerd Font"
     :height 110
     :weight 'medium)
   ;; Makes commented text and keywords italics.
@@ -249,7 +251,7 @@ This is an icon set that can be used with dashboard, dired, ibuffer and other Em
   ;; This sets the default font on all graphical frames created after restarting Emacs.
   ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
   ;; are not right unless I also add this method of setting the default font.
-  (add-to-list 'default-frame-alist '(font . "Source Code Pro"))
+  (add-to-list 'default-frame-alist '(font . "SauceCodePro Nerd Font"))
   ;; Uncomment the following line if line spacing needs adjusting.
   (setq-default line-spacing 0.12)
   #+end_src
@@ -286,7 +288,25 @@ This is an icon set that can be used with dashboard, dired, ibuffer and other Em
   :hook (company-mode . company-box-mode))
 #+end_src
 
+* DASHBOARD
+#+begin_src emacs-lisp
+(use-package dashboard
+  :ensure t 
+  :if (< (length command-line-args) 2)
+  :init
+  (setq initial-buffer-choice 'dashboard-open)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
+  (setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
+  (setq dashboard-center-content nil) ;; set to 't' for centered content
+  (setq dashboard-items '((recents . 5)
+                          (agenda . 5 )
+                          (projects . 3 )))
+  :config
+  (dashboard-setup-startup-hook))
 
+#+end_src
 * DIMINISH
 Hide Extensions from Modeline
 #+begin_src emacs-lisp
@@ -468,6 +488,7 @@ Let's make GNU Emacs look a little better.
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
+(use-package lsp-ui)
 #+end_src
 
 *** Python
@@ -490,8 +511,6 @@ Let's make GNU Emacs look a little better.
   (add-to-list 'org-babel-load-languages '(jupyter . t))
   (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
 
-(setq org-startup-with-inline-images t)
-(setq org-babel-jupyter-override-src-block "python")
 #+end_src
 
 *** Go
@@ -503,10 +522,15 @@ Let's make GNU Emacs look a little better.
 *** Terraform
 #+begin_src emacs-lisp
 (use-package terraform-mode)
-(use-package terraform-ls)
-#+end_src
-* NEOTREE
 
+#+end_src
+
+* MAGIT
+#+begin_src emacs-lisp
+(use-package magit)
+#+end_src
+
+* NEOTREE
 #+begin_src emacs-lisp
 (use-package neotree
   :config
@@ -527,8 +551,15 @@ Let's make GNU Emacs look a little better.
 
 ;; show hidden files
 #+end_src
-* ORG MODE
 
+* NIX MODE
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :mode ("\\.nix\\'" "\\.nix.in\\'"))
+
+#+end_src
+
+* ORG MODE
 ** Enabling Table of Contents
 #+begin_src emacs-lisp
   (use-package toc-org
@@ -601,7 +632,6 @@ This is just an example of how to create a simple function in Emacs.  Use this f
 #+begin_src emacs-lisp
 (defun reload-init-file ()
   (interactive)
-  (load-file user-init-file)
   (load-file user-init-file))
 #+end_src
 
@@ -612,32 +642,8 @@ This is just an example of how to create a simple function in Emacs.  Use this f
     :config
     (projectile-mode 1))
 #+end_src
+
 * SHELLS AND TERMINALS
-In my configs, all of my shells (bash, fish, zsh and the ESHELL) require my shell-color-scripts-git package to be installed.  On Arch Linux, you can install it from the AUR.  Otherwise, go to my shell-color-scripts repository on GitLab to get it.
-
-** Eshell
-Eshell is an Emacs 'shell' that is written in Elisp.
-
-#+begin_src emacs-lisp
-(use-package eshell-syntax-highlighting
-  :after esh-mode
-  :config
-  (eshell-syntax-highlighting-global-mode +1))
-
-;; eshell-syntax-highlighting -- adds fish/zsh-like syntax highlighting.
-;; eshell-rc-script -- your profile for eshell; like a bashrc for eshell.
-;; eshell-aliases-file -- sets an aliases file for the eshell.
-  
-(setq eshell-rc-script (concat user-emacs-directory "eshell/profile")
-      eshell-aliases-file (concat user-emacs-directory "eshell/aliases")
-      eshell-history-size 5000
-      eshell-buffer-maximum-lines 5000
-      eshell-hist-ignoredups t
-      eshell-scroll-to-bottom-on-input t
-      eshell-destroy-buffer-when-process-dies t
-      eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
-#+end_src
-
 ** Vterm
 Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets the shell to be used in M-x shell, M-x term, M-x ansi-term and M-x vterm.  By default, the shell is set to 'fish' but could change it to 'bash' or 'zsh' if you prefer.
 
@@ -705,7 +711,8 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
   (setq doom-modeline-major-mode-color-icon t)
   (setq doom-modeline-modal-icon nil)
   (setq doom-modeline-buffer-state-icon nil)
-  :init (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1)
+)
 
 (setq evil-normal-state-tag   (propertize "" 'face '((:background "green" :foreground "black")))
       evil-emacs-state-tag    (propertize "" 'face '((:background "orange" :foreground "black")))
@@ -714,7 +721,6 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
       evil-visual-state-tag   (propertize "" 'face '((:background "grey80" :foreground "black")))
       evil-operator-state-tag (propertize "" 'face '((:background "purple"))))
 
-(use-package mood-line)
 #+end_src
 * RAINBOW MODE 
 #+begin_src emacs-elisp
@@ -745,4 +751,14 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
           which-key-allow-imprecise-window-fit nil ))
 
 
+#+end_src
+
+* EVIL-COLLECTION
+
+#+begin_src emacs-lisp
+(use-package evil-collection
+:after evil
+:config
+(setq evil-collection-mode-list '(dashboard dired ibuffer ivy company neotree magit))
+(evil-collection-init))
 #+end_src

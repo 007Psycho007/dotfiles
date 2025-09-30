@@ -28,7 +28,6 @@ c.colors.completion.match.fg = "#61afef"
 c.colors.completion.scrollbar.fg = "#61afef"
 c.colors.completion.scrollbar.bg = "#282c34"
 
-
 # Context Menu
 c.colors.contextmenu.menu.bg = "#282c34"
 c.colors.contextmenu.menu.fg = "#abb2bf"

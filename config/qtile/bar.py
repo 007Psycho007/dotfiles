@@ -55,7 +55,7 @@ def icon(symbol,**kwargs):
 def menu(**kwargs):
     return widget.TextBox(
         **default_prefix(),
-        text="  ",
+        text="  ",
         fontsize=defaults["iconsize"],
         mouse_callbacks={"Button1":lazy.spawn("rofi -show run")},
         **kwargs
@@ -126,8 +126,8 @@ def network(bg,**kwargs):
     return widget.Net(
         **default_label(),
         background=bg,
-        fmt="<span size='12pt'></span>{}",
-        format='{down} ↓↑ {up}',
+        fmt="<span size='12pt'>󰛳</span>{}",
+        format='{down:6.2f} ↓↑ {up:6.2f}',
         width=150,
         **kwargs
     )
@@ -136,7 +136,7 @@ def cpu(bg,**kwargs):
     return widget.CPU(
         **default_label(),
         background=bg,
-        fmt="<span size='12pt'></span>  {}",
+        fmt="<span size='12pt'></span>  {}",
         format="{load_percent}",
         width=65,
         **kwargs
@@ -261,7 +261,7 @@ widgets_main = [
     cpu(onedark["gradient2"]),
     mem(onedark["gradient2"]),
     bat(onedark["gradient2"],**powerline_back),
-    disk("/","",onedark["gradient1"]),
+    disk("/","󰗮",onedark["gradient1"]),
     disk("/home","",onedark["gradient1"],**powerline_back),
     clock()
 ]
@@ -290,7 +290,7 @@ widgets_single = [
     cpu(onedark["gradient2"]),
     mem(onedark["gradient2"]),
     bat(onedark["gradient2"],**powerline_back),
-    disk("/","",onedark["gradient1"]),
+    disk("/","󰗮",onedark["gradient1"]),
     disk("/home","",onedark["gradient1"],**powerline_back),
     clock()
 ]
