@@ -11,11 +11,17 @@ sudo pacman -S waybar wofi kitty dunst wl-clipboard swaybg
 sudo systemctl enable --now seatd.service
 
 mkdir -p ~/.config/hypr
-cp /usr/share/hyprland/hyprland.conf ~/.config/hypr/
+cp config/hypr/hyprland.conf ~/.config/hypr/
 
 sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-yay -S hy3
+git clone https://github.com/outfoxxed/hy3
+cd hy3
+make all
+
+mkdir -p ~/.local/share/hyprland/plugins
+cp build/hy3.so ~/.local/share/hyprland/plugins/
+
