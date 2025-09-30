@@ -1,118 +1,44 @@
 - clean: ['~']
 
-- link:
-    ~/.emacs.d/init.el:
-        path: config/emacs/init.el
-        create: true
-    ~/.emacs.d/config.org:
-        path: config/emacs/config.org
-        create: true
-    ~/.profile: config/bash/profile
-    ~/.bashrc: 
-        path: config/bash/bashrc
-        force: true
-    ~/.bash_logout: 
-        path: config/bash/bash_logout
-        force: true
-    ~/.zshrc: config/zsh/zshrc
-    ~/.p10k.zsh: config/zsh/p10k.zsh
-    ~/.config/betterlockscreen/betterlockscreenrc: 
-        path: config/betterlockscreen/betterlockscreenrc
-        create: true
-    ~/.config/rofi: 
-        path: config/rofi
-        create: true
-    ~/.config/picom: 
-        path: config/picom
-        create: true
-    ~/.config/qutebrowser/config.py:
-        path: config/qutebrowser/config.py
-        create: true
-    ~/.config/tmux: 
-        path: config/tmux 
-        create: true
-    ~/.config/starship:
-        path: config/starship
-        create: true
-    ~/.config/kitty: 
-        path: config/kitty
-        create: true
-    ~/.Xresources:
-        path: config/x/Xresources
-        force: true
-    ~/.Xdefaults: 
-        path: config/x/Xdefaults
-        force: true
-    ~/.config/i3:
-        path: config/i3/
-        create: true
-    ~/.config/qtile:
-        path: config/qtile/
-        force: true
-        create: true
-    ~/.config/nvim:
-        path: config/nvim 
-        create: true 
-    ~/.config/polybar:
-        path: config/polybar 
-        create: true
-    ~/.config/scripts:
-        path: config/scripts
-        create: true
-    ~/.local/share/fonts: 
-        path: config/fonts
-        create: true
-    ~/.config/ncspot/config.toml:
-        path: config/ncspot/config.toml
-        create: true
-
 - omnipkg:
   - install:
-    - qtile
+    - vim
+    - nyxt
+    - wget
     - zsh
-    - neovim
-    - kitty
-    - picom 
-    - nodejs 
-    - npm 
-    - lsd 
-    - xdotool
-    - go 
-    - gopls
-    - rofi
-    - feh
-    - imagemagick
-    - i3lock-color
-    - lazygit
-    - unzip
-    - nix
-    - xclip
-    - pavucontrol
     - firefox
-    - man
-    - chromium
-    - python-pip
-    - lightdm-webkit2-greeter
+    - rofi-wayland
+    - feh
+    - git
+    - jq
+    - cmake
+    - gnumake
+    - gcc
+    - libtool
+    - any-nix-shell
+    - xclip
+    - bluez
+    - bitwarden
+    - obsidian
+    - ripgrep
+    - waybar
+    - walker
+    - hyprpaper
+    - hyprshot
+    - kanshi
+    - wdisplays
+    - swaynotificationcenter
+    - webcord
+    - discord
+    - qflipper
+    - dragon-drop
+    - thunderbird
     - base-devel
 
 - shell:
-  - mkdir ~/.init
-  - git clone https://github.com/elParaguayo/qtile-extras.git ~/.init/qtile-extras-temp
-  - pip install -r ./config/qtile/requirements.txt
-  - pip install ~/.init/qtile-extras-temp
-  - git clone https://aur.archlinux.org/yay.git ~/.init/yay && cd ~/.init/yay && makepkg -si --noconfirm
-  - yay -S --noconfirm betterlockscreen chromium-widevine
-  - betterlockscreen -u ~/.config/qtile/files/lockscreen.jpg
-
-- if:
-  - cond: '[ -d ~/.oh-my-zsh/ ]'
-    unmet:
-      - shell:
-        - 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
-        - 'mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc'
-      - sudo:
-        - shell:
-          - sh -c "$(curl -fsSL https://starship.rs/install.sh)" "" -f
-          - sed -i "s/\/home\/psycho:\/bin\/bash/\/home\/psycho:\/bin\/zsh/" /etc/passwd
+    - [ "sh <(curl -L https://nixos.org/nix/install) --daemon", "Install Nix" ]
+    - [ "nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager", "Add Home Manager channel" ]
+    - [ "nix-channel --update", "Update Nix channels" ]
+    - [ "nix-shell '<home-manager>' -A install", "Install Home Manager" ]
 - shell:
   - rm -rf ~/.init
