@@ -12,3 +12,10 @@ sudo systemctl enable --now seatd.service
 
 mkdir -p ~/.config/hypr
 cp /usr/share/hyprland/hyprland.conf ~/.config/hypr/
+
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+yay -S hy3
