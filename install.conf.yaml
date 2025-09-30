@@ -57,12 +57,17 @@
     - discord
     - starship
     - base-devel
+    - xdg-desktop-portal
+    - xdg-desktop-portal-gtk
+    - wl-clipboard
+    - grim
+    - slurp
+    - xdg-utils
 
 # ---- AUR packages via yay ----
 - yay:
+  - xdg-desktop-portal-hyprland
   - nerd-fonts-source-code-pro
-  - dragon-drag-and-drop
-  - swaynotificationcenter
   - hyprshot
   - hyprland
   - hyprlock
