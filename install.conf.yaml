@@ -12,8 +12,6 @@
     - ~/.config/systemd/user
 
 - link:
-    # shell
-    ~/.zshrc: config/zsh/.zshrc
     # fish
     ~/.config/fish/config.fish: config/fish/config.fish
     # kitty
@@ -40,25 +38,21 @@
     - sddm
     - vim
     - wget
-    - zsh
     - fish
     - firefox
-    - rofi-wayland
-    - feh
+    - wofi
     - git
     - jq
     - cmake
     - make
     - gcc
     - libtool
-    - xclip
     - bluez
     - bitwarden
     - ripgrep
     - waybar
     - hyprpaper
     - kanshi
-    - wdisplays
     - thunderbird
     - discord
     - starship
@@ -66,7 +60,7 @@
 
 # ---- AUR packages via yay ----
 - yay:
-  - nerd-fonts-git
+  - nerd-fonts-source-code-pro
   - dragon-drag-and-drop
   - swaynotificationcenter
   - hyprshot
