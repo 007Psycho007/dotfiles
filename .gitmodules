@@ -2,12 +2,6 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "dotbot-omnipkg"]
-	path = dotbot-omnipkg
-	url = https://github.com/code-maniac/dotbot-omnipkg
-[submodule "dotbot-if"]
-	path = dotbot-if
-	url = https://github.com/wonderbeyond/dotbot-if.git
 [submodule "dotbot-sudo"]
 	path = dotbot-sudo
 	url = https://github.com/DrDynamic/dotbot-sudo.git
