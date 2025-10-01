@@ -36,6 +36,7 @@
 - omnipkg:
   - install:
     - pipewire
+    - hyprland
     - vim
     - wget
     - fish
@@ -66,6 +67,7 @@
     - hyprlock
     - hyprshot
     - ttf-sourcecodepro-nerd
+    - seatd
 
 # ---- AUR packages via yay ----
 - yay:

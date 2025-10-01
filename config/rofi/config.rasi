@@ -1,18 +1,15 @@
-/** ~/.config/rofi/config.rasi **/
-
 configuration {
     font: "Source Code Pro Bold 12";
     terminal: "kitty";
-    theme: "onedark.rasi";
 
     display-drun: "Applications:";
     display-run: "Command:";
     display-window: "Windows:";
-    drun-display-format: "{icon} {name}";
+    drun-display-format: "{name}";   // remove {icon} if show-icons=false
     modi: "window,run,drun";
     show-icons: false;
 
-    kb-row-up: "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
+    kb-row-up: "Up,Control+k,Shift+ISO_Left_Tab";
     kb-row-down: "Down,Control+j";
     kb-accept-entry: "Control+m,Return,KP_Enter";
     kb-remove-to-eol: "Control+Shift+e";
@@ -21,3 +18,4 @@ configuration {
     kb-remove-char-back: "BackSpace";
 }
 
+@theme "~/.config/rofi/onedark.rasi"
