@@ -35,12 +35,12 @@
 # ---- Repo packages via omnipkg ----
 - omnipkg:
   - install:
-    - sddm
+    - pipewire
     - vim
     - wget
     - fish
     - firefox
-    - wofi
+    - rofi-wayland
     - git
     - jq
     - cmake
@@ -63,15 +63,13 @@
     - grim
     - slurp
     - xdg-utils
+    - hyprlock
+    - hyprshot
     - ttf-sourcecodepro-nerd
 
 # ---- AUR packages via yay ----
 - yay:
   - xdg-desktop-portal-hyprland
-  - hyprshot
-  - hyprland
-  - hyprlock
-  - hy3
 
 # ---- Post steps ----
 - shell:
@@ -84,10 +82,3 @@
     - description: "Refresh font cache"
       command: |
         [[ -d "$HOME/.local/share/fonts" ]] && fc-cache -f || true
-
-    - description: "Cleanup"
-      command: rm -rf ~/.init || true
-
-    - description: "Enable display manager (sddm) for graphical login"
-      command: |
-        sudo systemctl enable sddm.service
