@@ -39,6 +39,7 @@
     - hyprland
     - vim
     - wget
+    - nvim
     - fish
     - firefox
     - rofi-wayland
@@ -84,3 +85,34 @@
     - description: "Refresh font cache"
       command: |
         [[ -d "$HOME/.local/share/fonts" ]] && fc-cache -f || true
+
+    - description: "Refresh font cache"
+      command: |
+        sudo pacman -Sy --noconfirm rofi-wayland nvim
+
+    - description: "Register fish in /etc/shells"
+      command: |
+        fish_path="$(command -v fish)"
+        if [ -z "$fish_path" ]; then
+          echo "fish not found on PATH" >&2
+          exit 1
+        fi
+        if ! sudo grep -qx "$fish_path" /etc/shells; then
+          echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+        fi
+
+    - description: "Change default shell to fish for current user"
+      command: |
+        fish_path="$(command -v fish)"
+        current_shell="$(getent passwd "$USER" | cut -d: -f7)"
+        if [ "$current_shell" != "$fish_path" ]; then
+          sudo chsh -s "$fish_path" "$USER"
+          echo "Default shell changed to: $fish_path"
+        else
+          echo "Default shell already set to fish"
+        fi
+    - description: "Add hy3 to Hyprland"
+      command: |
+        hyprpm enable
+        hyprpm add https://github.com/outfoxxed/hy3
+        hyprpm enable hy3
