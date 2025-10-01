@@ -14,6 +14,7 @@ disabled = false
 
 [os.symbols]
 Arch = ""
+EndeavourOS = " "
 NixOS = ""
 
 # --- Username ----------------------------------------------------------------

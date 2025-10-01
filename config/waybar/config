@@ -43,7 +43,7 @@
         },
 
         "custom/os_button": {
-            "format": "",
+            "format": "",
             "on-click": "rofi -show drun",
             "tooltip": false
         },

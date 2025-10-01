@@ -67,6 +67,7 @@ require("lazy").setup({
   },
   {
     "folke/which-key.nvim",
+    version = "^3",
     event = "VeryLazy",
     config = function()
       local wk = require("which-key")
@@ -76,7 +77,7 @@ require("lazy").setup({
       })
       wk.add({
         { "<leader>e", ":Neotree toggle<CR>", desc = "Explorer" },
-        { "<leader>q", ":q<CR>", desc = "Quit" },
+        { "<leader>q", ":qa!<CR>", desc = "Quit without saving" },
         { "<leader>w", ":w<CR>", desc = "Save" },
         { "<leader>f", ":Telescope find_files<CR>", desc = "Find Files" },
         { "<leader>g", ":Telescope live_grep<CR>", desc = "Live Grep" },

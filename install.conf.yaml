@@ -43,6 +43,7 @@
     - fish
     - firefox
     - rofi-wayland
+    - swaync
     - git
     - jq
     - cmake
