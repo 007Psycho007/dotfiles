@@ -37,6 +37,7 @@
   - install:
     - pipewire
     - hyprland
+    - hyprpolkitagent
     - vim
     - wget
     - nvim
@@ -68,12 +69,14 @@
     - xdg-utils
     - hyprlock
     - hyprshot
+    - wlogout
     - ttf-sourcecodepro-nerd
     - seatd
 
 # ---- AUR packages via yay ----
 - yay:
   - xdg-desktop-portal-hyprland
+  - brave-bin
 
 # ---- Post steps ----
 - shell:
