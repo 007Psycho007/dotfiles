@@ -1,0 +1,4 @@
+Match exec "/bin/sh -c 'case %n in *.*) exit 1;; esac'"
+    HostName ssh.linklair.dev
+    User psycho:%n
+    port 2222
