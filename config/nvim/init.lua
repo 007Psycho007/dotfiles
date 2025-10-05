@@ -76,15 +76,34 @@ require("lazy").setup({
         layout = { spacing = 6 },
       })
       wk.add({
-        { "<leader>e", ":Neotree toggle<CR>", desc = "Explorer" },
-        { "<leader>q", ":qa!<CR>", desc = "Quit without saving" },
-        { "<leader>w", ":w<CR>", desc = "Save" },
-        { "<leader>f", ":Telescope find_files<CR>", desc = "Find Files" },
-        { "<leader>g", ":Telescope live_grep<CR>", desc = "Live Grep" },
-        { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
-        { "<leader>nh", "<cmd>NoiceHistory<cr>", desc = "Noice History" },
-        { "<leader>nd", "<cmd>NoiceDismiss<cr>", desc = "Noice Dismiss" },
-      })
+      -- Top-level
+      { "<leader>e", ":Neotree toggle<CR>", desc = "Explorer" },
+      { "<leader>w", ":w<CR>", desc = "Save" },
+      { "<leader>q", ":confirm qa<CR>", desc = "Quit (confirm save)" },
+
+      -- GROUPS
+      { "<leader>f", group = "Find" },
+      { "<leader>b", group = "Buffers" },
+      { "<leader>t", group = "Terminal" },
+      { "<leader>n", group = "Noice" },
+
+      -- Find
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
+
+      -- Buffers
+      { "<leader>bn", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+      { "<leader>bN", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+      { "<leader>bd", "<cmd>confirm bdelete<cr>",     desc = "Close Buffer" },
+      { "<leader>bp", "<cmd>BufferLinePickClose<cr>", desc = "Pick Buffer to Close" },
+
+      -- Terminal
+      { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
+
+      -- Noice
+      { "<leader>nh", "<cmd>NoiceHistory<cr>", desc = "History" },
+      { "<leader>nd", "<cmd>NoiceDismiss<cr>", desc = "Dismiss" },
+    })
     end,
   },
   {
@@ -218,12 +237,21 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.termguicolors = true
+vim.opt.clipboard:append("unnamedplus")
 
 -- Better window navigation with Ctrl + hjkl
 vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+
+-- No Yanks on delete/change
+vim.keymap.set({ "n", "v" }, "d", '"_d')
+vim.keymap.set({ "n", "v" }, "D", '"_D')
+vim.keymap.set({ "n", "v" }, "x", '"_x')
+vim.keymap.set({ "n", "v" }, "X", '"_X')
+vim.keymap.set({ "n", "v" }, "c", '"_c')
+vim.keymap.set({ "n", "v" }, "C", '"_C')
 
 -- Exit terminal mode with Esc
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
@@ -233,3 +261,8 @@ vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { noremap = true, silent = tr
 vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true, silent = true })
+
+-- Switch buffers with Tab and Shift+Tab
+vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+

@@ -27,7 +27,7 @@
     # starship
     ~/.config/starship.toml: config/starship/starship.toml
     # extras from xdg.configFile.*
-    ~/.config/qtile: config/qtile
+    ~/.config/quickshell: config/quickshell
     ~/.config/waybar: config/waybar
     ~/.config/files: config/files
     ~/.config/nvim: config/nvim
