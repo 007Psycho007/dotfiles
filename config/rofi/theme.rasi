@@ -1,0 +1,69 @@
+@import "/home/psycho/.config/rofi/colors.rasi"   /* absolute path: no ~ expansion */
+
+* {
+  /* variables from colors.rasi: bg, bg-alt, fg, fg-alt, accent */
+  bc:        @accent;          /* border/brand color derived from accent */
+
+  background-color: @bg;
+
+  border: 0;
+  margin: 0;
+  padding: 2;
+  spacing: 0;
+}
+
+window {
+  width: 45%;
+  height: 50%;
+  padding: 0 0 0 0;
+}
+
+element {
+  padding: 4 0;
+  text-color: @fg-alt;
+}
+
+element selected {
+  text-color: @fg;
+}
+
+element-text {
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 35;
+  padding: 0 10 0 0;
+}
+
+entry {
+  background-color: @bg-alt;
+  padding: 12;
+  text-color: @fg;
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+listview {
+  padding: 8 15;
+  background-color: @bg;
+  columns: 1;
+  lines: 8;
+}
+
+mainbox {
+  background-color: @bc;
+  children: [inputbar, listview];
+  padding: 2 2 2 2;
+}
+
+prompt {
+  background-color: @accent;
+  enabled: true;
+  padding: 12 12 0 12;
+  text-color: @bg;
+}
+

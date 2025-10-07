@@ -1,3 +1,8 @@
+@import url("colors.css");
+/* ~/.config/waybar/style.css */
+@import url("/home/psycho/.config/waybar/colors.css");
+
+/* base */
 * {
     border-radius: 0;
     text-shadow: none;
@@ -9,19 +14,17 @@
 window#waybar {
     margin: 10px;
     border: 8px solid rgba(0,0,0,0);
-    color: #ABB2BF;
+    color: @color-foreground;
     background: transparent;
-    /* transition-property: background-color; */
-    /* transition-duration: .5s; */
 }
 
-    
+/* outer container */
 window > box {
-	margin-top: 8px;
-	margin-left: 8px;
-	margin-right: 8px;
-    background-color: rgba(49, 53, 63, 1);
-    color: #ABB2BF;
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+    background-color: @color-background;
+    color: @color-foreground;
     border-radius: 8px;
     box-shadow: none;
 }
@@ -30,166 +33,182 @@ window#waybar.empty {
     color: rgba(0,0,0,0);
 }
 
+/* topbar strip */
 .topbar {
     padding: 10px;
-    background-color: rgba(49, 53, 63, 1);
+    background-color: @color-background;
 }
 
+/* workspaces */
 #workspaces {
     padding: 0 5px;
     margin: 4px;
     margin-right: 10px;
     border-radius: 6px;
-    background-color: #5C6370;
+    background-color: @color-surface;
+    border: 2px solid @color-surface;
 }
 
-#workspaces button:hover {
+#workspaces button {
+    padding: 0 0.5em;
+    margin: 0 0.25em;
+    color: @color-black;
     background: transparent;
     border: none;
     box-shadow: none;
     text-shadow: none;
 }
 
-#workspaces button {
-    padding: 0 0.5em;
-    margin: 0 0.25em;
-    color: #282C34;
+#workspaces button.hosting-monitor {
+    color: @color-foreground;
 }
 
-#workspaces button.hosting-monitor {
-    color: #ABB2BF;
-}
 #workspaces button.visible {
-    color: #61AFEF;
+    color: @color-accent;
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
+    background-color: @color-foreground;
+    color: @color-background;
+    border-radius: 4px;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: @color-red;
+    color: @color-background;
+    border-radius: 4px;
 }
 
+/* OS button + title */
 #custom-os_button {
-	font-family: "Source Code Pro";
+    font-family: "Source Code Pro";
     font-size: 20px;
-	padding-left: 5px;
-	padding-right: 13px;
+    padding-left: 5px;
+    padding-right: 13px;
     margin: 4px;
     margin-right: 6px;
     margin-left: 5px;
     border-radius: 6px;
-    border: 2px solid #61afef;
-    background-color: #61afef;
-    color: #282C34;
-	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 2px solid @color-accent;
+    background-color: @color-accent;
+    color: @color-background;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 #custom-title {
-	font-family: "Source Code Pro";
+    font-family: "Source Code Pro";
     font-size: 18px;
-	padding-left: 10px;
-	padding-right: 0px;
-	margin-right: 0px;
-    color: #61AFEF;
-	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding-left: 10px;
+    padding-right: 0px;
+    margin-right: 0px;
+    color: @color-accent;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* mpris */
 #mpris {
     padding: 0 5px;
     margin: 4px;
     margin-right: 10px;
-    border: 0px solid #5C6370;
+    border: 0 solid transparent;
     border-radius: 6px;
-    background-color: #5C6370;
-    color: #61AFEF;
+    background-color: @color-surface;
+    color: @color-accent;
 }
 
 #mpris.playing {
     padding: 0 5px;
     margin: 4px;
     margin-right: 10px;
-    border: 0px solid #282C34;
+    border: 0 solid transparent;
     border-radius: 6px;
-    background-color: #98C379;
-    color: #282C34;
+    background-color: @color-green;
+    color: @color-background;
 }
 
+/* metric pill left halves */
 #custom-preclock, #custom-premem, #custom-precpu, #custom-predisk, #battery.icon {
     padding-left: 4px;
     margin: 4px;
-    margin-right: 0px;
+    margin-right: 0;
     margin-left: 5px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: 2px solid #181a1f;
-    background-color: #181a1f;
+    border: 2px solid @color-surface;
+    background-color: @color-surface;
+    color: @color-foreground;
 }
 
+/* clock right half */
 #clock {
     margin: 4px;
     margin-right: 5px;
-    margin-left: 0px;
+    margin-left: 0;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-    border: 2px solid #181a1f;
-    background-color: #181a1f;
-    color: #ABB2BF;
+    border: 2px solid @color-surface;
+    background-color: @color-surface;
+    color: @color-foreground;
 }
 
+/* network cluster */
 #network.icon {
     padding-left: 6px;
     margin: 4px;
-    margin-right: 0px;
+    margin-right: 0;
     margin-left: 5px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    border: 2px solid #181a1f;
-    background-color: #181a1f;
-    color: #ABB2BF;
+    border: 2px solid @color-surface;
+    background-color: @color-surface;
+    color: @color-foreground;
 }
+
 #network, #custom-preup, #network.up, #custom-predown {
     margin: 4px;
-    margin-right: 0px;
-    margin-left: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border: 2px solid #181a1f;
-    background-color: #181a1f;
-    color: #ABB2BF;
+    margin-right: 0;
+    margin-left: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 2px solid @color-surface;
+    background-color: @color-surface;
+    color: @color-foreground;
 }
 
 #network.down {
-    padding-right:6px;
+    padding-right: 6px;
     margin: 4px;
     margin-right: 5px;
-    margin-left: 0px;
+    margin-left: 0;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-    border: 2px solid #181a1f;
-    background-color: #181a1f;
-    color: #ABB2BF;
+    border: 2px solid @color-surface;
+    background-color: @color-surface;
+    color: @color-foreground;
 }
 
-#memory, #cpu,  #disk, #battery.text {
+/* metric pill right halves */
+#memory, #cpu, #disk, #battery.text {
     padding: 0 6px;
     margin: 4px;
     margin-right: 5px;
-    margin-left: 0px;
+    margin-left: 0;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-    border: 2px solid #181a1f;
-    background-color: #181a1f;
-    color: #ABB2BF;
+    border: 2px solid @color-surface;
+    background-color: @color-surface;
+    color: @color-foreground;
 }
+
+/* misc modules */
 #window, #language, #custom-notification, #tray {
     padding: 0 6px;
     margin: 4px;
     margin-right: 6px;
     margin-left: 6px;
     border-radius: 6px;
-    border: 2px solid #181a1f;
-    background-color: #181a1f;
-    color: #ABB2BF;
+    border: 2px solid @color-surface;
+    background-color: @color-surface;
+    color: @color-foreground;
 }
+

@@ -18,4 +18,4 @@ configuration {
     kb-remove-char-back: "BackSpace";
 }
 
-@theme "~/.config/rofi/onedark.rasi"
+@theme "~/.config/rofi/theme.rasi"

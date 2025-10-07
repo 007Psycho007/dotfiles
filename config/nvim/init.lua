@@ -1,26 +1,28 @@
--- Set leader key
+-- init.lua
 vim.g.mapleader = " "
+vim.opt.termguicolors = true
 
--- Install lazy.nvim if not installed
+-- Load theme (palette + highlights)
+local theme = require("theme")
+theme.setup()  -- apply highlights & autocmds
+local palette = theme.palette
+
+-- Install lazy.nvim if needed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+  vim.fn.system({ "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Setup plugins
+-- Plugins
 require("lazy").setup({
   {
-    "navarasu/onedark.nvim",
-    lazy = false,
-    priority = 1000,
+    "norcalli/nvim-colorizer.lua",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("colorizer").setup({ "*", css = { rgb_fn = true }, html = { names = true } })
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -28,10 +30,10 @@ require("lazy").setup({
     config = function()
       require("lualine").setup({
         options = {
-          theme = "onedark",
+          theme = theme.lualine_theme(),
           section_separators = "",
           component_separators = "",
-          globalstatus = true, -- always at bottom
+          globalstatus = true,
           disabled_filetypes = { "neo-tree" },
         },
       })
@@ -57,10 +59,7 @@ require("lazy").setup({
     },
     config = function()
       require("neo-tree").setup({
-        window = {
-          position = "right",
-          show_end_of_buffer = false, -- no ~ in empty lines
-        },
+        window = { position = "right", show_end_of_buffer = false },
       })
       vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { silent = true, noremap = true })
     end,
@@ -71,39 +70,36 @@ require("lazy").setup({
     event = "VeryLazy",
     config = function()
       local wk = require("which-key")
-      wk.setup({
-        win = { border = "rounded" },
-        layout = { spacing = 6 },
-      })
+      wk.setup({ win = { border = "rounded" }, layout = { spacing = 6 } })
       wk.add({
-      -- Top-level
-      { "<leader>e", ":Neotree toggle<CR>", desc = "Explorer" },
-      { "<leader>w", ":w<CR>", desc = "Save" },
-      { "<leader>q", ":confirm qa<CR>", desc = "Quit (confirm save)" },
+        -- Top-level
+        { "<leader>e", ":Neotree toggle<CR>", desc = "Explorer" },
+        { "<leader>w", ":w<CR>", desc = "Save" },
+        { "<leader>q", ":confirm qa<CR>", desc = "Quit (confirm save)" },
 
-      -- GROUPS
-      { "<leader>f", group = "Find" },
-      { "<leader>b", group = "Buffers" },
-      { "<leader>t", group = "Terminal" },
-      { "<leader>n", group = "Noice" },
+        -- GROUPS
+        { "<leader>f", group = "Find" },
+        { "<leader>b", group = "Buffers" },
+        { "<leader>t", group = "Terminal" },  -- ← group label
+        { "<leader>n", group = "Noice" },
 
-      -- Find
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
+        -- Find
+        { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+        { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
 
-      -- Buffers
-      { "<leader>bn", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      { "<leader>bN", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-      { "<leader>bd", "<cmd>confirm bdelete<cr>",     desc = "Close Buffer" },
-      { "<leader>bp", "<cmd>BufferLinePickClose<cr>", desc = "Pick Buffer to Close" },
+        -- Buffers
+        { "<leader>bn", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+        { "<leader>bN", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+        { "<leader>bd", "<cmd>confirm bdelete<cr>",     desc = "Close Buffer" },
+        { "<leader>bp", "<cmd>BufferLinePickClose<cr>", desc = "Pick Buffer to Close" },
 
-      -- Terminal
-      { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
+        -- Terminal
+        { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },  -- ← restored
 
-      -- Noice
-      { "<leader>nh", "<cmd>NoiceHistory<cr>", desc = "History" },
-      { "<leader>nd", "<cmd>NoiceDismiss<cr>", desc = "Dismiss" },
-    })
+        -- Noice
+        { "<leader>nh", "<cmd>NoiceHistory<cr>", desc = "History" },
+        { "<leader>nd", "<cmd>NoiceDismiss<cr>", desc = "Dismiss" },
+      })
     end,
   },
   {
@@ -120,18 +116,9 @@ require("lazy").setup({
           show_buffer_close_icons = false,
           show_close_icon = false,
           persist_buffer_sort = true,
-          offsets = {
-            {
-              filetype = "neo-tree",
-              text = "File Explorer",
-              highlight = "Directory",
-              text_align = "center",
-            },
-          },
+          offsets = { { filetype = "neo-tree", text = "File Explorer", highlight = "Directory", text_align = "center" } },
         },
-        highlights = {
-          fill = { bg = normal_bg }, -- empty area matches editor bg
-        },
+        highlights = { fill = { bg = normal_bg } },
       })
     end,
   },
@@ -143,23 +130,18 @@ require("lazy").setup({
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    config = function()
-      require("nvim-autopairs").setup()
-    end,
+    config = function() require("nvim-autopairs").setup() end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     config = function()
       local hooks = require("ibl.hooks")
-      vim.api.nvim_set_hl(0, "IblScope", { fg = "#61afef" }) -- Onedark blue
+      vim.api.nvim_set_hl(0, "IblScope", { fg = palette.accent })
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        vim.api.nvim_set_hl(0, "IblScope", { fg = "#61afef" })
+        vim.api.nvim_set_hl(0, "IblScope", { fg = palette.accent })
       end)
-      require("ibl").setup({
-        indent = { char = "│" },
-        scope = { highlight = "IblScope" },
-      })
+      require("ibl").setup({ indent = { char = "│" }, scope = { highlight = "IblScope" } })
     end,
   },
   {
@@ -168,18 +150,18 @@ require("lazy").setup({
     config = function()
       require("gitsigns").setup({
         signs = {
-          add = { text = "│" },
-          change = { text = "│" },
-          delete = { text = "_" },
-          topdelete = { text = "‾" },
+          add          = { text = "│" },
+          change       = { text = "│" },
+          delete       = { text = "_" },
+          topdelete    = { text = "‾" },
           changedelete = { text = "~" },
         },
         current_line_blame = true,
-        current_line_blame_opts = {
-          delay = 500,
-          virt_text_pos = "eol",
-        },
+        current_line_blame_opts = { delay = 500, virt_text_pos = "eol" },
       })
+      vim.api.nvim_set_hl(0, "GitSignsAdd",    { fg = palette.green })
+      vim.api.nvim_set_hl(0, "GitSignsChange", { fg = palette.yellow })
+      vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = palette.red })
     end,
   },
   {
@@ -187,9 +169,9 @@ require("lazy").setup({
     version = "*",
     config = function()
       require("toggleterm").setup({
-        size = 10,                 -- height of horizontal terminal
-        open_mapping = [[<C-\>]],  -- Ctrl+\
-        direction = "horizontal",  -- open at bottom
+        size = 10,
+        open_mapping = [[<C-\>]],
+        direction = "horizontal",
         shade_terminals = true,
         shading_factor = 2,
       })
@@ -198,15 +180,12 @@ require("lazy").setup({
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
+    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
     config = function()
       require("noice").setup({
         lsp = {
-          progress = { enabled = true },
-          hover = { enabled = true },
+          progress  = { enabled = true },
+          hover     = { enabled = true },
           signature = { enabled = true },
         },
         presets = {
@@ -222,30 +201,21 @@ require("lazy").setup({
   },
 })
 
--- Enable onedark colorscheme
-vim.cmd("colorscheme onedark")
-
--- Match Neo-tree background with editor
-vim.api.nvim_set_hl(0, "NeoTreeNormal", { link = "Normal" })
-vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { link = "Normal" })
-vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { link = "Normal" })
-
--- Basic sane settings
+-- Basic settings
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
-vim.opt.termguicolors = true
 vim.opt.clipboard:append("unnamedplus")
 
--- Better window navigation with Ctrl + hjkl
+-- Window nav
 vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 
--- No Yanks on delete/change
+-- No yanks on delete/change
 vim.keymap.set({ "n", "v" }, "d", '"_d')
 vim.keymap.set({ "n", "v" }, "D", '"_D')
 vim.keymap.set({ "n", "v" }, "x", '"_x')
@@ -253,16 +223,14 @@ vim.keymap.set({ "n", "v" }, "X", '"_X')
 vim.keymap.set({ "n", "v" }, "c", '"_c')
 vim.keymap.set({ "n", "v" }, "C", '"_C')
 
--- Exit terminal mode with Esc
+-- Terminal mode
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
-
--- Window navigation inside terminal mode with Ctrl + hjkl
 vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { noremap = true, silent = true })
 vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true, silent = true })
 
--- Switch buffers with Tab and Shift+Tab
+-- Buffer switching
 vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 

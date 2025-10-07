@@ -1,0 +1,11 @@
+@define-color color-bg       ${COLOR_BACKGROUND};
+@define-color color-surface  ${COLOR_SURFACE};
+@define-color color-fg       ${COLOR_FOREGROUND};
+@define-color color-fg-alt   ${COLOR_WHITE};
+@define-color color-accent   ${COLOR_ACCENT};
+@define-color color-red      ${COLOR_RED};
+@define-color color-green    ${COLOR_GREEN};
+@define-color color-yellow   ${COLOR_YELLOW};
+@define-color color-blue     ${COLOR_BLUE};
+@define-color color-magenta  ${COLOR_MAGENTA};
+@define-color color-cyan     ${COLOR_CYAN};
