@@ -4,7 +4,7 @@
 source ~/.dotfiles/config/colors/current.env
 
 # --- Generate Kitty Colors ---
-cat > ~/.dotfiles/config/colors/current.kitty <<EOF
+cat > ~/.dotfiles/config/kitty/colors.kitty <<EOF
 background ${COLOR_BACKGROUND}
 foreground ${COLOR_FOREGROUND}
 color0 ${COLOR_BLACK}

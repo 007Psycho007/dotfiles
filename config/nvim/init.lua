@@ -60,6 +60,21 @@ require("lazy").setup({
     config = function()
       require("neo-tree").setup({
         window = { position = "right", show_end_of_buffer = false },
+          default_component_configs = {
+            git_status = {
+              symbols = {
+                added     = "",  -- diff-added
+                modified  = "",  -- diff-modified
+                deleted   = "",  -- diff-removed
+                renamed   = "",  -- diff-renamed
+                untracked = "",  -- question
+                ignored   = "",  -- ignored
+                unstaged  = "",  -- exclamation-circle
+                staged    = "",  -- check
+                conflict  = "",  -- git-merge
+              },
+            },
+          },
       })
       vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { silent = true, noremap = true })
     end,

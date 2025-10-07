@@ -212,13 +212,13 @@
                 "critical": 15
             },
             "format": "{icon}",
-            "format-charging": "<span color='#E5C07B'>󱐋 </span>",
+            "format-charging": "<span color='#E5C07B'>󱐋</span>",
             "format-icons": [
-                "<span color='#E36C75'>  </span>", 
-                "<span color='#E36C75'>  </span>", 
-                "<span color='#E5C07B'>  </span>", 
-                "<span color='#98C379'>  </span>", 
-                "<span color='#98C379'>  </span>"],
+                "<span color='#E36C75'> </span>", 
+                "<span color='#E36C75'> </span>", 
+                "<span color='#E5C07B'> </span>", 
+                "<span color='#98C379'> </span>", 
+                "<span color='#98C379'> </span>"],
             "min-length": 3,
             "max-length": 3
         },
