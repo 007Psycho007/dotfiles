@@ -49,7 +49,7 @@ cat > ~/.config/hypr/colors.conf <<EOF
 EOF
 
 # write palette.toml for starship
-cat > ~/.config/starship/palette.toml <<EOF
+cat > ~/.dotfiles/config/starship/palette.toml <<EOF
 [palettes.tokyonight]
 bg      = "${COLOR_BACKGROUND}"
 fg      = "${COLOR_FOREGROUND}"
