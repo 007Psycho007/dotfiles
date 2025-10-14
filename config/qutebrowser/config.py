@@ -1,11 +1,13 @@
 config.load_autoconfig(True)
 #c.url.searchengines = {'DEFAULT': 'https://search.home.janpeterhaensel.de/?q={}'}
 #c.url.start_pages = ["https://search.home.janpeterhaensel.de/search"]
-c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}'}
-c.url.start_pages = ["https://google.com"]
+c.url.searchengines = {'DEFAULT': 'https://search.linklair.dev/search?q={}'}
+c.url.start_pages = ["https://dash.linklair.dev"]
 config.unbind('d',mode='normal')
 config.bind('<Shift-W>','spawn mpv {url}')
+config.bind('<Ctrl-b>','spawn ~/.config/scripts/bwmenu/bwmenu')
 
+c.colors.webpage.preferred_color_scheme = "dark"
 
 #### Theme Onedark
 c.colors.keyhint.bg = "#73b8f1"

@@ -31,7 +31,9 @@
     ~/.config/files: config/files
     ~/.config/nvim: config/nvim
     ~/.config/scripts: config/scripts
-    ~/.config/gtk-3.0/colors.css: config/gtk-3.0/colors.css
+    ~/.config/kanshi: config/kanshi
+    ~/.config/qutebrowser: config/qutebrowser
+    
 
 # ---- Repo packages via omnipkg ----
 - omnipkg:
