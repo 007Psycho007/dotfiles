@@ -115,7 +115,7 @@ cursor ${COLOR_ACCENT}
 EOF
 
 # --- Generate Waybar colors (GTK CSS) ---
-cat > ~/.config/waybar/colors.css <<EOF
+cat > ~/.dotfiles/config/waybar/colors.css <<EOF
 @define-color color-background ${COLOR_BACKGROUND};
 @define-color color-surface ${COLOR_SURFACE};
 @define-color color-foreground ${COLOR_FOREGROUND};
@@ -130,7 +130,7 @@ EOF
 # --- Generate Hyprland Colors ---
 strip_hash() { echo "${1#\#}"; }
 
-cat > ~/.config/hypr/colors.conf <<EOF
+cat > ~/.dotfiles/config/hypr/colors.conf <<EOF
 \$color_bg = rgb($(strip_hash "$COLOR_BACKGROUND"))
 \$color_fg = rgb($(strip_hash "$COLOR_FOREGROUND"))
 \$color_accent = rgb($(strip_hash "$COLOR_ACCENT"))
@@ -253,6 +253,7 @@ else
   echo "• hyprpaper not installed; skip"
 fi
 
+pkill cava
 # ---------- Waybar restart (no systemd) ----------
 WAYBAR_CMD="${WAYBAR_CMD:-waybar}"
 if command -v waybar >/dev/null 2>&1; then
@@ -272,4 +273,5 @@ if command -v notify-send >/dev/null 2>&1; then
   notify-send "Theme switched" "Now using: ${THEME_NAME}" -t 2000
 fi
 
+source ~/.config/colors/current.env
 echo "✓ Done."

@@ -23,6 +23,15 @@ profile docked-3 {
     output eDP-1 disable
 }
 
+profile docked-4 {
+    # Left
+    output DP-10 enable mode 1920x1080 position 0,0 scale 1
+    # Right
+    output DP-5 enable mode 1920x1080 position 1920,0 scale 1
+    output eDP-1 disable
+}
+
+
 # When undocked (laptop only)
 profile laptop {
     output eDP-1 enable mode 1920x1080 position 0,0 scale 1

@@ -1,13 +1,13 @@
 * {
-  bg:       #24273a;
-  bg-alt:   #5b6078;
-  fg:       #cad3f5;
-  fg-alt:   #cad3f5;
-  accent:   #f5bde6;
-  red:      #ed8796;
-  green:    #a6da95;
-  yellow:   #eed49f;
-  blue:     #8aadf4;
-  magenta:  #f5bde6;
-  cyan:     #7dc4e4;
+  bg:       #2E3440;
+  bg-alt:   #4C566A;
+  fg:       #D8DEE9;
+  fg-alt:   #E5E9F0;
+  accent:   #88C0D0;
+  red:      #BF616A;
+  green:    #A3BE8C;
+  yellow:   #EBCB8B;
+  blue:     #81A1C1;
+  magenta:  #B48EAD;
+  cyan:     #88C0D0;
 }
