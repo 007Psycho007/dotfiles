@@ -76,37 +76,48 @@ cat > ~/.dotfiles/config/rofi/colors.rasi <<EOF
   fg:       ${COLOR_FOREGROUND};
   fg-alt:   ${COLOR_WHITE};
   accent:   ${COLOR_ACCENT};
+  red:      ${COLOR_RED};
+  green:    ${COLOR_GREEN};
+  yellow:   ${COLOR_YELLOW};
+  blue:     ${COLOR_BLUE};
+  magenta:  ${COLOR_MAGENTA};
+  cyan:     ${COLOR_CYAN};
 }
 EOF
 
-# --- GTK3 tokens ---
-cat > ~/.dotfiles/config/gtk-3.0/colors.css <<'EOF'
-@define-color color-bg       ${COLOR_BACKGROUND};
-@define-color color-surface  ${COLOR_SURFACE};
-@define-color color-fg       ${COLOR_FOREGROUND};
-@define-color color-fg-alt   ${COLOR_WHITE};
-@define-color color-accent   ${COLOR_ACCENT};
-@define-color color-red      ${COLOR_RED};
-@define-color color-green    ${COLOR_GREEN};
-@define-color color-yellow   ${COLOR_YELLOW};
-@define-color color-blue     ${COLOR_BLUE};
-@define-color color-magenta  ${COLOR_MAGENTA};
-@define-color color-cyan     ${COLOR_CYAN};
-EOF
+awk -v bg="$COLOR_BACKGROUND" \
+    -v fg="$COLOR_FOREGROUND" \
+    -v accent="$COLOR_ACCENT" \
+    -v red="$COLOR_RED" '
+function hex2rgb(h,   r,g,b) {
+  sub(/^#/,"",h)
+  r = strtonum("0x" substr(h,1,2))
+  g = strtonum("0x" substr(h,3,2))
+  b = strtonum("0x" substr(h,5,2))
+  return "rgb(" r "," g "," b ")"
+}
+BEGIN {
+  bg_rgb     = hex2rgb(bg)
+  fg_rgb     = hex2rgb(fg)
+  accent_rgb = hex2rgb(accent)
+  red_rgb    = hex2rgb(red)
 
-# --- GTK4 tokens (same values) ---
-cat > ~/.dotfiles/config/gtk-4.0/colors.css <<'EOF'
-@define-color color-bg       ${COLOR_BACKGROUND};
-@define-color color-surface  ${COLOR_SURFACE};
-@define-color color-fg       ${COLOR_FOREGROUND};
-@define-color color-fg-alt   ${COLOR_WHITE};
-@define-color color-accent   ${COLOR_ACCENT};
-@define-color color-red      ${COLOR_RED};
-@define-color color-green    ${COLOR_GREEN};
-@define-color color-yellow   ${COLOR_YELLOW};
-@define-color color-blue     ${COLOR_BLUE};
-@define-color color-magenta  ${COLOR_MAGENTA};
-@define-color color-cyan     ${COLOR_CYAN};
-EOF
+  print "#########################################"
+  print "# ~/.config/hypr/hyprlock.conf"
+  print "# Self-contained: palette + config (no import)"
+  print "#########################################\n"
+  print "# ---- BEGIN AUTO-GENERATED PALETTE (from central scheme) ----"
+  print "$bg        = " bg_rgb "   # " bg
+  print "$fg        = " fg_rgb "   # " fg
+  print "$accent    = " accent_rgb "   # " accent
+  print "$red       = " red_rgb "   # " red
+  print "$bg_hex     = " bg
+  print "$fg_hex     = " fg
+  print "$accent_hex = " accent
+  print "$red_hex    = " red
+  print "# ---- END AUTO-GENERATED PALETTE ----\n"
+}
+{ print }
+' ~/.config/hypr/hyprlock.body.conf > ~/.config/hypr/hyprlock.conf
 
 echo "Colors updated. Reload Hyprland to apply: hyprctl reload"

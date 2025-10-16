@@ -117,23 +117,23 @@ window#waybar.empty {
 }
 
 #custom-cava {
+    padding: 0 5px;
     margin: 4px;
-    padding-right: 10px;
-    padding-left: 5px;
-    margin-right: 5px;
-    margin-left: 0;
+    margin-right: 10px;
+    margin-left: 0px;
+    border: 0 solid transparent;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-
     background-color: @color-surface;
     color: @color-green;
 }
 
 #custom-playerinfo {
-    padding-left: 4px;
+
+    padding: 0 5px;
     margin: 4px;
-    margin-right: 0;
-    margin-left: 5px;
+    margin-right: 0px;
+    border: 0 solid transparent;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
 
@@ -151,7 +151,7 @@ window#waybar.empty {
 }
 
 /* metric pill left halves */
-#custom-preclock, #custom-premem, #custom-precpu, #custom-predisk, #battery.icon {
+#custom-title, #custom-prelang, #custom-preclock, #custom-premem, #custom-precpu, #custom-predisk {
     padding-left: 4px;
     margin: 4px;
     margin-right: 0;
@@ -160,9 +160,19 @@ window#waybar.empty {
     border-bottom-left-radius: 6px;
     border: 2px solid @color-surface;
     background-color: @color-surface;
-    color: @color-foreground;
 }
 
+#battery.icon {
+    padding-left: 4px;
+    margin: 4px;
+    margin-right: 0;
+    margin-left: 5px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: 2px solid @color-surface;
+    background-color: @color-surface;
+    color: @color-yellow;
+}
 /* clock right half */
 #clock {
     margin: 4px;
@@ -185,7 +195,7 @@ window#waybar.empty {
     border-bottom-left-radius: 6px;
     border: 2px solid @color-surface;
     background-color: @color-surface;
-    color: @color-foreground;
+    color: @color-magenta;
 }
 
 #network, #custom-preup, #network.up, #custom-predown {
@@ -212,7 +222,7 @@ window#waybar.empty {
 }
 
 /* metric pill right halves */
-#memory, #cpu, #disk, #battery.text {
+#window, #memory, #cpu, #disk, #battery.text {
     padding: 0 6px;
     margin: 4px;
     margin-right: 5px;
@@ -225,7 +235,7 @@ window#waybar.empty {
 }
 
 /* misc modules */
-#window, #language, #custom-notification, #tray {
+#language, #custom-notification, #tray {
     padding: 0 6px;
     margin: 4px;
     margin-right: 6px;
@@ -233,6 +243,6 @@ window#waybar.empty {
     border-radius: 6px;
     border: 2px solid @color-surface;
     background-color: @color-surface;
-    color: @color-foreground;
+    color: @color-blue;
 }
 
