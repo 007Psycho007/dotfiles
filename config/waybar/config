@@ -5,7 +5,7 @@
         "position": "top",
         "height": 45,
         "modules-left": ["custom/os_button","hyprland/workspaces","hyprland/window","hyprland/language","tray"],
-        "modules-center": ["mpris"],
+        "modules-center": ["custom/playerinfo", "custom/cava"],
         "modules-right": ["battery#icon","battery#text","network#icon","network", "custom/preup","network#up","custom/predown","network#down","custom/predisk","disk","custom/precpu","cpu","custom/premem","memory","custom/preclock", "clock", "custom/notification"],
         
         "tray": {
@@ -83,10 +83,24 @@
             "tooltip": false
         },
 
+        "custom/cava": {
+            "format": "{}",
+            "exec": "~/.config/waybar/cava.sh"
+        },
+        "custom/playerinfo": {
+            "format": "{}",
+            "exec": "~/.config/waybar/playerinfo.sh",
+            "interval": 2,
+            "tooltip": false,
+            "on-click": "playerctl play-pause",
+            "on-click-right": "playerctl next",
+            "on-click-middle": "playerctl previous"
+        },
+
         "mpris": {
             "max-length": 30,
             "min-length": 30,
-            "format": "{player_icon} {dynamic}",
+            "format": "{player_icon}",
             "format-paused": "{status_icon} <i>{dynamic}</i>",
             "player-icons": {
                 "default": "▶",

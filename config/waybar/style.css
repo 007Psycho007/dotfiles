@@ -106,7 +106,7 @@ window#waybar.empty {
 }
 
 /* mpris */
-#mpris {
+#mpris  {
     padding: 0 5px;
     margin: 4px;
     margin-right: 10px;
@@ -116,13 +116,37 @@ window#waybar.empty {
     color: @color-accent;
 }
 
+#custom-cava {
+    margin: 4px;
+    padding-right: 10px;
+    padding-left: 5px;
+    margin-right: 5px;
+    margin-left: 0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    background-color: @color-surface;
+    color: @color-green;
+}
+
+#custom-playerinfo {
+    padding-left: 4px;
+    margin: 4px;
+    margin-right: 0;
+    margin-left: 5px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+
+    background-color: @color-surface;
+    color: @color-green;
+}
 #mpris.playing {
     padding: 0 5px;
     margin: 4px;
     margin-right: 10px;
     border: 0 solid transparent;
     border-radius: 6px;
-    background-color: @color-green;
+    background-color: @color-;
     color: @color-background;
 }
 
