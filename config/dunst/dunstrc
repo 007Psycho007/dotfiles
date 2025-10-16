@@ -3,7 +3,7 @@
     allow_markup = yes
     markup = yes
     # Title in accent, body in normal fg:
-    format = "<span foreground='#bb9af7'><b>%s</b></span>\n%b"
+    format = "<span foreground='#f5bde6'><b>%s</b></span>\n%b"
 
     sort = yes
     indicate_hidden = yes
@@ -27,9 +27,9 @@
     corner_radius = 12
 
     # Frame + highlight from palette
-    frame_color  = "#bb9af7"
+    frame_color  = "#f5bde6"
     frame_width  = 2
-    highlight    = "#bb9af7"
+    highlight    = "#f5bde6"
 
     # Sizing / icons
     width = 500
@@ -53,18 +53,18 @@
 
 # Urgencies pull bg/fg from the central scheme
 [urgency_low]
-    background = "#1a1b26"
-    foreground = "#c0caf5"
+    background = "#24273a"
+    foreground = "#cad3f5"
     timeout = 3
 
 [urgency_normal]
-    background = "#1a1b26"
-    foreground = "#c0caf5"
+    background = "#24273a"
+    foreground = "#cad3f5"
     timeout = 2
 
 [urgency_critical]
-    background = "#1a1b26"
-    foreground = "#c0caf5"
-    frame_color = "#e0af68"   # make critical pop (choose RED if you prefer)
+    background = "#24273a"
+    foreground = "#cad3f5"
+    frame_color = "#eed49f"   # make critical pop (choose RED if you prefer)
     timeout = 0
 

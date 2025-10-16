@@ -126,6 +126,6 @@ vimcmd_visual_symbol      = " [󰈈  ](fg:magenta bg:bgdim)[\n ❯](fg:magent
 # --- Time --------------------------------------------------------------------
 [time]
 disabled = false
-format = "[$time](fg:blue bg:bgdim)[ ](fg:bgdim)"
+format = "[$time](fg:accent bg:bgdim)[ ](fg:bgdim)"
 time_format = "%H:%M"
 
