@@ -11,7 +11,7 @@
       "battery#icon","battery#text",
       "network#icon","network", "custom/preup","network#up","custom/predown","network#down",
       "custom/predisk","disk","custom/precpu","cpu","custom/premem","memory",
-      "custom/preclock","clock", "custom/notification"
+      "custom/preclock","clock"
     ],
 
     "tray": { "icon-size": 14, "spacing": 5 },
@@ -211,6 +211,11 @@
       "format-de": "de",
       "max-length": 5,
       "min-length": 5
+    },
+
+    "custom/information": {
+      "format": "",
+      "on-click": "eww open central --toggle"
     },
 
     "custom/notification": {

@@ -214,4 +214,62 @@ BEGIN {
 { print }
 ' ~/.config/hypr/hyprlock.body.conf > ~/.config/hypr/hyprlock.conf
 
-echo "Colors updated. Reload Hyprland to apply: hyprctl reload"
+~/.config/dunst/rebuild.sh
+
+echo "Colors updated. Reloading applications"
+
+# ---------- helpers (no systemd) ----------
+kill_proc() {
+  # kill all PIDs of given executable name quietly
+  local exe="$1"
+  pkill -x "$exe" >/dev/null 2>&1 || true
+  # wait up to 2s for it to die
+  for _ in {1..20}; do
+    pgrep -x "$exe" >/dev/null || return 0
+    sleep 0.1
+  done
+}
+
+spawn_bg() {
+  # run command detached w/ inherited env
+  nohup "$@" >/dev/null 2>&1 &
+}
+
+# ---------- Hyprland reload ----------
+if command -v hyprctl >/dev/null 2>&1; then
+  hyprctl reload >/dev/null 2>&1 || true
+  echo "↻ Hyprland reloaded"
+else
+  echo "• hyprctl not found; skip Hyprland reload"
+fi
+
+# ---------- hyprpaper restart (no systemd) ----------
+HYPRPAPER_CMD="${HYPRPAPER_CMD:-hyprpaper}"
+if command -v hyprpaper >/dev/null 2>&1; then
+  kill_proc "hyprpaper"
+  spawn_bg $HYPRPAPER_CMD
+  echo "↻ hyprpaper restarted"
+else
+  echo "• hyprpaper not installed; skip"
+fi
+
+# ---------- Waybar restart (no systemd) ----------
+WAYBAR_CMD="${WAYBAR_CMD:-waybar}"
+if command -v waybar >/dev/null 2>&1; then
+  kill_proc "waybar"
+  spawn_bg $WAYBAR_CMD
+  echo "↻ Waybar restarted"
+else
+  echo "• waybar not installed; skip"
+fi
+
+pkill -x dunst >/dev/null 2>&1 || true
+nohup dunst >/dev/null 2>&1 &
+echo "↻ dunst restarted"
+
+# ---------- optional notify ----------
+if command -v notify-send >/dev/null 2>&1; then
+  notify-send "Theme switched" "Now using: ${THEME_NAME}" -t 2000
+fi
+
+echo "✓ Done."

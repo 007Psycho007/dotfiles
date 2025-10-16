@@ -235,7 +235,7 @@ window#waybar.empty {
 }
 
 /* misc modules */
-#language, #custom-notification, #tray {
+#custom-information, #language, #custom-notification, #tray {
     padding: 0 6px;
     margin: 4px;
     margin-right: 6px;
