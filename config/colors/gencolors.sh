@@ -1,6 +1,100 @@
 #!/usr/bin/env bash
 # Generates color configs for Kitty, Waybar, and Hyprland from one source
+set -euo pipefail
 
+# --- Paths (change if you keep a different layout) ---
+BASE_DIR="$HOME/.config/colors"
+THEMES_DIR="$BASE_DIR/themes"
+CURRENT_ENV="$BASE_DIR/current.env"
+WALL_DIR="$HOME/.config/files"          # where we keep the "active" wallpaper
+# (hyprpaper/swww/etc. can point here)
+
+usage() {
+  cat <<EOF
+Usage: $(basename "$0") <theme-name>
+
+Example:
+  $(basename "$0") cyberpunk
+
+This looks for:
+  - \$THEMES_DIR/<theme-name>/colors.env
+  - \$THEMES_DIR/<theme-name>/wall.(png|jpg|jpeg|webp|bmp)
+
+Then it:
+  - copies colors.env -> $CURRENT_ENV
+  - copies wallpaper  -> $WALL_DIR/current.<ext>
+
+Current config:
+  THEMES_DIR = $THEMES_DIR
+  CURRENT_ENV= $CURRENT_ENV
+  WALL_DIR   = $WALL_DIR
+EOF
+}
+
+# List available themes (those with a colors.env)
+list_themes() {
+  echo "Available themes:"
+  shopt -s nullglob
+  local had=0
+  for d in "$THEMES_DIR"/*/ ; do
+    if [[ -f "$d/colors.env" ]]; then
+      had=1
+      printf "  - %s\n" "$(basename "$d")"
+    fi
+  done
+  shopt -u nullglob
+  [[ $had -eq 1 ]] || echo "  (none found in $THEMES_DIR)"
+}
+
+# --- Arg parsing ---
+if [[ $# -lt 1 ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
+  usage
+  echo
+  list_themes
+  exit 0
+fi
+
+THEME_NAME="$(basename -- "$1")"    # sanitize (no path traversal)
+THEME_DIR="$THEMES_DIR/$THEME_NAME"
+ENV_SRC="$THEME_DIR/colors.env"
+
+if [[ ! -d "$THEME_DIR" ]]; then
+  echo "Error: theme '$THEME_NAME' not found at $THEME_DIR" >&2
+  echo
+  list_themes
+  exit 1
+fi
+if [[ ! -f "$ENV_SRC" ]]; then
+  echo "Error: $ENV_SRC is missing (each theme must provide colors.env)" >&2
+  exit 1
+fi
+
+# --- Ensure target dirs exist ---
+mkdir -p "$BASE_DIR"
+mkdir -p "$WALL_DIR"
+
+# --- Copy colors.env ---
+cp -f "$ENV_SRC" "$CURRENT_ENV"
+echo "✓ Copied palette: $ENV_SRC  ->  $CURRENT_ENV"
+
+# --- Copy wallpaper (best-match extension) ---
+wall_src=""
+for ext in png jpg jpeg webp bmp; do
+  cand="$THEME_DIR/wall.$ext"
+  if [[ -f "$cand" ]]; then
+    wall_src="$cand"
+    break
+  fi
+done
+
+if [[ -n "$wall_src" ]]; then
+  ext="${wall_src##*.}"
+  wall_dst="$WALL_DIR/wall.$ext"
+  cp -f "$wall_src" "$wall_dst"
+  echo "✓ Copied wallpaper: $wall_src  ->  $wall_dst"
+else
+  echo "• No wallpaper found in $THEME_DIR (looked for wallpaper.(png|jpg|jpeg|webp|bmp))"
+fi
 source ~/.dotfiles/config/colors/current.env
 
 # --- Generate Kitty Colors ---
