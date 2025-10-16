@@ -12,17 +12,11 @@ do
 done
 
 # write cava config
-config_file="/tmp/polybar_cava_config"
-echo "
-[general]
-bars = 18
-
-[output]
-method = raw
-raw_target = /dev/stdout
-data_format = ascii
-ascii_max_range = 7
-" > $config_file
+if [[ -f "$HOME/.config/waybar/cava_configs/config_${HOSTNAME}" ]]; then
+    config_file="$HOME/.config/waybar/cava_configs/config_${HOSTNAME}"
+else
+    config_file="$HOME/.config/waybar/cava_configs/default"
+fi
 
 # read stdout from cava
 cava -p $config_file | while read -r line; do

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Wrapper to start Neovim in a Kitty window with a custom class name
+
+# Custom window class (change this to whatever you want to match in Hyprland)
+CLASS_NAME="nvim"
+
+# Optional: pass args to Neovim
+ARGS=("$@")
+
+# Launch kitty with a custom class name and start nvim
+kitty --class "$CLASS_NAME" nvim "${ARGS[@]}" &

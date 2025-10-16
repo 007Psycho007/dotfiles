@@ -34,7 +34,7 @@
     ~/.config/kanshi: config/kanshi
     ~/.config/qutebrowser: config/qutebrowser
     ~/.config/dunst: config/dunst
-    ~/.config/eww: config/eww
+    ~/bin: config/bin
     
 
 # ---- Repo packages via omnipkg ----

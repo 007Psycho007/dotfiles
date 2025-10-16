@@ -1,6 +1,6 @@
 # ~/.config/fish/config.fish
 set -gx STARSHIP_CONFIG ~/.config/starship/starship-generated.toml
-
+set -U fish_user_paths $HOME/bin $fish_user_paths
 # --- Starship transient prompt integration ---
 function starship_transient_prompt_func
     starship module time

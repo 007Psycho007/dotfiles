@@ -1,0 +1,12 @@
+[general]
+bars = 18
+
+[output]
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+ascii_max_range = 7
+
+[input]
+method = pipewire
+source = alsa_output.usb-R__DE_RODECaster_Pro_II_GV0029298-00.pro-output-1.monitor

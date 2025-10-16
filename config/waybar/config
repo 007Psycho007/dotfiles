@@ -105,7 +105,7 @@
     "custom/title": { "format": " ", "tooltip": false },
 
     "custom/cava": {
-      "format": "{}",
+      "format": " {}  ",
       "exec": "~/.config/waybar/cava.sh"
     },
 
