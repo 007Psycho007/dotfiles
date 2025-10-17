@@ -27,7 +27,7 @@ require("lazy").setup({
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
+   config = function()
       require("lualine").setup({
         options = {
           theme = theme.lualine_theme(),
@@ -91,7 +91,7 @@ require("lazy").setup({
         { "<leader>e", ":Neotree toggle<CR>", desc = "Explorer" },
         { "<leader>w", ":w<CR>", desc = "Save" },
         { "<leader>q", ":confirm qa<CR>", desc = "Quit (confirm save)" },
-
+        { "<leader>s", group = "Split" },
         -- GROUPS
         { "<leader>f", group = "Find" },
         { "<leader>b", group = "Buffers" },
@@ -114,6 +114,12 @@ require("lazy").setup({
         -- Noice
         { "<leader>nh", "<cmd>NoiceHistory<cr>", desc = "History" },
         { "<leader>nd", "<cmd>NoiceDismiss<cr>", desc = "Dismiss" },
+
+        -- Split
+        { "<leader>sv", "<C-w>v", desc = "Split Vertically" },
+        { "<leader>sh", "<C-w>s", desc = "Split Horizontally" },
+        { "<leader>se", "<C-w>=", desc = "Equalize Splits" },
+        { "<leader>sx", "<cmd>close<CR>", desc = "Close Split" },
       })
     end,
   },
@@ -127,7 +133,7 @@ require("lazy").setup({
         options = {
           mode = "buffers",
           diagnostics = "nvim_lsp",
-          separator_style = "slant",
+          separator_style = "sloped",
           show_buffer_close_icons = false,
           show_close_icon = false,
           persist_buffer_sort = true,
