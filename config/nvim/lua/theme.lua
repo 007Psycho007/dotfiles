@@ -2,28 +2,61 @@
 -- Reads env vars (COLOR_*) from your generator, with Tokyo Night fallbacks.
 
 local M = {}
+-- sanitize color strings from env
+local function trim(s) return (s or ""):gsub("^%s+", ""):gsub("%s+$", "") end
+local function unquote(s)
+  s = trim(s or "")
+  if (s:sub(1,1) == '"' and s:sub(-1) == '"') or (s:sub(1,1) == "'" and s:sub(-1) == "'") then
+    return s:sub(2, -2)
+  end
+  return s
+end
+local function rgb_to_hex_str(r,g,b) return string.format("#%02x%02x%02x", r, g, b) end
+local function parse_rgb_fn(s)
+  -- accepts rgb(216,222,233) with arbitrary spaces
+  local r,g,b = s:match("^rgb%s*%(%s*(%d+)%s*,%s*(%d+)%s*,%s*(%d+)%s*%)$")
+  if r and g and b then
+    r,g,b = tonumber(r), tonumber(g), tonumber(b)
+    if r and g and b and r>=0 and r<=255 and g>=0 and g<=255 and b>=0 and b<=255 then
+      return rgb_to_hex_str(r,g,b)
+    end
+  end
+  return nil
+end
+local function normalize_color(s, fallback)
+  s = unquote(s)
+  if s == "" then return fallback end
+  -- rgb(...) -> #RRGGBB
+  local maybe = parse_rgb_fn(s)
+  if maybe then return maybe end
+  -- allow #RRGGBB (case-insensitive) with stray spaces
+  s = s:gsub("%s+", "")
+  if s:match("^#%x%x%x%x%x%x$") then
+    return "#" .. s:sub(2):upper()
+  end
+  return fallback
+end
 
--- Read env with fallback
-local function env(name, fallback)
+-- env with fallback, then normalize to hex
+local function env_color(name, fb)
   local v = vim.env[name]
-  return (v ~= nil and v ~= "") and v or fallback
+  return normalize_color(v or "", fb)
 end
 
 -- Exported palette
 M.palette = {
-  bg      = env("COLOR_BACKGROUND", "#1a1b26"),
-  fg      = env("COLOR_FOREGROUND", "#c0caf5"),
-  accent  = env("COLOR_ACCENT",     "#7aa2f7"),
-  black   = env("COLOR_BLACK",      "#15161e"),
-  red     = env("COLOR_RED",        "#f7768e"),
-  green   = env("COLOR_GREEN",      "#9ece6a"),
-  yellow  = env("COLOR_YELLOW",     "#e0af68"),
-  blue    = env("COLOR_BLUE",       "#7aa2f7"),
-  magenta = env("COLOR_MAGENTA",    "#bb9af7"),
-  cyan    = env("COLOR_CYAN",       "#7dcfff"),
-  white   = env("COLOR_WHITE",      "#a9b1d6"),
+  bg      = env_color("COLOR_BACKGROUND", "#1A1B26"),
+  fg      = env_color("COLOR_FOREGROUND", "#C0CAF5"),
+  accent  = env_color("COLOR_ACCENT",     "#7AA2F7"),
+  black   = env_color("COLOR_BLACK",      "#15161E"),
+  red     = env_color("COLOR_RED",        "#F7768E"),
+  green   = env_color("COLOR_GREEN",      "#9ECE6A"),
+  yellow  = env_color("COLOR_YELLOW",     "#E0AF68"),
+  blue    = env_color("COLOR_BLUE",       "#7AA2F7"),
+  magenta = env_color("COLOR_MAGENTA",    "#BB9AF7"),
+  cyan    = env_color("COLOR_CYAN",       "#7DCFFF"),
+  white   = env_color("COLOR_WHITE",      "#A9B1D6"),
 }
-
 -- --- color helpers (hex) ---
 local function hex_to_rgb(hex)
   hex = hex:gsub("#","")
@@ -47,8 +80,8 @@ local function apply_base_highlights(p)
   local set = vim.api.nvim_set_hl
 
   -- Editor core
-  set(0, "Normal",        { fg = p.fg,     bg = p.bg })
-  set(0, "NormalNC",      { fg = p.fg,     bg = p.bg })
+  set(0, "Normal",        { fg = p.fg, bg = p.bg })
+  set(0, "NormalNC",      { fg = p.fg, bg = p.bg })
   set(0, "CursorLine",    { bg = p.black })
   set(0, "CursorLineNr",  { fg = p.accent, bold = true })
   set(0, "Visual",        { fg = p.bg,     bg = p.blue })

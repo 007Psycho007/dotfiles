@@ -59,7 +59,7 @@ run_cmd() {
 			--shutdown) systemctl poweroff ;;
 			--reboot) systemctl reboot ;;
 			--suspend)
-        hyprlock
+        hyprlock &
 				systemctl suspend
 				;;
 			--logout)
