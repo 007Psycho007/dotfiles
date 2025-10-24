@@ -1,0 +1,22 @@
+[1516943:1517056:1021/085103.179535:ERROR:google_apis/gcm/engine/registration_request.cc:274] Registration URL fetching failed.
+[1516943:1517056:1021/085103.179654:ERROR:google_apis/gcm/engine/connection_factory_impl.cc:483] ConnectionHandler failed with net error: -2
+[1516943:1516943:1021/085103.183495:ERROR:content/common/zygote/zygote_communication_linux.cc:293] Failed to send GetTerminationStatus message to zygote
+[1516943:1516943:1021/085103.184270:ERROR:content/common/zygote/zygote_communication_linux.cc:293] Failed to send GetTerminationStatus message to zygote
+[1516943:1516943:1021/085103.186470:ERROR:content/browser/network_service_instance_impl.cc:599] Network service crashed, restarting service.
+[1516943:1516943:1021/085103.193487:ERROR:content/common/zygote/zygote_communication_linux.cc:293] Failed to send GetTerminationStatus message to zygote
+[1516943:1516943:1021/085103.194627:ERROR:content/common/zygote/zygote_communication_linux.cc:293] Failed to send GetTerminationStatus message to zygote
+[1516943:1516943:1021/085103.196756:ERROR:content/common/zygote/zygote_communication_linux.cc:293] Failed to send GetTerminationStatus message to zygote
+[1516943:1516943:1021/085103.212447:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.222651:ERROR:extensions/browser/service_worker/service_worker_task_queue.cc:426] DidStartWorkerFail nngceckbapebfimnlniiiahkandclblb: 3
+[1516943:1516943:1021/085103.223895:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.225589:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.226692:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.227483:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.228075:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.228822:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.229489:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.230006:ERROR:content/browser/gpu/gpu_process_host.cc:964] GPU process launch failed: error_code=1002
+[1516943:1516943:1021/085103.230014:FATAL:content/browser/gpu/gpu_data_manager_impl_private.cc:415] GPU process isn't usable. Goodbye.
+[1021/085103.235628:ERROR:third_party/crashpad/crashpad/snapshot/elf/elf_dynamic_array_reader.h:64] tag not found
+[1021/085103.236156:ERROR:third_party/crashpad/crashpad/snapshot/elf/elf_dynamic_array_reader.h:64] tag not found
+[1021/085103.236365:ERROR:third_party/crashpad/crashpad/snapshot/elf/elf_dynamic_array_reader.h:64] tag not found
