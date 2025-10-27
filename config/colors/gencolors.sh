@@ -54,6 +54,54 @@ if [[ $# -lt 1 ]] || [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
   exit 0
 fi
 
+# ---- Zen/Firefox colors.css (userChrome) ----
+write_zen_colors() {
+  # Find active profile's chrome dir; if you know it, set ZEN_CHROME explicitly.
+  local ZEN_CHROME="${ZEN_CHROME:-$HOME/.mozilla/firefox}"  # fallback path style
+  local target=""
+  # Try to auto-pick the default profile
+  if [[ -d "$ZEN_CHROME" ]]; then
+    # Grab the profile that has a chrome/ dir or the one marked default in installs.ini
+    target="$(find "$ZEN_CHROME" -maxdepth 1 -type d -name '*.default*' | head -n1)"
+  fi
+  # Allow explicit override
+  target="${ZEN_CHROME_OVERRIDE:-$target}"
+
+  if [[ -z "$target" || ! -d "$target" ]]; then
+    echo "• Skipping Zen colors: could not locate profile. Set ZEN_CHROME_OVERRIDE to your profile dir."
+    return 0
+  fi
+
+  mkdir -p "$target/chrome"
+
+  # helper to read env with fallback
+  get() { local n="$1" d="$2"; eval "printf '%s' \"\${$n:-$d}\""; }
+
+  cat > "$target/chrome/colors.css" <<EOF
+:root{
+  --bg:       $(get COLOR_BACKGROUND "#1a1b26");
+  --bg-alt:   $(get COLOR_BG_ALT "#24283b");
+  --bg-alt2:  $(get COLOR_BG_ALT2 "#313244");
+  --fg:       $(get COLOR_FOREGROUND "#c0caf5");
+  --fg-alt:   $(get COLOR_FG_ALT "#a9b1d6");
+  --fg-alt2:  $(get COLOR_FG_ALT2 "#bac2de");
+  --black:    $(get COLOR_BLACK "#15161e");
+  --gray:     $(get COLOR_GRAY "#585b70");
+  --red:      $(get COLOR_RED "#f7768e");
+  --green:    $(get COLOR_GREEN "#9ece6a");
+  --yellow:   $(get COLOR_YELLOW "#e0af68");
+  --blue:     $(get COLOR_BLUE "#7aa2f7");
+  --magenta:  $(get COLOR_MAGENTA "#bb9af7");
+  --cyan:     $(get COLOR_CYAN "#7dcfff");
+  --white:    $(get COLOR_WHITE "#a9b1d6");
+  --accent:   $(get COLOR_ACCENT "#7aa2f7");
+}
+EOF
+
+  echo "✓ Wrote Zen colors: $target/chrome/colors.css"
+}
+
+
 THEME_NAME="$(basename -- "$1")"    # sanitize (no path traversal)
 THEME_DIR="$THEMES_DIR/$THEME_NAME"
 ENV_SRC="$THEME_DIR/colors.env"
@@ -215,7 +263,7 @@ BEGIN {
 ' ~/.config/hypr/hyprlock.body.conf > ~/.config/hypr/hyprlock.conf
 
 ~/.config/dunst/rebuild.sh
-
+write_zen_colors
 echo "Colors updated. Reloading applications"
 
 # ---------- helpers (no systemd) ----------
